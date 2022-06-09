@@ -26,8 +26,8 @@ public class Frame1 extends JFrame {
     private JButton testButton;
 
     private final JComboBox<String> sortSelectComboBox;
-
-    String[] option = { "SORT", "Insert", "Merge", "Bubble", "Quick", "Selection" };
+    
+    String[] option = {"SORT", "Insert", "Merge", "Bubble", "Quick", "Selection"};
     ArrayList<String> imgSrc = new ArrayList<>();
 
     public Frame1() {
@@ -83,6 +83,7 @@ public class Frame1 extends JFrame {
 
         // add new elements to panel
 
+
         // add new elements to frame
         add(sortSelectComboBox);
         add(learnButton);
@@ -112,23 +113,21 @@ public class Frame1 extends JFrame {
             String sort = sortSelectComboBox.getItemAt(sortSelectComboBox.getSelectedIndex());
 
             // Go to the tutorial area depending on the selection of dropDownMenu value
-            switch (sort) {
+            switch(sort) {
                 case "Insert":
                     // TODO
                     break;
                 case "Merge":
-                    MergeSort MergeFrame = new MergeSort();
-                    setVisible(false);
+                    // TODO
                     break;
                 case "Bubble":
                     // TODO
                     break;
                 case "Quick":
-                    // TODO
+                    QuickSort q = new QuickSort();
+                    setVisible(false);
                     break;
                 case "Selection":
-                    SelectionSort selectFrame = new SelectionSort();
-                    setVisible(false);
                     break;
             }
         }
