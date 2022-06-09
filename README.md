@@ -15,6 +15,11 @@
     3. Img source:
         "https://www.twfont.com/chinese/generator/poster_generator.php"
         "https://www.iloveimg.com/zh-tw/resize-image"   
+
+## version1.2:      2022/6/9
+    1. change package from ntou.cs.java2022 to classSrc.
+    2. write actionPerformed in MainFrame to jump to Frame 1.
+
         
 
 

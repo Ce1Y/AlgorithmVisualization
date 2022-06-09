@@ -1,4 +1,4 @@
-package ntou.cs.java2022;
+package classSrc;
 
 import javax.swing.*;
 import java.awt.*;
