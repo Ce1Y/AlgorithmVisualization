@@ -17,8 +17,8 @@ public class QuickSort extends JFrame {
     private int fontSize = 15;
 
     private String str = 
-            "public class SelectionSortExample {" + "\n" +
-            "   public static void selectionSort(int[] arr) {" + "\n" +
+            "public class QuickSortExample {" + "\n" +
+            "   public static void quickSort(int[] arr) {" + "\n" +
             "       for (int i = 0; i < arr.length - 1; i++) {" + "\n" +
             "           int index = i;" + "\n" +
             "           for (int j = i + 1; j < arr.length; j++) {" + "\n" +
@@ -38,7 +38,7 @@ public class QuickSort extends JFrame {
         text = new JTextArea(str);
 
         text.setFont(new Font("Consolas", Font.PLAIN, fontSize));
-        // text.setSize(100, 100);
+        text.setEditable(false);
 
         // set listener
         ActionListener listener = new MyEventListener();

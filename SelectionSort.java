@@ -39,7 +39,7 @@ public class SelectionSort extends JFrame{
             text = new JTextArea(str);
     
             text.setFont(new Font("Consolas", Font.PLAIN, fontSize));
-            // text.setSize(100, 100);
+            text.setEditable(false);
     
             // set listener
             ActionListener listener = new MyEventListener();
