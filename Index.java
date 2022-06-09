@@ -2,10 +2,12 @@ package src.classSrc;
 
 import javax.swing.*;
 
+import src.classSrc.MainFrame;
+
 public class Index {
 
     public static void main(String[] args) {
-        Frame1 frame1 = new Frame1();
+        MainFrame mainFrame = new MainFrame();
         
     }
 }
