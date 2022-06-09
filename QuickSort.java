@@ -10,7 +10,11 @@ public class QuickSort extends JFrame {
     private JPanel titlePanel;
     private JPanel animatePanel;
     private JPanel codePanel;
+    private JTextArea text;
     private JButton returnButton;
+    private JButton plusFontSizeButton;
+    private JButton minusFontSizeButton;
+    private int fontSize = 15;
 
     private String str = "public class SelectionSortExample {" + "\n" +
             "public static void selectionSort(int[] arr){" + "\n" +
@@ -31,8 +35,9 @@ public class QuickSort extends JFrame {
     public QuickSort() {
         super("Quick Sort");
         setLayout(null);
-        JTextArea text = new JTextArea(str);
-        text.setFont(new Font("Consolas", Font.PLAIN, 50));
+        text = new JTextArea(str);
+
+        text.setFont(new Font("Consolas", Font.PLAIN, fontSize));
         // text.setSize(100, 100);
 
         // set listener
@@ -40,8 +45,8 @@ public class QuickSort extends JFrame {
 
         // set panel
         titlePanel = new JPanel();
-        titlePanel.setBounds(50, 25, 885, 50);
-        ImageIcon panelBackground = new ImageIcon("src/imageSrc/leo4545525/QuickSort.png");
+        titlePanel.setBounds(50, 25, 685, 50);
+        ImageIcon panelBackground = new ImageIcon("src/imageSrc/QuickSort.png");
         JLabel panelLabel = new JLabel(panelBackground);
         panelLabel.setBounds(0, 0, titlePanel.getWidth(), titlePanel.getHeight());
         titlePanel.setOpaque(false);
@@ -59,21 +64,33 @@ public class QuickSort extends JFrame {
 
 
         // set button
-        ImageIcon returnImg = new ImageIcon("src/imageSrc/leo4545525/Menu.png");
-        //JLabel returnLabel = new JLabel(returnImg);
+        ImageIcon returnImg = new ImageIcon("src/imageSrc/Menu.png");
+
+        // JLabel returnButton = new JButton(returnImg)
         returnButton = new JButton(returnImg);
         returnButton.setBounds(832, 40, 80, 35);
         returnButton.addActionListener(listener);
 
+        //
+        plusFontSizeButton = new JButton("+");
+        plusFontSizeButton.setBounds(830, 525, 50, 30);
+        plusFontSizeButton.addActionListener(listener);
+        //
+        minusFontSizeButton = new JButton("-");
+        minusFontSizeButton.setBounds(883, 525, 50, 30);
+        minusFontSizeButton.addActionListener(listener);
+
         // add new elements to frame
         add(returnButton);
+        add(plusFontSizeButton);
+        add(minusFontSizeButton);
         add(titlePanel);
         add(animatePanel);
         add(panelPane);
 
         // initialize frame
         setSize(1000, 600);
-        ImageIcon background = new ImageIcon("src/imageSrc/background.png");
+        ImageIcon background = new ImageIcon("src/imageSrc/Background.png");
         JLabel label = new JLabel(background);
         label.setBounds(0, 0, getWidth(), getHeight());
         JPanel imagePanel = (JPanel) getContentPane();
@@ -91,8 +108,28 @@ public class QuickSort extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Frame1 frame1 = new Frame1();
-            setVisible(false);
+            if (e.getSource() == returnButton) {
+                Frame1 frame1 = new Frame1();
+                setVisible(false);
+            } else if (e.getSource() == plusFontSizeButton) {
+                fontSize += 2;
+                if (fontSize <= 60) {
+                    text.setFont(new Font("Consolas", Font.PLAIN, fontSize));
+                } else {
+                    fontSize = 60;
+                    text.setFont(new Font("Consolas", Font.PLAIN, fontSize));
+                    JOptionPane.showMessageDialog(null, "No, it cannot be larger!");
+                }
+            } else if (e.getSource() == minusFontSizeButton) {
+                fontSize -= 2;
+                if (fontSize >= 6) {
+                    text.setFont(new Font("Consolas", Font.PLAIN, fontSize));
+                } else {
+                    fontSize = 6;
+                    text.setFont(new Font("Consolas", Font.PLAIN, fontSize));
+                    JOptionPane.showMessageDialog(null, "No, it cannot be smaller!");
+                }
+            }
 
         }
 

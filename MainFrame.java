@@ -31,7 +31,7 @@ public class MainFrame extends JFrame {
         setLayout(new GridLayout(3, 1));
 
         // set background
-        backgroundImage = new ImageIcon("src/imageSrc/cachouuu/Background.png");
+        backgroundImage = new ImageIcon("src/imageSrc/Background.png");
         backgroundLabel = new JLabel(backgroundImage);
         backgroundLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
         backgroundPanel = (JPanel) this.getContentPane();
@@ -39,22 +39,22 @@ public class MainFrame extends JFrame {
         this.getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
 
         // Chinese title image
-        titleImage = new ImageIcon("src/imageSrc/cachouuu/Title.png");
+        titleImage = new ImageIcon("src/imageSrc/Title.png");
         titleLabel = new JLabel(titleImage);
         titlePanel = new JPanel();
         titlePanel.add(titleLabel);
         add(titlePanel);
 
         // English title image
-        engTitleImage = new ImageIcon("src/imageSrc/cachouuu/TitleENG.png");
+        engTitleImage = new ImageIcon("src/imageSrc/TitleENG.png");
         engTitleLabel = new JLabel(engTitleImage);
         engTitlePanel = new JPanel();
         engTitlePanel.add(engTitleLabel);
         add(engTitlePanel);
 
         // sort and graph button
-        sortImage = new ImageIcon("src/imageSrc/cachouuu/Sort.png");
-        graphImage = new ImageIcon("src/imageSrc/cachouuu/Graph.png");
+        sortImage = new ImageIcon("src/imageSrc/Sort.png");
+        graphImage = new ImageIcon("src/imageSrc/Graph.png");
 
         buttonSort = new JButton(sortImage);
         buttonGraph = new JButton(graphImage);
