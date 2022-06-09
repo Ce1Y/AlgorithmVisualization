@@ -27,8 +27,8 @@ public class SelectionSort extends JFrame{
         returnButton.addActionListener(listener);
 
         // set textArea
-        textArea = new JTextArea("sdf");
-        textArea.setSize(425, 425);
+        textArea = new JTextArea("");
+        textArea.setEditable(true);
 
         // set panel
         titlePanel = new JPanel();
@@ -48,6 +48,7 @@ public class SelectionSort extends JFrame{
         codePanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         panelPane = new JScrollPane(textArea);
+        panelPane.setBounds(510, 100, 425, 425);
 
         // add new elements to panel
         codePanel.add(panelPane);
@@ -67,12 +68,10 @@ public class SelectionSort extends JFrame{
         imagePanel.setOpaque(false);
         getLayeredPane().add(label, Integer.valueOf(Integer.MIN_VALUE));
 
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
-
     }
 
     private class MyEventListener implements ActionListener {
