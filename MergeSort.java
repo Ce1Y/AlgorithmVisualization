@@ -10,7 +10,11 @@ public class MergeSort extends JFrame {
     private JPanel titlePanel;
     private JPanel animatePanel;
     private JPanel codePanel;
+    private JTextArea text;
     private JButton returnButton;
+    private JButton plusFontSizeButton;
+    private JButton minusFontSizeButton;
+    private int fontSize = 15;
 
     private String str = "public class MergeSortExample {" + "\n" +
             "public static void mergeSort(int[] a, int n) {" + "\n" +
@@ -46,9 +50,10 @@ public class MergeSort extends JFrame {
     public MergeSort() {
         super("Merge Sort");
         setLayout(null);
-        JTextArea text = new JTextArea(str);
-        text.setFont(new Font("Consolas", Font.PLAIN, 50));
-        // text.setSize(100, 100);
+        text = new JTextArea(str);
+
+        text.setFont(new Font("Consolas", Font.PLAIN, fontSize));
+        text.setEditable(false);
 
         // set listener
         ActionListener listener = new MyEventListener();
@@ -56,7 +61,7 @@ public class MergeSort extends JFrame {
         // set panel
         titlePanel = new JPanel();
         titlePanel.setBounds(50, 25, 885, 50);
-        ImageIcon panelBackground = new ImageIcon("src/imageSrc/wayne/MergeSort.png");
+        ImageIcon panelBackground = new ImageIcon("src/imageSrc/MergeSort.png");
         JLabel panelLabel = new JLabel(panelBackground);
         panelLabel.setBounds(0, 0, titlePanel.getWidth(), titlePanel.getHeight());
         titlePanel.setOpaque(false);
@@ -67,35 +72,36 @@ public class MergeSort extends JFrame {
         // animatePanel.setBackground(Color.BLUE);
         animatePanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        /*
-         * codePanel = new JPanel();
-         * codePanel.setBounds(510, 100, 425, 425);
-         * // codePanel.setBackground(Color.GREEN);
-         * codePanel.setBorder(BorderFactory.createLineBorder(Color.black));
-         */
-
-        // add new elements to panel
-
         JScrollPane panelPane = new JScrollPane(text);
         panelPane.setBounds(510, 100, 425, 425);
 
+        // add new elements to panel
+
         // set button
-        ImageIcon returnImg = new ImageIcon("src/imageSrc/leo4545525/Menu.png");
-        // JLabel returnLabel = new JLabel(returnImg);
+        plusFontSizeButton = new JButton("+");
+        plusFontSizeButton.setBounds(830, 525, 50, 30);
+        plusFontSizeButton.addActionListener(listener);
+
+        minusFontSizeButton = new JButton("-");
+        minusFontSizeButton.setBounds(883, 525, 50, 30);
+        minusFontSizeButton.addActionListener(listener);
+
+        ImageIcon returnImg = new ImageIcon("src/imageSrc/Menu.png");
         returnButton = new JButton(returnImg);
         returnButton.setBounds(832, 40, 80, 35);
         returnButton.addActionListener(listener);
 
         // add new elements to frame
         add(returnButton);
+        add(plusFontSizeButton);
+        add(minusFontSizeButton);
         add(titlePanel);
         add(animatePanel);
-        // add(codePanel);
         add(panelPane);
 
         // initialize frame
         setSize(1000, 600);
-        ImageIcon background = new ImageIcon("src/imageSrc/background.png");
+        ImageIcon background = new ImageIcon("src/imageSrc/Background.png");
         JLabel label = new JLabel(background);
         label.setBounds(0, 0, getWidth(), getHeight());
         JPanel imagePanel = (JPanel) getContentPane();
@@ -113,9 +119,28 @@ public class MergeSort extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Frame1 frame1 = new Frame1();
-            setVisible(false);
-
+            if (e.getSource() == returnButton) {
+                Frame1 frame1 = new Frame1();
+                setVisible(false);
+            } else if (e.getSource() == plusFontSizeButton) {
+                fontSize += 2;
+                if (fontSize <= 60) {
+                    text.setFont(new Font("Consolas", Font.PLAIN, fontSize));
+                } else {
+                    fontSize = 60;
+                    text.setFont(new Font("Consolas", Font.PLAIN, fontSize));
+                    JOptionPane.showMessageDialog(null, "No, it cannot be larger!");
+                }
+            } else if (e.getSource() == minusFontSizeButton) {
+                fontSize -= 2;
+                if (fontSize >= 6) {
+                    text.setFont(new Font("Consolas", Font.PLAIN, fontSize));
+                } else {
+                    fontSize = 6;
+                    text.setFont(new Font("Consolas", Font.PLAIN, fontSize));
+                    JOptionPane.showMessageDialog(null, "No, it cannot be smaller!");
+                }
+            }
         }
 
     }
