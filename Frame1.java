@@ -26,8 +26,8 @@ public class Frame1 extends JFrame {
     private JButton testButton;
 
     private final JComboBox<String> sortSelectComboBox;
-
-    String[] option = { "SORT", "Insert", "Merge", "Bubble", "Quick", "Selection" };
+    
+    String[] option = {"SORT", "Insert", "Merge", "Bubble", "Quick", "Selection"};
     ArrayList<String> imgSrc = new ArrayList<>();
 
     public Frame1() {
@@ -36,7 +36,7 @@ public class Frame1 extends JFrame {
         setLayout(null);
 
         // set background
-        backgroundImg = new ImageIcon("src/imageSrc/background.png");
+        backgroundImg = new ImageIcon("src/imageSrc/Background.png");
         backgroundLabel = new JLabel(backgroundImg);
         backgroundLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
         backgroundPanel = (JPanel) this.getContentPane();
@@ -83,6 +83,7 @@ public class Frame1 extends JFrame {
 
         // add new elements to panel
 
+
         // add new elements to frame
         add(sortSelectComboBox);
         add(learnButton);
@@ -91,7 +92,7 @@ public class Frame1 extends JFrame {
         // initialize frame
         setSize(1000, 600);
         // set frame1 background
-        ImageIcon background = new ImageIcon("src/imageSrc/background.png");
+        ImageIcon background = new ImageIcon("src/imageSrc/Background.png");
         JLabel label = new JLabel(background);
         label.setBounds(0, 0, getWidth(), getHeight());
         JPanel imagePanel = (JPanel) getContentPane();
@@ -112,13 +113,12 @@ public class Frame1 extends JFrame {
             String sort = sortSelectComboBox.getItemAt(sortSelectComboBox.getSelectedIndex());
 
             // Go to the tutorial area depending on the selection of dropDownMenu value
-            switch (sort) {
+            switch(sort) {
                 case "Insert":
                     // TODO
                     break;
                 case "Merge":
-                    MergeSort m = new MergeSort();
-                    setVisible(false);
+                    // TODO
                     break;
                 case "Bubble":
                     // TODO
@@ -128,7 +128,7 @@ public class Frame1 extends JFrame {
                     setVisible(false);
                     break;
                 case "Selection":
-                    SelectionSort s = new SelectionSort();
+                    SelectionSort selectFrame = new SelectionSort();
                     setVisible(false);
                     break;
             }
