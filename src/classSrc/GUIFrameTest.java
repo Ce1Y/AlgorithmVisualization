@@ -2,7 +2,7 @@ package src.classSrc;
 
 import javax.swing.*;
 
-public class MainFrameTest {
+public class GUIFrameTest {
     public static void main(String[] args) {
         MainFrame mainFrame = new MainFrame();
 

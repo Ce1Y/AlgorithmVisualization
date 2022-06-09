@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame {
-    // private ImageIcon backgroundImage;
+    private ImageIcon backgroundImage;
     private ImageIcon titleImage;
     private ImageIcon engTitleImage;
     private ImageIcon sortImage;
@@ -15,11 +15,11 @@ public class MainFrame extends JFrame {
     private JButton buttonSort;
     private JButton buttonGraph;
 
-    // private JLabel backgroundLabel;
+    private JLabel backgroundLabel;
     private JLabel titleLabel;
     private JLabel engTitleLabel;
 
-    // private JPanel backgroundPanel;
+    private JPanel backgroundPanel;
     private JPanel titlePanel;
     private JPanel engTitlePanel;
     private JPanel optionPanel;
@@ -29,6 +29,14 @@ public class MainFrame extends JFrame {
         setTitle("ALGORITHM VISUALIZATION");
         setSize(1000, 600);
         setLayout(new GridLayout(3, 1));
+
+        // set background
+        backgroundImage = new ImageIcon("src/imageSrc/background.png");
+        backgroundLabel = new JLabel(backgroundImage);
+        backgroundLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
+        backgroundPanel = (JPanel) this.getContentPane();
+        backgroundPanel.setOpaque(false);
+        this.getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
 
         // Chinese title image
         titleImage = new ImageIcon("src/imageSrc/Title.png");
@@ -67,7 +75,11 @@ public class MainFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent evt) {
             if (evt.getSource() == buttonSort) {
-                JOptionPane.showMessageDialog(MainFrame.this, "JUMP TO FRAME1");
+                Frame1 frame1 = new Frame1();
+                frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame1.setLocationRelativeTo(null);
+                frame1.setVisible(true);
+
             } else if (evt.getSource() == buttonGraph) {
                 JOptionPane.showMessageDialog(MainFrame.this, "SORRY, IT'S NOT ROLL OUT YET");
             }
