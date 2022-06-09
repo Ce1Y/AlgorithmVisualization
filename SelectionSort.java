@@ -11,6 +11,8 @@ public class SelectionSort extends JFrame{
     private JPanel animatePanel;
     private JPanel codePanel;
     private JButton returnButton;
+    private JTextArea textArea;
+    private JScrollPane panelPane;
 
     public SelectionSort() {
         super("Selection Sort");
@@ -24,10 +26,14 @@ public class SelectionSort extends JFrame{
         returnButton.setBounds(832, 472, 100, 50);
         returnButton.addActionListener(listener);
 
+        // set textArea
+        textArea = new JTextArea("sdf");
+        textArea.setSize(425, 425);
+
         // set panel
         titlePanel = new JPanel();
         titlePanel.setBounds(50, 25, 885, 50);
-        ImageIcon panelBackground = new ImageIcon("src/imageSrc/SelectionSort.png");
+        ImageIcon panelBackground = new ImageIcon("src/imageSrc/ce1y/SelectionSort.png");
         JLabel panelLabel = new JLabel(panelBackground);
         panelLabel.setBounds(0, 0, titlePanel.getWidth(), titlePanel.getHeight());
         titlePanel.setOpaque(false);
@@ -35,17 +41,16 @@ public class SelectionSort extends JFrame{
 
         animatePanel = new JPanel();
         animatePanel.setBounds(50, 100, 425, 425);
-        // animatePanel.setBackground(Color.BLUE);
         animatePanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         codePanel = new JPanel();
         codePanel.setBounds(510, 100, 425, 425);
-        // codePanel.setBackground(Color.GREEN);
         codePanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        // add new elements to panel
+        panelPane = new JScrollPane(textArea);
 
-        JScrollPane panelPane = new JScrollPane(codePanel);
+        // add new elements to panel
+        codePanel.add(panelPane);
 
         // add new elements to frame
         add(returnButton);
@@ -55,7 +60,7 @@ public class SelectionSort extends JFrame{
 
         // initialize frame
         setSize(1000, 600);
-        ImageIcon background = new ImageIcon("src/imageSrc/background.png");
+        ImageIcon background = new ImageIcon("src/imageSrc/ce1y/background.png");
         JLabel label = new JLabel(background);
         label.setBounds(0, 0, getWidth(), getHeight());
         JPanel imagePanel = (JPanel) getContentPane();
