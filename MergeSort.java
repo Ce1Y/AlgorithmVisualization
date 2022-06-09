@@ -121,7 +121,7 @@ public class MergeSort extends JFrame {
                 } else {
                     fontSize = 50;
                     text.setFont(new Font("Consolas", Font.PLAIN, fontSize));
-                    JOptionPane.showMessageDialog(InsertionSort.this, "Text cannot be larger!");
+                    JOptionPane.showMessageDialog(MergeSort.this, "Text cannot be larger!");
                 }
             } else if (e.getSource() == minusFontSizeButton) {
                 fontSize -= 2;
@@ -130,7 +130,7 @@ public class MergeSort extends JFrame {
                 } else {
                     fontSize = 6;
                     text.setFont(new Font("Consolas", Font.PLAIN, fontSize));
-                    JOptionPane.showMessageDialog(InsertionSort.this, "Text cannot be smaller!");
+                    JOptionPane.showMessageDialog(MergeSort.this, "Text cannot be smaller!");
                 }
             }
         }
