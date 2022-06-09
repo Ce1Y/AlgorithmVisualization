@@ -11,21 +11,37 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class Frame1 extends JFrame{
+public class Frame1 extends JFrame {
 
+    private ImageIcon backgroundImg;
+
+    private JLabel backgroundLabel;
+
+    private JPanel backgroundPanel;
     private JPanel sortSelectPanel;
     private JPanel learnPanel;
     private JPanel testPanel;
+
     private JButton learnButton;
     private JButton testButton;
+
     private final JComboBox<String> sortSelectComboBox;
     
-    String[] option = {"SORT", "Insert", "Merge", "Bubble", "Quick", "Select"};
+    String[] option = {"SORT", "Insert", "Merge", "Bubble", "Quick", "Selection"};
     ArrayList<String> imgSrc = new ArrayList<>();
 
     public Frame1() {
         super("Frame 1");
+        setSize(1000, 600);
         setLayout(null);
+
+        // set background
+        backgroundImg = new ImageIcon("src/imageSrc/background.png");
+        backgroundLabel = new JLabel(backgroundImg);
+        backgroundLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
+        backgroundPanel = (JPanel) this.getContentPane();
+        backgroundPanel.setOpaque(false);
+        this.getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
 
         // set listener
         ActionListener listener = new MyEventListener();
@@ -37,7 +53,7 @@ public class Frame1 extends JFrame{
 
         learnPanel = new JPanel();
         learnPanel.setBackground(Color.yellow);
-        
+
         testPanel = new JPanel();
         testPanel.setBackground(Color.green);
 
@@ -65,13 +81,28 @@ public class Frame1 extends JFrame{
             }
         });
 
-        // add new element to panel
+        // add new elements to panel
 
 
-        // add new element to frame
+        // add new elements to frame
         add(sortSelectComboBox);
         add(learnButton);
         add(testButton);
+
+        // initialize frame
+        setSize(1000, 600);
+        // set frame1 background
+        ImageIcon background = new ImageIcon("src/imageSrc/background.png");
+        JLabel label = new JLabel(background);
+        label.setBounds(0, 0, getWidth(), getHeight());
+        JPanel imagePanel = (JPanel) getContentPane();
+        imagePanel.setOpaque(false);
+        getLayeredPane().add(label, Integer.valueOf(Integer.MIN_VALUE));
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setVisible(true);
 
     }
 
@@ -81,22 +112,22 @@ public class Frame1 extends JFrame{
         public void actionPerformed(ActionEvent e) {
             String sort = sortSelectComboBox.getItemAt(sortSelectComboBox.getSelectedIndex());
 
-            // go to the tutorial area depending on the selection of dropDownMenu value
+            // Go to the tutorial area depending on the selection of dropDownMenu value
             switch(sort) {
                 case "Insert":
-                    //TODO
+                    // TODO
                     break;
                 case "Merge":
-                    //TODO
+                    // TODO
                     break;
                 case "Bubble":
-                    //TODO
+                    // TODO
                     break;
                 case "Quick":
-                    //TODO
+                    QuickSort q = new QuickSort();
+                    setVisible(false);
                     break;
-                case "Select":
-                    //TODO
+                case "Selection":
                     break;
             }
         }
