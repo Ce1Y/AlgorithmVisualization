@@ -16,21 +16,21 @@ public class QuickSort extends JFrame {
     private JButton minusFontSizeButton;
     private int fontSize = 15;
 
-    private String str = "public class SelectionSortExample {" + "\n" +
-            "public static void selectionSort(int[] arr){" + "\n" +
-            "for (int i = 0; i < arr.length - 1; i++)" + "\n" +
-            "{" + "\n" +
-            "int index = i;" + "\n" +
-            "for (int j = i + 1; j < arr.length; j++){" + "\n" +
-            "if (arr[j] < arr[index]) {" + "\n" +
-            "index = j; " + "\n" +
-            "}" + "\n" +
-            "}" + "\n" +
-            "int smallerNumber = arr[index]; " + "\n" +
-            "arr[index] = arr[i]; " + "\n" +
-            "arr[i] = smallerNumber; " + "\n" +
-            "}" + "\n" +
-            "}";
+    private String str = 
+            "public class SelectionSortExample {" + "\n" +
+            "   public static void selectionSort(int[] arr) {" + "\n" +
+            "       for (int i = 0; i < arr.length - 1; i++) {" + "\n" +
+            "           int index = i;" + "\n" +
+            "           for (int j = i + 1; j < arr.length; j++) {" + "\n" +
+            "               if (arr[j] < arr[index]) {" + "\n" +
+            "                   index = j; " + "\n" +
+            "           }" + "\n" +
+            "       } " + "\n" +
+            "       int smallerNumber = arr[index]; " + "\n" +
+            "       arr[index] = arr[i]; " + "\n" +
+            "       arr[i] = smallerNumber; " + "\n" +
+            "   }" + "\n" +
+            "}";    
 
     public QuickSort() {
         super("Quick Sort");
@@ -45,7 +45,7 @@ public class QuickSort extends JFrame {
 
         // set panel
         titlePanel = new JPanel();
-        titlePanel.setBounds(50, 25, 685, 50);
+        titlePanel.setBounds(50, 25, 885, 50);
         ImageIcon panelBackground = new ImageIcon("src/imageSrc/QuickSort.png");
         JLabel panelLabel = new JLabel(panelBackground);
         panelLabel.setBounds(0, 0, titlePanel.getWidth(), titlePanel.getHeight());
@@ -64,21 +64,18 @@ public class QuickSort extends JFrame {
 
 
         // set button
-        ImageIcon returnImg = new ImageIcon("src/imageSrc/Menu.png");
-
-        // JLabel returnButton = new JButton(returnImg)
-        returnButton = new JButton(returnImg);
-        returnButton.setBounds(832, 40, 80, 35);
-        returnButton.addActionListener(listener);
-
-        //
         plusFontSizeButton = new JButton("+");
         plusFontSizeButton.setBounds(830, 525, 50, 30);
         plusFontSizeButton.addActionListener(listener);
-        //
+        
         minusFontSizeButton = new JButton("-");
         minusFontSizeButton.setBounds(883, 525, 50, 30);
         minusFontSizeButton.addActionListener(listener);
+        
+        ImageIcon returnImg = new ImageIcon("src/imageSrc/Menu.png");
+        returnButton = new JButton(returnImg);
+        returnButton.setBounds(832, 40, 80, 35);
+        returnButton.addActionListener(listener);
 
         // add new elements to frame
         add(returnButton);
@@ -130,7 +127,6 @@ public class QuickSort extends JFrame {
                     JOptionPane.showMessageDialog(null, "No, it cannot be smaller!");
                 }
             }
-
         }
 
     }
