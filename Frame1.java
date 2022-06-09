@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxUI.ItemHandler;
 
-import src.classSrc.selectionSort;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -75,7 +73,7 @@ public class Frame1 extends JFrame{
         add(learnButton);
         add(testButton);
 
-        //initialize frame
+        // initialize frame
         setSize(1000, 600);
         // set frame1 background
         ImageIcon background = new ImageIcon("src/imageSrc/background.png");
@@ -113,7 +111,7 @@ public class Frame1 extends JFrame{
                     //TODO
                     break;
                 case "Selection":
-                    selectionSort selectFrame = new selectionSort();
+                    SelectionSort selectFrame = new SelectionSort();
                     setVisible(false);
                     break;
             }
