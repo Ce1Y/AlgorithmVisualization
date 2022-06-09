@@ -16,7 +16,8 @@ public class QuickSort extends JFrame {
     private JButton minusFontSizeButton;
     private int fontSize = 15;
 
-    private String str = "public class SelectionSortExample {" + "\n" +
+    private String str = 
+            "public class SelectionSortExample {" + "\n" +
             "public static void selectionSort(int[] arr){" + "\n" +
             "for (int i = 0; i < arr.length - 1; i++)" + "\n" +
             "{" + "\n" +
@@ -38,6 +39,7 @@ public class QuickSort extends JFrame {
         text = new JTextArea(str);
 
         text.setFont(new Font("Consolas", Font.PLAIN, fontSize));
+        text.setEditable(false);
         // text.setSize(100, 100);
 
         // set listener
@@ -45,7 +47,7 @@ public class QuickSort extends JFrame {
 
         // set panel
         titlePanel = new JPanel();
-        titlePanel.setBounds(50, 25, 685, 50);
+        titlePanel.setBounds(50, 25, 885, 50);
         ImageIcon panelBackground = new ImageIcon("src/imageSrc/QuickSort.png");
         JLabel panelLabel = new JLabel(panelBackground);
         panelLabel.setBounds(0, 0, titlePanel.getWidth(), titlePanel.getHeight());
@@ -81,6 +83,7 @@ public class QuickSort extends JFrame {
         plusFontSizeButton = new JButton("+");
         plusFontSizeButton.setBounds(830, 525, 50, 30);
         plusFontSizeButton.addActionListener(listener);
+
         //
         minusFontSizeButton = new JButton("-");
         minusFontSizeButton.setBounds(883, 525, 50, 30);
