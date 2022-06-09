@@ -124,7 +124,8 @@ public class Frame1 extends JFrame {
                     // TODO
                     break;
                 case "Quick":
-                    // TODO
+                    QuickSort q = new QuickSort();
+                    setVisible(false);
                     break;
                 case "Selection":
                     SelectionSort selectFrame = new SelectionSort();
