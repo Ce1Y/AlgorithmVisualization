@@ -36,7 +36,7 @@ public class Frame1 extends JFrame {
         setLayout(null);
 
         // set background
-        backgroundImg = new ImageIcon("src/imageSrc/Background.png");
+        backgroundImg = new ImageIcon("src/imageSrc/background.png");
         backgroundLabel = new JLabel(backgroundImg);
         backgroundLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
         backgroundPanel = (JPanel) this.getContentPane();
@@ -92,7 +92,7 @@ public class Frame1 extends JFrame {
         // initialize frame
         setSize(1000, 600);
         // set frame1 background
-        ImageIcon background = new ImageIcon("src/imageSrc/Background.png");
+        ImageIcon background = new ImageIcon("src/imageSrc/background.png");
         JLabel label = new JLabel(background);
         label.setBounds(0, 0, getWidth(), getHeight());
         JPanel imagePanel = (JPanel) getContentPane();
@@ -128,6 +128,8 @@ public class Frame1 extends JFrame {
                     setVisible(false);
                     break;
                 case "Selection":
+                    SelectionSort selectFrame = new SelectionSort();
+                    setVisible(false);
                     break;
             }
         }
