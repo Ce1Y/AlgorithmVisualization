@@ -27,11 +27,11 @@ public class SelectionSort extends JFrame{
         // set panel
         titlePanel = new JPanel();
         titlePanel.setBounds(50, 25, 885, 50);
-        ImageIcon background = new ImageIcon("src/imageSrc/SelectionSort.png");
-        JLabel label = new JLabel(background);
-        label.setBounds(0, 0, titlePanel.getWidth(), titlePanel.getHeight());
+        ImageIcon panelBackground = new ImageIcon("src/imageSrc/SelectionSort.png");
+        JLabel panelLabel = new JLabel(panelBackground);
+        panelLabel.setBounds(0, 0, titlePanel.getWidth(), titlePanel.getHeight());
         titlePanel.setOpaque(false);
-        titlePanel.add(label);
+        titlePanel.add(panelLabel);
 
         animatePanel = new JPanel();
         animatePanel.setBounds(50, 100, 425, 425);
@@ -51,6 +51,14 @@ public class SelectionSort extends JFrame{
 
         // initialize frame
         setSize(1000, 600);
+        ImageIcon background = new ImageIcon("src/imageSrc/background.png");
+        JLabel label = new JLabel(background);
+        label.setBounds(0, 0, getWidth(), getHeight());
+        JPanel imagePanel = (JPanel) getContentPane();
+        imagePanel.setOpaque(false);
+        getLayeredPane().add(label, Integer.valueOf(Integer.MIN_VALUE));
+
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
