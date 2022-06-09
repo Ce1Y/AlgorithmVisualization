@@ -128,6 +128,8 @@ public class Frame1 extends JFrame {
                     setVisible(false);
                     break;
                 case "Selection":
+                    SelectionSort s = new SelectionSort();
+                    setVisible(false);
                     break;
             }
         }
