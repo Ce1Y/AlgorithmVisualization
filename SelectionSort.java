@@ -43,6 +43,10 @@ public class SelectionSort extends JFrame{
         // codePanel.setBackground(Color.GREEN);
         codePanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
+        // add new elements to panel
+
+        JScrollPane panelPane = new JScrollPane(codePanel);
+
         // add new elements to frame
         add(returnButton);
         add(titlePanel);
