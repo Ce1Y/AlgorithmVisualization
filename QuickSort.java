@@ -68,7 +68,7 @@ public class QuickSort extends JFrame {
         ImageIcon returnImg = new ImageIcon("src/imageSrc/leo4545525/Menu.png");
         //JLabel returnLabel = new JLabel(returnImg);
         returnButton = new JButton(returnImg);
-        returnButton.setBounds(832, 40, 100, 50);
+        returnButton.setBounds(832, 40, 80, 35);
         returnButton.addActionListener(listener);
 
         // add new elements to frame
