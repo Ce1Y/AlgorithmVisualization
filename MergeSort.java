@@ -12,21 +12,36 @@ public class MergeSort extends JFrame {
     private JPanel codePanel;
     private JButton returnButton;
 
-    private String str = "public class SelectionSortExample {" + "\n" +
-            "public static void selectionSort(int[] arr){" + "\n" +
-            "for (int i = 0; i < arr.length - 1; i++)" + "\n" +
-            "{" + "\n" +
-            "int index = i;" + "\n" +
-            "for (int j = i + 1; j < arr.length; j++){" + "\n" +
-            "if (arr[j] < arr[index]){" + "\n" +
-            "index = j; " + "\n" +
+    private String str = "public class MergeSortExample {" + "\n" +
+            "public static void mergeSort(int[] a, int n) {" + "\n" +
+            "   if (n < 2) {" + "\n" +
+            "       return;" + "\n" +
+            "   }" + "\n" +
+            "   int mid = n / 2;" + "\n" +
+            "   int[] l = new int[mid];" + "\n" +
+            "   int[] r = new int[n - mid];" + "\n" +
+            "   for (int i = 0; i < mid; i++) " + "\n" +
+            "       l[i] = a[i];" + "\n" +
+            "   for (int i = mid; i < n; i++)" + "\n" +
+            "       r[i - mid] = a[i];" + "\n" +
+            "   mergeSort(l, mid);" + "\n" +
+            "   mergeSort(r, n - mid);" + "\n" +
+            "   merge(a, l, r, mid, n - mid);" + "\n" +
             "}" + "\n" +
-            "}" + "\n" +
-            "int smallerNumber = arr[index]; " + "\n" +
-            "arr[index] = arr[i]; " + "\n" +
-            "arr[i] = smallerNumber; " + "\n" +
-            "}" + "\n" +
-            "}";
+            "public static void merge(int[] a, int[] l, int[] r, int left, int right){" + "\n" +
+            "   int i = 0, j = 0, k = 0;" + "\n" +
+            "   while (i < left && j < right) {" + "\n" +
+            "       if (l[i] <= r[j])" + "\n" +
+            "           a[k++] = l[i++];" + "\n" +
+            "       else" + "\n" +
+            "           a[k++] = r[j++];" + "\n" +
+            "   }" + "\n" +
+            "   while (i < left)" + "\n" +
+            "       a[k++] = l[i++];" + "\n" +
+            "   while (j < right)" + "\n" +
+            "       a[k++] = l[i++];" + "\n" +
+            "   }" + "\n" +
+            "}" + "\n";
 
     public MergeSort() {
         super("Merge Sort");
