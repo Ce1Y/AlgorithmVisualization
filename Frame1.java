@@ -114,7 +114,8 @@ public class Frame1 extends JFrame {
             // Go to the tutorial area depending on the selection of dropDownMenu value
             switch (sort) {
                 case "Insert":
-                    // TODO
+                    InsertionSort insertionSort = new InsertionSort();
+                    setVisible(false);
                     break;
                 case "Merge":
                     MergeSort m = new MergeSort();
