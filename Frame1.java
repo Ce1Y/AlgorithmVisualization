@@ -11,13 +11,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class Frame1 extends JFrame{
+public class Frame1 extends JFrame {
 
+    private ImageIcon backgroundImg;
+
+    private JLabel backgroundLabel;
+
+    private JPanel backgroundPanel;
     private JPanel sortSelectPanel;
     private JPanel learnPanel;
     private JPanel testPanel;
+
     private JButton learnButton;
     private JButton testButton;
+
     private final JComboBox<String> sortSelectComboBox;
     
     String[] option = {"SORT", "Insert", "Merge", "Bubble", "Quick", "Selection"};
@@ -25,7 +32,16 @@ public class Frame1 extends JFrame{
 
     public Frame1() {
         super("Frame 1");
+        setSize(1000, 600);
         setLayout(null);
+
+        // set background
+        backgroundImg = new ImageIcon("src/imageSrc/background.png");
+        backgroundLabel = new JLabel(backgroundImg);
+        backgroundLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
+        backgroundPanel = (JPanel) this.getContentPane();
+        backgroundPanel.setOpaque(false);
+        this.getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
 
         // set listener
         ActionListener listener = new MyEventListener();
@@ -37,7 +53,7 @@ public class Frame1 extends JFrame{
 
         learnPanel = new JPanel();
         learnPanel.setBackground(Color.yellow);
-        
+
         testPanel = new JPanel();
         testPanel.setBackground(Color.green);
 
@@ -99,16 +115,16 @@ public class Frame1 extends JFrame{
             // Go to the tutorial area depending on the selection of dropDownMenu value
             switch(sort) {
                 case "Insert":
-                    //TODO
+                    // TODO
                     break;
                 case "Merge":
-                    //TODO
+                    // TODO
                     break;
                 case "Bubble":
-                    //TODO
+                    // TODO
                     break;
                 case "Quick":
-                    //TODO
+                    // TODO
                     break;
                 case "Selection":
                     SelectionSort selectFrame = new SelectionSort();
