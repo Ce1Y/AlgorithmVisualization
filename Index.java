@@ -1,6 +1,6 @@
 package src.classSrc;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class Index {
 

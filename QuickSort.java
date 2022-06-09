@@ -18,7 +18,7 @@ public class QuickSort extends JFrame {
             "{" + "\n" +
             "int index = i;" + "\n" +
             "for (int j = i + 1; j < arr.length; j++){" + "\n" +
-            "if (arr[j] < arr[index]){" + "\n" +
+            "if (arr[j] < arr[index]) {" + "\n" +
             "index = j; " + "\n" +
             "}" + "\n" +
             "}" + "\n" +
@@ -51,18 +51,12 @@ public class QuickSort extends JFrame {
         animatePanel.setBounds(50, 100, 425, 425);
         // animatePanel.setBackground(Color.BLUE);
         animatePanel.setBorder(BorderFactory.createLineBorder(Color.black));
-
-        /*
-         * codePanel = new JPanel();
-         * codePanel.setBounds(510, 100, 425, 425);
-         * // codePanel.setBackground(Color.GREEN);
-         * codePanel.setBorder(BorderFactory.createLineBorder(Color.black));
-         */
+        
+        JScrollPane panelPane = new JScrollPane(text);
+        panelPane.setBounds(510, 100, 425, 425);
 
         // add new elements to panel
 
-        JScrollPane panelPane = new JScrollPane(text);
-        panelPane.setBounds(510, 100, 425, 425);
 
         // set button
         ImageIcon returnImg = new ImageIcon("src/imageSrc/leo4545525/Menu.png");
@@ -75,7 +69,6 @@ public class QuickSort extends JFrame {
         add(returnButton);
         add(titlePanel);
         add(animatePanel);
-        // add(codePanel);
         add(panelPane);
 
         // initialize frame
