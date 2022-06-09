@@ -31,7 +31,7 @@ public class MainFrame extends JFrame {
         setLayout(new GridLayout(3, 1));
 
         // set background
-        backgroundImage = new ImageIcon("src/imageSrc/background2.png");
+        backgroundImage = new ImageIcon("src/imageSrc/background.png");
         backgroundLabel = new JLabel(backgroundImage);
         backgroundLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
         backgroundPanel = (JPanel) this.getContentPane();
