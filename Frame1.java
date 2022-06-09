@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class Frame1 extends JFrame{
+public class Frame1 extends JFrame {
 
     private ImageIcon backgroundImg;
 
@@ -27,23 +27,21 @@ public class Frame1 extends JFrame{
 
     private final JComboBox<String> sortSelectComboBox;
 
-    String[] option = {"SORT", "Insert", "Merge", "Bubble", "Quick", "Select"};
+    String[] option = { "SORT", "Insert", "Merge", "Bubble", "Quick", "Select" };
     ArrayList<String> imgSrc = new ArrayList<>();
 
-    public Frame1()
-    {
+    public Frame1() {
         super("Frame 1");
         setSize(1000, 600);
         setLayout(null);
 
-        //set background
+        // set background
         backgroundImg = new ImageIcon("src/imageSrc/background.png");
         backgroundLabel = new JLabel(backgroundImg);
         backgroundLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
         backgroundPanel = (JPanel) this.getContentPane();
         backgroundPanel.setOpaque(false);
         this.getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
-
 
         // set listener
         ActionListener listener = new MyEventListener();
@@ -78,11 +76,12 @@ public class Frame1 extends JFrame{
         sortSelectComboBox = new JComboBox<>(option);
         sortSelectComboBox.setBounds(400, 40, 200, 50);
         sortSelectComboBox.setRenderer(new DefaultListCellRenderer() {
-            {setHorizontalAlignment(DefaultListCellRenderer.CENTER);}
+            {
+                setHorizontalAlignment(DefaultListCellRenderer.CENTER);
+            }
         });
 
         // add new element to panel
-
 
         // add new element to frame
         add(sortSelectComboBox);
@@ -98,21 +97,21 @@ public class Frame1 extends JFrame{
             String sort = sortSelectComboBox.getItemAt(sortSelectComboBox.getSelectedIndex());
 
             // go to the tutorial area depending on the selection of dropDownMenu value
-            switch(sort) {
+            switch (sort) {
                 case "Insert":
-                    //TODO
+                    // TODO
                     break;
                 case "Merge":
-                    //TODO
+                    // TODO
                     break;
                 case "Bubble":
-                    //TODO
+                    // TODO
                     break;
                 case "Quick":
-                    //TODO
+                    // TODO
                     break;
                 case "Select":
-                    //TODO
+                    // TODO
                     break;
             }
         }
