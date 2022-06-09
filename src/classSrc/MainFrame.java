@@ -1,4 +1,4 @@
-package classSrc;
+package src.classSrc;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,22 +31,22 @@ public class MainFrame extends JFrame {
         setLayout(new GridLayout(3, 1));
 
         // Chinese title image
-        titleImage = new ImageIcon("src/ImageSrc/Title.png");
+        titleImage = new ImageIcon("src/imageSrc/Title.png");
         titleLabel = new JLabel(titleImage);
         titlePanel = new JPanel();
         titlePanel.add(titleLabel);
         add(titlePanel);
 
         // English title image
-        engTitleImage = new ImageIcon("src/ImageSrc/TitleENG.png");
+        engTitleImage = new ImageIcon("src/imageSrc/TitleENG.png");
         engTitleLabel = new JLabel(engTitleImage);
         engTitlePanel = new JPanel();
         engTitlePanel.add(engTitleLabel);
         add(engTitlePanel);
 
         // sort and graph button
-        sortImage = new ImageIcon("src/ImageSrc/Sort.png");
-        graphImage = new ImageIcon("src/ImageSrc/Graph.png");
+        sortImage = new ImageIcon("src/imageSrc/Sort.png");
+        graphImage = new ImageIcon("src/imageSrc/Graph.png");
 
         buttonSort = new JButton(sortImage);
         buttonGraph = new JButton(graphImage);
