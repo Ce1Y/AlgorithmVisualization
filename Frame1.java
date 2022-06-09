@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxUI.ItemHandler;
 
+import src.classSrc.selectionSort;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +22,7 @@ public class Frame1 extends JFrame{
     private JButton testButton;
     private final JComboBox<String> sortSelectComboBox;
     
-    String[] option = {"SORT", "Insert", "Merge", "Bubble", "Quick", "Select"};
+    String[] option = {"SORT", "Insert", "Merge", "Bubble", "Quick", "Selection"};
     ArrayList<String> imgSrc = new ArrayList<>();
 
     public Frame1() {
@@ -65,13 +67,28 @@ public class Frame1 extends JFrame{
             }
         });
 
-        // add new element to panel
+        // add new elements to panel
 
 
-        // add new element to frame
+        // add new elements to frame
         add(sortSelectComboBox);
         add(learnButton);
         add(testButton);
+
+        //initialize frame
+        setSize(1000, 600);
+        // set frame1 background
+        ImageIcon background = new ImageIcon("src/imageSrc/background.png");
+        JLabel label = new JLabel(background);
+        label.setBounds(0, 0, getWidth(), getHeight());
+        JPanel imagePanel = (JPanel) getContentPane();
+        imagePanel.setOpaque(false);
+        getLayeredPane().add(label, Integer.valueOf(Integer.MIN_VALUE));
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setVisible(true);
 
     }
 
@@ -81,7 +98,7 @@ public class Frame1 extends JFrame{
         public void actionPerformed(ActionEvent e) {
             String sort = sortSelectComboBox.getItemAt(sortSelectComboBox.getSelectedIndex());
 
-            // go to the tutorial area depending on the selection of dropDownMenu value
+            // Go to the tutorial area depending on the selection of dropDownMenu value
             switch(sort) {
                 case "Insert":
                     //TODO
@@ -95,8 +112,9 @@ public class Frame1 extends JFrame{
                 case "Quick":
                     //TODO
                     break;
-                case "Select":
-                    //TODO
+                case "Selection":
+                    selectionSort selectFrame = new selectionSort();
+                    setVisible(false);
                     break;
             }
         }
