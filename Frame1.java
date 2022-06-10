@@ -118,7 +118,8 @@ public class Frame1 extends JFrame {
                     setVisible(false);
                     break;
                 case "Merge":
-                    // TODO
+                    MergeSort m = new MergeSort();
+                    setVisible(false);
                     break;
                 case "Bubble":
                     // TODO
