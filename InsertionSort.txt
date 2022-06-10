@@ -10,4 +10,5 @@ public class InsertionSortExample {
             }  
             array[i+1] = key;  
         }  
-    }  
+    }
+}  
