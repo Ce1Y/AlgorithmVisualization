@@ -15,6 +15,8 @@ public class InsertionSort extends JFrame {
     private ImageIcon backgroundImage;
     private ImageIcon titleImage;
     private ImageIcon menuImage;
+    private ImageIcon plusFontSizeImage;
+    private ImageIcon minusFontSizeImage;
 
     private JLabel backgroundLabel;
     private JLabel titleLabel;
@@ -83,19 +85,21 @@ public class InsertionSort extends JFrame {
         textPanelPane.setBounds(510, 100, 425, 425);
 
         // set plus fontSize button
-        plusFontSizeButton = new JButton("+");
-        plusFontSizeButton.setBounds(830, 525, 50, 30);
+        plusFontSizeImage = new ImageIcon("src/imageSrc/Plus.png");
+        plusFontSizeButton = new JButton(plusFontSizeImage);
+        plusFontSizeButton.setBounds(940, 470, 25, 25);
         plusFontSizeButton.addActionListener(listener);
 
-        // set plus fontSize button
-        minusFontSizeButton = new JButton("-");
-        minusFontSizeButton.setBounds(883, 525, 50, 30);
+        // set minus fontSize button
+        minusFontSizeImage = new ImageIcon("src/imageSrc/Minus.png");
+        minusFontSizeButton = new JButton(minusFontSizeImage);
+        minusFontSizeButton.setBounds(940, 500, 25, 25);
         minusFontSizeButton.addActionListener(listener);
 
         // set menu button to return frame1
         menuImage = new ImageIcon("src/imageSrc/Menu.png");
         returnButton = new JButton(menuImage);
-        returnButton.setBounds(832, 40, 80, 35);
+        returnButton.setBounds(832, 40, 78, 33);
         returnButton.addActionListener(listener);
 
         // add panel to frame
