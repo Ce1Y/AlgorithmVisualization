@@ -33,15 +33,16 @@ public class MainFrame extends JFrame {
         // set background
         backgroundImage = new ImageIcon("src/imageSrc/Background.png");
         backgroundLabel = new JLabel(backgroundImage);
-        backgroundLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
-        backgroundPanel = (JPanel) this.getContentPane();
+        backgroundLabel.setBounds(0, 0, getWidth(), getHeight());
+        backgroundPanel = (JPanel) getContentPane();
         backgroundPanel.setOpaque(false);
-        this.getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
+        getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
 
         // Chinese title image
         titleImage = new ImageIcon("src/imageSrc/Title.png");
         titleLabel = new JLabel(titleImage);
         titlePanel = new JPanel();
+        titlePanel.setOpaque(false);
         titlePanel.add(titleLabel);
         add(titlePanel);
 
@@ -49,6 +50,7 @@ public class MainFrame extends JFrame {
         engTitleImage = new ImageIcon("src/imageSrc/TitleENG.png");
         engTitleLabel = new JLabel(engTitleImage);
         engTitlePanel = new JPanel();
+        engTitlePanel.setOpaque(false);
         engTitlePanel.add(engTitleLabel);
         add(engTitlePanel);
 
@@ -60,6 +62,7 @@ public class MainFrame extends JFrame {
         buttonGraph = new JButton(graphImage);
 
         optionPanel = new JPanel();
+        optionPanel.setOpaque(false);
         optionPanel.add(buttonSort);
         optionPanel.add(buttonGraph);
         add(optionPanel);
