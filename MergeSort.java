@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class MergeSort extends JFrame {
 
-    SortInfoReader reader = new SortInfoReader("MergeSort.txt");
+    SortInfoReader reader = new SortInfoReader("src/textSrc/MergeSort.txt");
     private String str = reader.getContent();
     private int fontSize = 15;
 
@@ -121,7 +121,7 @@ public class MergeSort extends JFrame {
                 } else {
                     fontSize = 50;
                     text.setFont(new Font("Consolas", Font.PLAIN, fontSize));
-                    JOptionPane.showMessageDialog(InsertionSort.this, "Text cannot be larger!");
+                    JOptionPane.showMessageDialog(MergeSort.this, "Text cannot be larger!");
                 }
             } else if (e.getSource() == minusFontSizeButton) {
                 fontSize -= 2;
@@ -130,7 +130,7 @@ public class MergeSort extends JFrame {
                 } else {
                     fontSize = 6;
                     text.setFont(new Font("Consolas", Font.PLAIN, fontSize));
-                    JOptionPane.showMessageDialog(InsertionSort.this, "Text cannot be smaller!");
+                    JOptionPane.showMessageDialog(MergeSort.this, "Text cannot be smaller!");
                 }
             }
         }
