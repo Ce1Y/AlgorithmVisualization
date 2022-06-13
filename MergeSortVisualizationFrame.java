@@ -39,7 +39,7 @@ public class MergeSortVisualizationFrame extends JFrame {
 
     private JPanel backgroundPanel;
     private JPanel titlePanel;
-    private InsertSortPanel animatePanel;
+    private MergeSortPanel animatePanel;
 
     public MergeSortVisualizationFrame() {
 
@@ -145,7 +145,7 @@ public class MergeSortVisualizationFrame extends JFrame {
         closeMI.addActionListener(new ExitAction());
 
         // add InsertSort Panel into this frame
-        animatePanel = new InsertSortPanel();
+        animatePanel = new MergeSortPanel();
         getContentPane().add(animatePanel);
     }
 
