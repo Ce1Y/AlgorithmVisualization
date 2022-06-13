@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Random;
 import javax.swing.*;
 
-public class InsertSortPanel extends JPanel {
+public class MergeSortPanel extends JPanel {
     public TimerAction timerAction;
     public Timer timer;
 
@@ -23,7 +23,7 @@ public class InsertSortPanel extends JPanel {
 
     private List<NumberRectangle> numbers = initialNumberRectangles();
 
-    public InsertSortPanel() {
+    public MergeSortPanel() {
 
         // panel setting
         setLayout(null);
@@ -34,7 +34,7 @@ public class InsertSortPanel extends JPanel {
         timer = new Timer(1000, timerAction);
 
         // set code list ( change string -> stringList[] )
-        SortInfoReader reader = new SortInfoReader("src/textSrc/InsertionSort.txt");
+        SortInfoReader reader = new SortInfoReader("src/textSrc/MergeSort.txt");
         str = reader.getContent();
         code = str.split("\n");
         codeList = new JList<String>(code);

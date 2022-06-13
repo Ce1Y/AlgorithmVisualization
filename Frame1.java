@@ -104,7 +104,7 @@ public class Frame1 extends JFrame {
                     setVisible(false);
                     break;
                 case "Merge":
-                    new MergeSort();
+                    new MergeSortVisualizationFrame();
                     setVisible(false);
                     break;
                 case "Bubble":
