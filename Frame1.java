@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import src.classSrc.SelectionSortVisualizationFrame;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -115,7 +117,7 @@ public class Frame1 extends JFrame {
                     setVisible(false);
                     break;
                 case "Selection":
-                    new SelectionSort();
+                    new SelectionSortVisualizationFrame();
                     setVisible(false);
                     break;
             }
