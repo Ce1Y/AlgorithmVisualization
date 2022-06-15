@@ -88,8 +88,6 @@ public class MainFrame extends JFrame {
 
             } else if (evt.getSource() == buttonGraph) {
                 JOptionPane.showMessageDialog(MainFrame.this, "SORRY, IT'S NOT ROLL OUT YET");
-                TestInfoFrame testInfoFrame = new TestInfoFrame();
-                setVisible(false);
             }
         }
     }
