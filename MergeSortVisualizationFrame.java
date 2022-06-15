@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class SelectionSortVisualizationFrame extends JFrame {
+public class MergeSortVisualizationFrame extends JFrame {
     private JMenuBar menuBar;
 
     private JMenu setMenu;
@@ -39,9 +39,9 @@ public class SelectionSortVisualizationFrame extends JFrame {
 
     private JPanel backgroundPanel;
     private JPanel titlePanel;
-    private SelectionSortPanel animatePanel;
+    private MergeSortPanel animatePanel;
 
-    public SelectionSortVisualizationFrame() {
+    public MergeSortVisualizationFrame() {
 
         // GUI init
         super("ALGORITHM VISUALIZATION");
@@ -62,7 +62,7 @@ public class SelectionSortVisualizationFrame extends JFrame {
         // set title panel
         titlePanel = new JPanel();
         titlePanel.setBounds(50, 25, 885, 50);
-        titleImage = new ImageIcon("src/imageSrc/SelectionSort.png");
+        titleImage = new ImageIcon("src/imageSrc/MergeSort.png");
         titleLabel = new JLabel(titleImage);
         titleLabel.setBounds(50, 50, titlePanel.getWidth(), titlePanel.getHeight());
         titlePanel.setOpaque(false);
@@ -145,7 +145,7 @@ public class SelectionSortVisualizationFrame extends JFrame {
         closeMI.addActionListener(new ExitAction());
 
         // add InsertSort Panel into this frame
-        animatePanel = new SelectionSortPanel();
+        animatePanel = new MergeSortPanel();
         getContentPane().add(animatePanel);
     }
 
@@ -157,7 +157,7 @@ public class SelectionSortVisualizationFrame extends JFrame {
             } else if (option == pauseButton) {
                 animatePanel.timer.stop();
             } else if (option == restartButton) {
-                new SelectionSortVisualizationFrame();
+                new MergeSortVisualizationFrame();
                 setVisible(false);
             }
         }
