@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import javax.lang.model.util.ElementScanner14;
 import javax.swing.*;
 
 public class MergeSortPanel extends JPanel {
@@ -75,7 +77,12 @@ public class MergeSortPanel extends JPanel {
     int innerLoopCnt = 0;
     int key = 0;
     int currentIndex = 1;
-
+    int l=0;
+    int r=10;
+    int mid;
+    int li;
+    int ri;
+    int arri;
     private class TimerAction implements ActionListener, Serializable {
         public void actionPerformed(ActionEvent event) {
             if (completed) {
@@ -84,52 +91,31 @@ public class MergeSortPanel extends JPanel {
 
             switch (currentIndex) {
                 case 1:
-                    if (outerLoopCnt < 10) {
-                        codeList.setSelectedIndex(currentIndex++);
-                    } else {
-                        currentIndex = 10;
-                    }
+                    codeList.setSelectedIndex(currentIndex++);
                     break;
                 case 2:
-                    key = numbers.get(outerLoopCnt).getValue();
-                    codeList.setSelectedIndex(currentIndex++);
-                    break;
-                case 3:
-                    innerLoopCnt = outerLoopCnt;
-                    codeList.setSelectedIndex(currentIndex++);
+                    if(r-l>1){
+                        int mid = (r+l)/2;
+                        codeList.setSelectedIndex(currentIndex+=2);
+                    }
                     break;
                 case 4:
-                    if (innerLoopCnt > 0 && key < numbers.get(innerLoopCnt - 1).getValue()) {
-                        codeList.setSelectedIndex(currentIndex++);
-                    } else {
-                        codeList.setSelectedIndex(currentIndex++);
-                        currentIndex = 8;
-                    }
+                    if(r-l>1)
+                        codeList.setSelectedIndex(currentIndex);
+                    else
+                        codeList.setSelectedIndex(currentIndex++); 
                     break;
                 case 5:
-                    codeList.setSelectedIndex(currentIndex++);
-                    numbers.get(innerLoopCnt).setColor(Color.RED);
-                    numbers.get(innerLoopCnt).setValue(numbers.get(innerLoopCnt - 1).getValue());
+                    
                     break;
                 case 6:
-                    codeList.setSelectedIndex(currentIndex++);
-                    numbers.get(innerLoopCnt).setColor(Color.BLACK);
-                    innerLoopCnt--;
-                    currentIndex = 4; // back to while
+                    
                     break;
                 case 8:
-                    codeList.setSelectedIndex(currentIndex);
-                    numbers.get(innerLoopCnt).setValue(key);
-                    numbers.get(innerLoopCnt).setColor(Color.BLACK);
-                    currentIndex = 1;
-                    outerLoopCnt++;
+                    
                     break;
                 case 10:
-                    if (currentIndex == 10) {
-                        completed = true;
-                        numbers.get(0).setColor(Color.BLACK);
-                        codeList.setSelectedIndex(currentIndex + 1);
-                    }
+                   
                     break;
                 default:
                     break;
