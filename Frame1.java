@@ -3,9 +3,6 @@ package src.classSrc;
 import java.util.ArrayList;
 
 import javax.swing.*;
-
-import src.classSrc.SelectionSortVisualizationFrame;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
