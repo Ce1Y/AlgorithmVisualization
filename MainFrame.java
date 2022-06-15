@@ -1,9 +1,6 @@
 package src.classSrc;
 
 import javax.swing.*;
-
-import src.classSrc.TestInfoFrame;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

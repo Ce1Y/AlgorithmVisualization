@@ -15,6 +15,8 @@ public class TestInfoFrame extends JFrame{
 
     private JPanel backgroundPanel;
 
+    private JButton infoButton;
+
     public TestInfoFrame() {
         // GUI init
         setTitle("ALGORITHM VISUALIZATION");
@@ -27,6 +29,8 @@ public class TestInfoFrame extends JFrame{
         backgroundPanel = (JPanel) this.getContentPane();
         backgroundPanel.setOpaque(false);
         getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
+
+
 
 
 
