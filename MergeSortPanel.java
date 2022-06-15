@@ -73,16 +73,17 @@ public class MergeSortPanel extends JPanel {
     }
 
     // set variable in Insertion Sort algorithm
-    int outerLoopCnt = 1;
-    int innerLoopCnt = 0;
-    int key = 0;
     int currentIndex = 1;
-    int l=0;
-    int r=10;
+    int runtime = 0;
+    int l = 0, l0 = 0, l1 = 2, l2 = 4, l3 = 6;
+    int r = 8, r0 = 8, r1 = 6, r2 = 4, r3 = 2;
+    int check;
     int mid;
     int li;
     int ri;
     int arri;
+    int[] tmp = new int[11];
+
     private class TimerAction implements ActionListener, Serializable {
         public void actionPerformed(ActionEvent event) {
             if (completed) {
@@ -91,31 +92,125 @@ public class MergeSortPanel extends JPanel {
 
             switch (currentIndex) {
                 case 1:
-                    codeList.setSelectedIndex(currentIndex++);
-                    break;
-                case 2:
-                    if(r-l>1){
-                        int mid = (r+l)/2;
-                        codeList.setSelectedIndex(currentIndex+=2);
-                    }
+                    codeList.setSelectedIndex(currentIndex);
+                    currentIndex = 4;
                     break;
                 case 4:
-                    if(r-l>1)
+                    runtime++;
+                    if (r - l != 2) {
+                        mid = (l + r) / 2;
+                        r = mid;
                         codeList.setSelectedIndex(currentIndex);
-                    else
-                        codeList.setSelectedIndex(currentIndex++); 
+                    } else {
+                        codeList.setSelectedIndex(currentIndex++);
+                    }
                     break;
                 case 5:
-                    
+                    if (r - l != 2) {
+                        if (runtime == 3 || runtime == 6)
+                            l += 2;
+                        if (runtime == 4)
+                            l += 4;
+                        codeList.setSelectedIndex(currentIndex--);
+                    } else {
+                        codeList.setSelectedIndex(currentIndex++);
+                    }
                     break;
                 case 6:
-                    
+                    codeList.setSelectedIndex(currentIndex);
+                    currentIndex = 10;
                     break;
                 case 8:
-                    
+                    completed = true;
+                    codeList.setSelectedIndex(currentIndex++);
                     break;
                 case 10:
-                   
+                    codeList.setSelectedIndex(currentIndex);
+                    currentIndex = 14;
+                    break;
+                case 14:
+                    for (int i = l; i < r; ++i) {
+                        int n = numbers.get(i).getValue();
+                        tmp[i] = n;
+                    }
+                    codeList.setSelectedIndex(currentIndex++);
+                    break;
+                case 15:
+                    li = l;
+                    ri = mid;
+                    arri = l;
+                    codeList.setSelectedIndex(currentIndex++);
+                    break;
+                case 16:
+                    if (arri < r) {
+                        codeList.setSelectedIndex(currentIndex++);
+                    } else {
+                        if (runtime == 3) {
+                            r = 4;
+                            mid = 2;
+                            codeList.setSelectedIndex(currentIndex);
+                            currentIndex = 5;
+                        }
+                        if (runtime == 4 && r - l == 2) {
+                            r = 4;
+                            l = 0;
+                            mid = 2;
+                            codeList.setSelectedIndex(currentIndex);
+                            currentIndex = 6;
+                        }
+                        if (runtime == 4 && r - l == 4) {
+                            r = 8;
+                            l = 0;
+                            mid = 4;
+                            codeList.setSelectedIndex(currentIndex);
+                            currentIndex = 5;
+                        }
+                        if (runtime == 6) {
+                            r = 8;
+                            l = 4;
+                            mid = 6;
+                            codeList.setSelectedIndex(currentIndex);
+                            currentIndex = 5;
+                        }
+                        if (runtime == 7 && l == 6) {
+                            r = 8;
+                            l = 4;
+                            mid = 6;
+                            codeList.setSelectedIndex(currentIndex);
+                            currentIndex = 6;
+                        }
+                        if (runtime == 7 && l == 4) {
+                            r = 8;
+                            l = 0;
+                            mid = 4;
+                            codeList.setSelectedIndex(currentIndex);
+                            currentIndex = 6;
+                        }
+                        if (runtime == 7 && l == 0) {
+                            codeList.setSelectedIndex(currentIndex);
+                            currentIndex = 8;
+                        }
+                    }
+                    break;
+                case 17:
+                    if ((li < mid && tmp[li] < tmp[ri]) || ri >= r) {
+                        codeList.setSelectedIndex(currentIndex++);
+                    } else {
+                        codeList.setSelectedIndex(currentIndex);
+                        currentIndex = 20;
+                    }
+                    break;
+                case 18:
+                    numbers.get(arri+1).setColor(Color.RED);
+                    numbers.get(arri+1).setValue(tmp[li++]);
+                    codeList.setSelectedIndex(currentIndex);
+                    currentIndex = 16;
+                    break;
+                case 20:
+                    numbers.get(arri).setColor(Color.RED);
+                    numbers.get(arri++).setValue(tmp[ri++]);
+                    codeList.setSelectedIndex(currentIndex);
+                    currentIndex = 16;
                     break;
                 default:
                     break;
