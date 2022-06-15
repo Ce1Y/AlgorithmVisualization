@@ -75,13 +75,13 @@ public class MergeSortPanel extends JPanel {
     // set variable in Insertion Sort algorithm
     int currentIndex = 1;
     int runtime = 0;
-    int l = 0, l0 = 0, l1 = 2, l2 = 4, l3 = 6;
-    int r = 8, r0 = 8, r1 = 6, r2 = 4, r3 = 2;
-    int check;
+    int l = 0;
+    int r = 10;
     int mid;
     int li;
     int ri;
     int arri;
+    int ch;
     int[] tmp = new int[11];
 
     private class TimerAction implements ActionListener, Serializable {
@@ -97,8 +97,8 @@ public class MergeSortPanel extends JPanel {
                     break;
                 case 4:
                     runtime++;
-                    if (r - l != 2) {
-                        mid = (l + r) / 2;
+                    mid = (l + r) / 2;
+                    if (r - l != 2 && r - l != 3) {
                         r = mid;
                         codeList.setSelectedIndex(currentIndex);
                     } else {
@@ -107,10 +107,16 @@ public class MergeSortPanel extends JPanel {
                     break;
                 case 5:
                     if (r - l != 2) {
-                        if (runtime == 3 || runtime == 6)
-                            l += 2;
+                        if (runtime == 3)
+                            l = 2;
                         if (runtime == 4)
-                            l += 4;
+                            l = 3;
+                        if (runtime == 5 && r - l == 10)
+                            l = 5;
+                        if (runtime == 7)
+                            l = 7;
+                        if (runtime == 8)
+                            l = 8;
                         codeList.setSelectedIndex(currentIndex--);
                     } else {
                         codeList.setSelectedIndex(currentIndex++);
@@ -126,6 +132,7 @@ public class MergeSortPanel extends JPanel {
                     break;
                 case 10:
                     codeList.setSelectedIndex(currentIndex);
+                    codeList.setSelectedIndex(currentIndex + 1);
                     currentIndex = 14;
                     break;
                 case 14:
@@ -139,6 +146,7 @@ public class MergeSortPanel extends JPanel {
                     li = l;
                     ri = mid;
                     arri = l;
+                    ch = 1;
                     codeList.setSelectedIndex(currentIndex++);
                     break;
                 case 16:
@@ -146,48 +154,69 @@ public class MergeSortPanel extends JPanel {
                         codeList.setSelectedIndex(currentIndex++);
                     } else {
                         if (runtime == 3) {
-                            r = 4;
+                            r = 5;
                             mid = 2;
                             codeList.setSelectedIndex(currentIndex);
                             currentIndex = 5;
                         }
-                        if (runtime == 4 && r - l == 2) {
-                            r = 4;
+                        if (runtime == 5 && l == 3) {
+                            r = 5;
+                            l = 2;
+                            mid = 3;
+                            ch = 0;
+                            codeList.setSelectedIndex(currentIndex);
+                            currentIndex = 6;
+                        }
+                        if (runtime == 5 && l == 2 && ch == 1) {
+                            r = 5;
                             l = 0;
                             mid = 2;
+                            ch = 0;
                             codeList.setSelectedIndex(currentIndex);
                             currentIndex = 6;
                         }
-                        if (runtime == 4 && r - l == 4) {
-                            r = 8;
+                        if (runtime == 5 && l == 0 && ch == 1) {
+                            r = 10;
                             l = 0;
-                            mid = 4;
+                            mid = 5;
+                            ch = 0;
                             codeList.setSelectedIndex(currentIndex);
                             currentIndex = 5;
                         }
-                        if (runtime == 6) {
-                            r = 8;
-                            l = 4;
-                            mid = 6;
+                        if (runtime == 7) {
+                            r = 10;
+                            l = 5;
+                            mid = 7;
                             codeList.setSelectedIndex(currentIndex);
                             currentIndex = 5;
                         }
-                        if (runtime == 7 && l == 6) {
-                            r = 8;
-                            l = 4;
-                            mid = 6;
+                        if (runtime == 9 && l == 8) {
+                            r = 10;
+                            l = 7;
+                            mid = 8;
+                            ch = 0;
                             codeList.setSelectedIndex(currentIndex);
                             currentIndex = 6;
                         }
-                        if (runtime == 7 && l == 4) {
-                            r = 8;
+                        if (runtime == 9 && l == 7 && ch == 1) {
+                            r = 10;
+                            l = 5;
+                            mid = 7;
+                            ch = 0;
+                            codeList.setSelectedIndex(currentIndex);
+                            currentIndex = 6;
+                        }
+                        if (runtime == 9 && l == 5 && ch == 1) {
+                            r = 10;
                             l = 0;
-                            mid = 4;
+                            ch = 0;
+                            mid = 5;
                             codeList.setSelectedIndex(currentIndex);
                             currentIndex = 6;
                         }
-                        if (runtime == 7 && l == 0) {
+                        if (runtime == 9 && l == 0 && ch == 1) {
                             codeList.setSelectedIndex(currentIndex);
+                            ch = 0;
                             currentIndex = 8;
                         }
                     }
@@ -201,13 +230,13 @@ public class MergeSortPanel extends JPanel {
                     }
                     break;
                 case 18:
-                    numbers.get(arri+1).setColor(Color.RED);
-                    numbers.get(arri+1).setValue(tmp[li++]);
+                    numbers.get(arri).setColor(Color.black);
+                    numbers.get(arri++).setValue(tmp[li++]);
                     codeList.setSelectedIndex(currentIndex);
                     currentIndex = 16;
                     break;
                 case 20:
-                    numbers.get(arri).setColor(Color.RED);
+                    numbers.get(arri).setColor(Color.black);
                     numbers.get(arri++).setValue(tmp[ri++]);
                     codeList.setSelectedIndex(currentIndex);
                     currentIndex = 16;
