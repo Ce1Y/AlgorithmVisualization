@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class BubbleSort extends JFrame {
 
-    SortInfoReader reader = new SortInfoReader("D:/Desktop/Java/final/BubbleSort.txt");
+    SortInfoReader reader = new SortInfoReader("src/textSrc/BubbleSort.txt");
     private String str = reader.getContent();
     private int fontSize = 15;
 
@@ -44,7 +44,7 @@ public class BubbleSort extends JFrame {
         setVisible(true);
 
         // set background
-        backgroundImage = new ImageIcon("D:/Desktop/Java/final/src/imageSrc/Background.png");
+        backgroundImage = new ImageIcon("src/imageSrc/Background.png");
 
         backgroundLabel = new JLabel(backgroundImage);
         backgroundLabel.setBounds(0, 0, getWidth(), getHeight());
@@ -61,7 +61,7 @@ public class BubbleSort extends JFrame {
         titlePanel = new JPanel();
         titlePanel.setBounds(50, 25, 885, 50);
 
-        titleImage = new ImageIcon("D:/Desktop/Java/final/src/imageSrc/BubbleSort.png");
+        titleImage = new ImageIcon("src/imageSrc/BubbleSort.png");
         titleLabel = new JLabel(titleImage);
         titleLabel.setBounds(0, 0, titlePanel.getWidth(), titlePanel.getHeight());
 
@@ -93,7 +93,7 @@ public class BubbleSort extends JFrame {
         minusFontSizeButton.addActionListener(listener);
 
         // set menu button to return frame1
-        menuImage = new ImageIcon("D:/Desktop/Java/final/src/imageSrc/Menu.png");
+        menuImage = new ImageIcon("src/imageSrc/Menu.png");
         returnButton = new JButton(menuImage);
         returnButton.setBounds(832, 40, 80, 35);
         returnButton.addActionListener(listener);
