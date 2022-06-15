@@ -3,13 +3,10 @@ package src.classSrc;
 import java.util.ArrayList;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicComboBoxUI.ItemHandler;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 public class Frame1 extends JFrame {
 
@@ -31,23 +28,28 @@ public class Frame1 extends JFrame {
     ArrayList<String> imgSrc = new ArrayList<>();
 
     public Frame1() {
+
+        // GUI init
         super("Frame 1");
         setSize(1000, 600);
         setLayout(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setVisible(true);
 
         // set background
         backgroundImg = new ImageIcon("src/imageSrc/Background.png");
         backgroundLabel = new JLabel(backgroundImg);
-        backgroundLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
+        backgroundLabel.setBounds(0, 0, getWidth(), getHeight());
         backgroundPanel = (JPanel) this.getContentPane();
         backgroundPanel.setOpaque(false);
-        this.getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
+        getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
 
         // set listener
         ActionListener listener = new MyEventListener();
-        // ItemListener itemListener = new ItemListener();
 
-        // set panel
+        // set button panel
         sortSelectPanel = new JPanel();
         sortSelectPanel.setBackground(Color.black);
 
@@ -57,7 +59,7 @@ public class Frame1 extends JFrame {
         testPanel = new JPanel();
         testPanel.setBackground(Color.green);
 
-        // set button
+        // set learn button
         learnButton = new JButton("Learn");
         learnButton.setBounds(100, 175, 250, 250);
         learnButton.setForeground(Color.white);
@@ -65,6 +67,7 @@ public class Frame1 extends JFrame {
         learnButton.setFont(new Font("Helvetica", Font.PLAIN, 24));
         learnButton.addActionListener(listener);
 
+        // set test button
         testButton = new JButton("Test");
         testButton.setBounds(640, 175, 250, 250);
         testButton.setForeground(Color.white);
@@ -81,27 +84,10 @@ public class Frame1 extends JFrame {
             }
         });
 
-        // add new elements to panel
-
         // add new elements to frame
         add(sortSelectComboBox);
         add(learnButton);
         add(testButton);
-
-        // initialize frame
-        setSize(1000, 600);
-        // set frame1 background
-        ImageIcon background = new ImageIcon("src/imageSrc/Background.png");
-        JLabel label = new JLabel(background);
-        label.setBounds(0, 0, getWidth(), getHeight());
-        JPanel imagePanel = (JPanel) getContentPane();
-        imagePanel.setOpaque(false);
-        getLayeredPane().add(label, Integer.valueOf(Integer.MIN_VALUE));
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setVisible(true);
 
     }
 
@@ -114,22 +100,22 @@ public class Frame1 extends JFrame {
             // Go to the tutorial area depending on the selection of dropDownMenu value
             switch (sort) {
                 case "Insert":
-                    InsertionSort insertionSort = new InsertionSort();
+                    new InsertSortVisualizationFrame();
                     setVisible(false);
                     break;
                 case "Merge":
-                    MergeSort m = new MergeSort();
+                    new MergeSort();
                     setVisible(false);
                     break;
                 case "Bubble":
                     // TODO
                     break;
                 case "Quick":
-                    QuickSort q = new QuickSort();
+                    new QuickSort();
                     setVisible(false);
                     break;
                 case "Selection":
-                    SelectionSort selectFrame = new SelectionSort();
+                    new SelectionSort();
                     setVisible(false);
                     break;
             }

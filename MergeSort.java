@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class MergeSort extends JFrame {
 
-    SortInfoReader reader = new SortInfoReader("MergeSort.txt");
+    SortInfoReader reader = new SortInfoReader("src/textSrc/MergeSort.txt");
     private String str = reader.getContent();
     private int fontSize = 15;
 
