@@ -108,7 +108,8 @@ public class Frame1 extends JFrame {
                     setVisible(false);
                     break;
                 case "Bubble":
-                    // TODO
+                    new BubbleSort();
+                    setVisible(false);
                     break;
                 case "Quick":
                     new QuickSort();
