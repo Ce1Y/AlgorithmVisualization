@@ -1,6 +1,9 @@
 package src.classSrc;
 
 import javax.swing.*;
+
+import src.classSrc.TestInfoFrame;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -88,6 +91,8 @@ public class MainFrame extends JFrame {
 
             } else if (evt.getSource() == buttonGraph) {
                 JOptionPane.showMessageDialog(MainFrame.this, "SORRY, IT'S NOT ROLL OUT YET");
+                TestInfoFrame testInfoFrame = new TestInfoFrame();
+                setVisible(false);
             }
         }
     }
