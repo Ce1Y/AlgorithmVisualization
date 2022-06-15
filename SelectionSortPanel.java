@@ -16,7 +16,7 @@ public class SelectionSortPanel extends JPanel {
 
     private final String str;
     private final String[] code;
-    private final JList codeList;
+    private final JList<String> codeList;
 
     private JScrollPane codeScrollPane;
     int fontSize = 15;
@@ -37,7 +37,7 @@ public class SelectionSortPanel extends JPanel {
         SortInfoReader reader = new SortInfoReader("src/textSrc/SelectionSort.txt");
         str = reader.getContent();
         code = str.split("\n");
-        codeList = new JList(code);
+        codeList = new JList<String>(code);
 
         // set code text area
         codeList.setFont(new Font("Consolas", Font.PLAIN, fontSize));
