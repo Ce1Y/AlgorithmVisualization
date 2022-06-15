@@ -24,7 +24,7 @@ public class Frame1 extends JFrame {
 
     private final JComboBox<String> sortSelectComboBox;
 
-    String[] option = { "SORT", "Insert", "Merge", "Bubble", "Quick", "Selection" };
+    String[] option = { "SORT", "Insertion", "Merge", "Bubble", "Quick", "Selection" };
     ArrayList<String> imgSrc = new ArrayList<>();
 
     public Frame1() {
@@ -47,7 +47,8 @@ public class Frame1 extends JFrame {
         getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
 
         // set listener
-        ActionListener listener = new MyEventListener();
+        ActionListener listener = new SortEventListener();
+        ActionListener handler = new TestEventListener();
 
         // set button panel
         sortSelectPanel = new JPanel();
@@ -73,7 +74,7 @@ public class Frame1 extends JFrame {
         testButton.setForeground(Color.white);
         testButton.setBackground(Color.green);
         testButton.setFont(new Font("Helvetica", Font.PLAIN, 24));
-        testButton.addActionListener(listener);
+        testButton.addActionListener(handler);
 
         // set comboBox
         sortSelectComboBox = new JComboBox<>(option);
@@ -91,7 +92,7 @@ public class Frame1 extends JFrame {
 
     }
 
-    private class MyEventListener implements ActionListener {
+    private class SortEventListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -116,10 +117,21 @@ public class Frame1 extends JFrame {
                     setVisible(false);
                     break;
                 case "Selection":
-                    new SelectionSort();
+                    new SelectionSortVisualizationFrame();
                     setVisible(false);
                     break;
             }
+        }
+    }
+
+    private class TestEventListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Go to test area
+            TestInfoFrame testInfoFrame = new TestInfoFrame();
+            setVisible(false);
+
         }
 
     }
