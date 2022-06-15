@@ -1,4 +1,5 @@
 package src.classSrc;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +16,7 @@ public class BubbleSortPanel extends JPanel {
 
     private final String str;
     private final String[] code;
-    private final JList codeList;
+    private final JList<String> codeList;
 
     private JScrollPane codeScrollPane;
     int fontSize = 15;
@@ -36,7 +37,7 @@ public class BubbleSortPanel extends JPanel {
         SortInfoReader reader = new SortInfoReader("src/textSrc/BubbleSort.txt");
         str = reader.getContent();
         code = str.split("\n");
-        codeList = new JList(code);
+        codeList = new JList<String>(code);
 
         // set code text area
         codeList.setFont(new Font("Consolas", Font.PLAIN, fontSize));
@@ -69,92 +70,90 @@ public class BubbleSortPanel extends JPanel {
         }
     }
 
-   // set variable in Selectionsertion Sort algorithm
-   int i = 0;  // 0~9, total 10
-   int j = 0;  // 0~9, total 10
-   int k = 0;  // the minIndex of clean up the BLUE color
-   boolean first = false;
-   int lineIndex = 1;
-   int temp = 0;
-
-
+    // set variable in Selectionsertion Sort algorithm
+    int i = 0; // 0~9, total 10
+    int j = 0; // 0~9, total 10
+    int k = 0; // the minIndex of clean up the BLUE color
+    boolean first = false;
+    int lineIndex = 1;
+    int temp = 0;
 
     private class TimerAction implements ActionListener, Serializable {
         public void actionPerformed(ActionEvent event) {
             switch (lineIndex) {
-                case 1:             // i loop start
+                case 1: // i loop start
                     codeList.setSelectedIndex(lineIndex);
                     lineIndex++;
                     break;
-                case 2:             // i loop start
+                case 2: // i loop start
                     codeList.setSelectedIndex(lineIndex);
-                    //  initialize
-                      
-                    
-                    if (i < 10) {   
-                        j=0;
+                    // initialize
+
+                    if (i < 10) {
+                        j = 0;
                         lineIndex++;
-                    } else {        // end i loop
+                    } else { // end i loop
                         lineIndex = 10;
                     }
                     break;
-                case 3:             
+                case 3:
                     codeList.setSelectedIndex(lineIndex);
-                    
-                    for(k=0; k<10; k++) 
+
+                    for (k = 0; k < 10; k++)
                         numbers.get(k).setColor(Color.WHITE);
-                    
-                    if(j< 9) {//j < arr.length - i - 1
+
+                    if (j < 9) {// j < arr.length - i - 1
                         numbers.get(j).setColor(Color.RED); // set target color = red
                         lineIndex++;
-                        //System.out.println(lineIndex);
+                        // System.out.println(lineIndex);
                     } else {
                         lineIndex = 2;
                         i++;
                     }
-                    
+
                     break;
                 case 4:
-                    numbers.get(j+1).setColor(Color.BLUE);
-                    codeList.setSelectedIndex(lineIndex);             
-                    if(numbers.get(j).getValue() > numbers.get(j+1).getValue()){
+                    numbers.get(j + 1).setColor(Color.BLUE);
+                    codeList.setSelectedIndex(lineIndex);
+                    if (numbers.get(j).getValue() > numbers.get(j + 1).getValue()) {
                         lineIndex++;
-                    }else{
+                    } else {
                         lineIndex = 8;
                     }
-                case 5:             
+                    break;
+                case 5:
                     codeList.setSelectedIndex(lineIndex);
                     temp = numbers.get(j).getValue();
                     lineIndex++;
                     break;
-                case 6:             
+                case 6:
                     codeList.setSelectedIndex(lineIndex);
                     numbers.get(j).setValue(numbers.get(j + 1).getValue());
                     lineIndex++;
                     break;
-                case 7:             // case 7~9 operate swap()
+                case 7: // case 7~9 operate swap()
                     codeList.setSelectedIndex(lineIndex);
-                    numbers.get(j+1).setValue(temp);
+                    numbers.get(j + 1).setValue(temp);
                     lineIndex++;
                     break;
-                case 8:         
+                case 8:
                     codeList.setSelectedIndex(lineIndex);
-                    lineIndex++;      
+                    lineIndex++;
                     break;
-                case 9:             // j round finish
+                case 9: // j round finish
                     codeList.setSelectedIndex(lineIndex);
                     j++;
                     lineIndex = 3;
                     break;
-                case 10:            // end loop
+                case 10: // end loop
                     codeList.setSelectedIndex(lineIndex);
-                    for(int r=0;r<10;r++){
-                         numbers.get(r).setColor(Color.BLACK);
+                    for (int r = 0; r < 10; r++) {
+                        numbers.get(r).setColor(Color.BLACK);
                     }
-                   
+
                     lineIndex++;
                     break;
-                case 11:            // end algorithm
+                case 11: // end algorithm
                     codeList.setSelectedIndex(lineIndex);
                     completed = true;
                     break;
@@ -164,7 +163,6 @@ public class BubbleSortPanel extends JPanel {
             repaint();
         }
     }
-    
 
     private List<NumberRectangle> initialNumberRectangles() {
         List<NumberRectangle> list = new ArrayList<NumberRectangle>();

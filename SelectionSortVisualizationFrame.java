@@ -192,7 +192,7 @@ public class SelectionSortVisualizationFrame extends JFrame {
             } else if (speed == speedMI5) {
                 speedFlag = 5;
             }
-            animatePanel.timer.setDelay(1000 - 200 * (speedFlag - 1));
+            animatePanel.timer.setDelay(300 - 50 * (speedFlag - 1));
         }
     }
 }

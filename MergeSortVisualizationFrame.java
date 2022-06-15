@@ -192,7 +192,7 @@ public class MergeSortVisualizationFrame extends JFrame {
             } else if (speed == speedMI5) {
                 speedFlag = 5;
             }
-            animatePanel.timer.setDelay(215 - 50 * (speedFlag - 1));
+            animatePanel.timer.setDelay(300 - 50 * (speedFlag - 1));
         }
     }
 }

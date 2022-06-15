@@ -100,7 +100,7 @@ public class Frame1 extends JFrame {
 
             // Go to the tutorial area depending on the selection of dropDownMenu value
             switch (sort) {
-                case "Insert":
+                case "Insertion":
                     new InsertSortVisualizationFrame();
                     setVisible(false);
                     break;
@@ -109,7 +109,7 @@ public class Frame1 extends JFrame {
                     setVisible(false);
                     break;
                 case "Bubble":
-                    new BubbleSort();
+                    new BubbleSortVisualizationFrame();
                     setVisible(false);
                     break;
                 case "Quick":
