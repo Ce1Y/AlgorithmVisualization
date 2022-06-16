@@ -80,6 +80,7 @@ public class QuickSortPanel extends JPanel {
     int tmp;
     int runtime = 0;
     int j;
+    int q;
 
     private List<Integer> pivot_pre = new ArrayList<Integer>();
     private List<Integer> pivot_next = new ArrayList<Integer>();
@@ -101,8 +102,9 @@ public class QuickSortPanel extends JPanel {
                     runtime++;
                     break;
                 case 4:
+                    q = i;
                     if (runtime == 2 || runtime == 4 || runtime == 6 || runtime == 8) {
-                        r--;
+                        r = q - 1;
                         codeList.setSelectedIndex(currentIndex--);
                     } else {
                         codeList.setSelectedIndex(currentIndex++);
@@ -113,14 +115,10 @@ public class QuickSortPanel extends JPanel {
                         codeList.setSelectedIndex(currentIndex);
                         currentIndex = 7;
                     }
-                    if (runtime == 3 || runtime == 5 || runtime == 7) {
-                        p++;
+                    if (runtime == 1 || runtime == 3 || runtime == 5 || runtime == 7) {
+                        p = q + 1;
                         codeList.setSelectedIndex(currentIndex);
                         currentIndex = 3;
-                    } else {
-                        codeList.setSelectedIndex(currentIndex);
-                        currentIndex = 3;
-                        r = 1;
                     }
                     break;
                 case 7:
@@ -131,7 +129,6 @@ public class QuickSortPanel extends JPanel {
                     codeList.setSelectedIndex(currentIndex);
                     currentIndex = 13;
                     x = numbers.get(r).getValue();
-                    ;
                     i = p - 1;
                     j = p;
                     break;
@@ -147,29 +144,28 @@ public class QuickSortPanel extends JPanel {
                     if (numbers.get(j).getValue() <= x) {
                         codeList.setSelectedIndex(currentIndex);
                         currentIndex = 15;
-                    } else
+                    } else {
                         codeList.setSelectedIndex(currentIndex--);
-                    j++;
+                        j++;
+                    }
                     break;
                 case 15:
                     codeList.setSelectedIndex(currentIndex);
                     i++;
                     tmp = numbers.get(i).getValue();
                     numbers.get(i).setColor(Color.black);
-                    numbers.get(j).setColor(Color.red);
                     numbers.get(i).setValue(numbers.get(j).getValue());
                     numbers.get(j).setValue(tmp);
-                    numbers.get(j).setColor(Color.black);
                     currentIndex = 12;
+                    j++;
                     break;
                 case 18:
                     codeList.setSelectedIndex(currentIndex++);
                     tmp = numbers.get(i + 1).getValue();
-                    numbers.get(i + 1).setColor(Color.black);
-                    numbers.get(r).setColor(Color.red);
+                    numbers.get(i + 1).setColor(Color.red);
                     numbers.get(i + 1).setValue(numbers.get(r).getValue());
                     numbers.get(r).setValue(tmp);
-                    numbers.get(r).setColor(Color.black);
+                    i++;
                     break;
                 case 19:
                     codeList.setSelectedIndex(currentIndex);
