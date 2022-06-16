@@ -1,8 +1,10 @@
 package src.classSrc;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +21,9 @@ public class TestInfoFrame extends JFrame{
     private JButton startButton;
     private JButton menuButton;
     
+    private SortInfoReader reader;
+    private ArrayList<String> quizAnswer = new ArrayList<String>();
+    
     private String info = 
             "Here's the rules:" + "\n" +
             "1. There are 10 question in this section" + "\n" +
@@ -26,7 +31,7 @@ public class TestInfoFrame extends JFrame{
             "3. There are 3 type of question in this section: Multiple Choice, Mutiple Choice with multiple answers" + "\n" +
             "   and combination" + "\n" +
             "4. There's no time limit. Focus on your question and try your best!";
-
+            
     public TestInfoFrame() {
         // GUI init
         setTitle("ALGORITHM VISUALIZATION");
@@ -72,16 +77,17 @@ public class TestInfoFrame extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
-            if (e.getSource() == infoButton) {
+            
+            if (e.getSource() == infoButton) {              // info
                 JOptionPane.showMessageDialog(null, info, "Announcement!", JOptionPane.DEFAULT_OPTION);
-            } else if (e.getSource() == startButton) {
-
+            } else if (e.getSource() == startButton) {      // start testing
+                TestFrame testFrame = new TestFrame();
                 setVisible(false);
-            } else {
+            } else {                                        // back to menu
                 Frame1 frame1 = new Frame1();
                 setVisible(false);
             }
         }
     }
+
 }

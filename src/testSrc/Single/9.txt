@@ -1,0 +1,10 @@
+
+  排序趟數與序列的原始狀態有關的排序方法是何種排序法? C
+
+      A. Insertion Sort
+
+      B. Selection Sort
+ 
+      C. Bubble Sort
+
+      D. Direct Insertion Sort 

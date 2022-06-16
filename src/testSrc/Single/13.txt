@@ -1,0 +1,10 @@
+  下列排序演算法中哪種排序在一趟結束後，
+  "不一定"能選出一個元素放在其最終位置上? C
+
+      A. Selection Sort           
+
+      B. Bubble Sort
+           
+      C. Merge Sort
+
+      D. Heap Sort

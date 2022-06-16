@@ -1,0 +1,10 @@
+
+  下列排序演算法中，其中下列選項何者是穩定的? D
+
+      A. Heap Sort, Bubble Sort
+
+      B. Quick Sort, Heap Sort
+
+      C. Selection Sort, Merge Sort
+
+      D. Merge Sort, Bubble Sort

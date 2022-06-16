@@ -1,0 +1,12 @@
+
+  若需在O(nlog2n)的時間內完成對陣列的排序，
+  且要求排序是穩定的，
+  則可選擇的排序方法是? C
+
+      A. Quick Sort
+
+      B. Heap Sort
+
+      C. Merge Sort
+
+      D. All of the above.

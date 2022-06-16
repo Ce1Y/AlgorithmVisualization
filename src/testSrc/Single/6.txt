@@ -1,0 +1,11 @@
+
+  下列內部排序演算法中：
+  穩定(Stable)的排序演算法是? B
+      
+      A. Quick Sort   
+ 
+      B. Bubble Sort
+      
+      C. Heap Sort
+
+      D. All of the above.

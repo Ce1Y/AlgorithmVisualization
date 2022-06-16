@@ -1,0 +1,10 @@
+
+  下列四種排序法中，何種排序法是不穩定(Unstable)排序法? D
+
+      A. Insertion Sort
+      
+      B. Bubble Sort
+      
+      C. Merge Sort
+
+      D. Heap Sort

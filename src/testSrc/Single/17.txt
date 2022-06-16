@@ -1,0 +1,12 @@
+  
+  下列排序演算法中，
+     在待排序資料已有序時，
+     花費時間反而最多的是下列何種排序? C
+
+      A. Bubble Sort 
+ 
+      B. Bucket Sort
+
+      C. Quick Sort
+
+      D. Heap Sort

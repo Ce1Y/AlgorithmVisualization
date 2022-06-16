@@ -1,0 +1,10 @@
+
+  對初始狀態為遞增序列的表按遞增順序排序，最花費時間的是什麼演算法? B
+
+    A. Heap Sort
+
+    B. Quick Sort
+
+    C. Insertion Sort
+
+    D. Merge Sort 

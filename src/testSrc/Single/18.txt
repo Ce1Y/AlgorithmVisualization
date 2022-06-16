@@ -1,0 +1,11 @@
+
+  下列排序演算法中，在每一趟都能選出一個元素放到其最終位置上，
+  並且其時間效能受資料初始排列影響的是何種排序? B
+
+      A. Insertion Sort
+
+      B. Quick Sort
+
+      C. Selection Sort
+
+      D. Heap Sort
