@@ -109,7 +109,7 @@ public class TestFrame extends JFrame{
         }
     }
 
-    public boolean multipleChoiceFrame() {
+    public void multipleChoiceFrame() {
         
         boolean accomplished = false;
 
@@ -151,18 +151,22 @@ public class TestFrame extends JFrame{
         answerGroup.add(buttonD);
         
         // add new elements to frame
-        this.add(quizArea);
-        this.add(returnButton);
-        this.add(submitButton);
-        this.add(buttonA);
-        this.add(buttonB);
-        this.add(buttonC);
-        this.add(buttonD);
+        add(quizArea);
+        add(returnButton);
+        add(submitButton);
+        add(buttonA);
+        add(buttonB);
+        add(buttonC);
+        add(buttonD);
 
-        if (accomplished) {
-            return true;
+        while(accomplished) {
+            if () {
+                accomplished = true;
+            } else {
+
+            }
         }
-
+        
     }
 
     // Yes/No
