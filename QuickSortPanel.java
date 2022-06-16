@@ -102,24 +102,11 @@ public class QuickSortPanel extends JPanel {
                     runtime++;
                     break;
                 case 4:
-                    q = i;
-                    if (runtime == 2 || runtime == 4 || runtime == 6 || runtime == 8) {
-                        r = q - 1;
-                        codeList.setSelectedIndex(currentIndex--);
-                    } else {
-                        codeList.setSelectedIndex(currentIndex++);
-                    }
+                    codeList.setSelectedIndex(currentIndex--);
                     break;
                 case 5:
-                    if (runtime == 9) {
-                        codeList.setSelectedIndex(currentIndex);
-                        currentIndex = 7;
-                    }
-                    if (runtime == 1 || runtime == 3 || runtime == 5 || runtime == 7) {
-                        p = q + 1;
-                        codeList.setSelectedIndex(currentIndex);
-                        currentIndex = 3;
-                    }
+                    codeList.setSelectedIndex(currentIndex);
+                    currentIndex = 3;
                     break;
                 case 7:
                     completed = true;
