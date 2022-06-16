@@ -83,7 +83,9 @@ public class QuickSortPanel extends JPanel {
     int runtime = 0;
     int j;
     int q;
-
+    int ch = 0;
+    int[] a = new int[10];
+    int[] b = new int[10];
     private List<Integer> pivot_pre = new ArrayList<Integer>();
     private List<Integer> pivot_next = new ArrayList<Integer>();
 
@@ -101,8 +103,14 @@ public class QuickSortPanel extends JPanel {
                 case 3:
                     codeList.setSelectedIndex(currentIndex);
                     currentIndex = 9;
-                    if (p == r - 1)
-                        currentIndex = 7;
+                    if (p == r - 1) {
+                        if (runtime != 0) {
+                            runtime--;
+                            ch = 1;
+                            currentIndex = 9;
+                        } else
+                            currentIndex = 7;
+                    }
                     break;
                 case 4:
                     codeList.setSelectedIndex(currentIndex--);
@@ -159,7 +167,16 @@ public class QuickSortPanel extends JPanel {
                     numbers.get(r).setValue(tmp);
                     i++;
                     q = i;
-                    System.out.println(q);
+                    if (q - 1 > p && q + 1 < r) {
+                        a[runtime] = p;
+                        b[runtime] = r;
+                        runtime++;
+                    }
+                    if (ch == 1) {
+                        p = a[runtime];
+                        r = b[runtime];
+                        ch = 0;
+                    }
                     break;
                 case 19:
                     codeList.setSelectedIndex(currentIndex);
