@@ -101,7 +101,8 @@ public class QuickSortPanel extends JPanel {
                 case 3:
                     codeList.setSelectedIndex(currentIndex);
                     currentIndex = 9;
-                    runtime++;
+                    if (p == r - 1)
+                        currentIndex = 7;
                     break;
                 case 4:
                     codeList.setSelectedIndex(currentIndex--);
@@ -157,6 +158,8 @@ public class QuickSortPanel extends JPanel {
                     numbers.get(i + 1).setValue(numbers.get(r).getValue());
                     numbers.get(r).setValue(tmp);
                     i++;
+                    q = i;
+                    System.out.println(q);
                     break;
                 case 19:
                     codeList.setSelectedIndex(currentIndex);
