@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import javax.lang.model.util.ElementScanner14;
 import javax.swing.*;
 
 public class QuickSortPanel extends JPanel {
@@ -103,9 +105,11 @@ public class QuickSortPanel extends JPanel {
                     break;
                 case 4:
                     codeList.setSelectedIndex(currentIndex--);
+                    r = q - 1;
                     break;
                 case 5:
                     codeList.setSelectedIndex(currentIndex);
+                    p = q + 1;
                     currentIndex = 3;
                     break;
                 case 7:
@@ -156,7 +160,10 @@ public class QuickSortPanel extends JPanel {
                     break;
                 case 19:
                     codeList.setSelectedIndex(currentIndex);
-                    currentIndex = 4;
+                    if (q - 1 > p)
+                        currentIndex = 4;
+                    else
+                        currentIndex = 5;
                     break;
                 default:
                     break;
