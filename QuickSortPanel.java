@@ -84,8 +84,8 @@ public class QuickSortPanel extends JPanel {
     int j;
     int q;
     int ch = 0;
-    int[] a = new int[10];
-    int[] b = new int[10];
+    int[] a = new int[11];
+    int[] b = new int[11];
     private List<Integer> pivot_pre = new ArrayList<Integer>();
     private List<Integer> pivot_next = new ArrayList<Integer>();
 
@@ -175,7 +175,6 @@ public class QuickSortPanel extends JPanel {
                     if (ch == 1) {
                         p = a[runtime];
                         r = b[runtime];
-                        ch = 0;
                     }
                     break;
                 case 19:
@@ -184,6 +183,10 @@ public class QuickSortPanel extends JPanel {
                         currentIndex = 4;
                     else
                         currentIndex = 5;
+                    if (ch == 1) {
+                        currentIndex = 5;
+                        ch = 0;
+                    }
                     break;
                 default:
                     break;
