@@ -16,7 +16,7 @@ public class QuickSortPanel extends JPanel {
 
     private final String str;
     private final String[] code;
-    private final JList codeList;
+    private final JList<String> codeList;
 
     private JScrollPane codeScrollPane;
     int fontSize = 15;
@@ -37,7 +37,7 @@ public class QuickSortPanel extends JPanel {
         SortInfoReader reader = new SortInfoReader("src/textSrc/QuickSort.txt");
         str = reader.getContent();
         code = str.split("\n");
-        codeList = new JList(code);
+        codeList = new JList<String>(code);
 
         // set code text area
         codeList.setFont(new Font("Consolas", Font.PLAIN, fontSize));
@@ -75,100 +75,105 @@ public class QuickSortPanel extends JPanel {
     int currentIndex = 1;
     int p = 0;
     int r = 9;
-    int index;
+    int x;
+    int i;
     int tmp;
-    int index_new;
-    int flag = 0;
-    int check = 0;
-
-    int pivot;
+    int runtime = 0;
+    int j;
 
     private List<Integer> pivot_pre = new ArrayList<Integer>();
     private List<Integer> pivot_next = new ArrayList<Integer>();
-
 
     private class TimerAction implements ActionListener, Serializable {
         public void actionPerformed(ActionEvent event) {
             if (completed) {
                 return;
             }
-            if (check == 0) {
-                pivot_pre.add(8);
-                pivot_next.add(10);
-                check = 1;
-            }
 
             switch (currentIndex) {
                 case 1:
-                    codeList.setSelectedIndex(currentIndex++);
-                    if (flag == 0)
-                        numbers.get(r).setColor(Color.RED);
-                    else {
-                        if (pivot == 0) {
-
-                        } else {
-                            numbers.get(pivot - 1).setColor(Color.RED);
-                        }
-
-                    }
-
-                    break;
-                case 2:
-                    codeList.setSelectedIndex(currentIndex++);
-                    if (flag == 0)
-                        numbers.get(r).setColor(Color.WHITE);
-                    else {
-                        if (pivot == 0) {
-
-                        } else {
-                            numbers.get(pivot - 1).setColor(Color.WHITE);
-                        }
-                    }
-
-                    if (flag == 0) {
-                        flag = 1;
-                        pivot = partition(numbers, p, r);
-                    } else {
-                        if (pivot == 0 ) {
-                            while (pivot_next.get(tmp) >= pivot_pre.get(tmp - 1))
-                                tmp--;
-                            pivot = partition(numbers, pivot_next.get(tmp), pivot_pre.get(tmp - 1));
-                        } else {
-                            pivot = partition(numbers, p, pivot - 1);
-                        }
-                    }
-
-                    break;
-                case 3:
-                    codeList.setSelectedIndex(currentIndex++);
-                    for (int k = 0; k < numbers.size(); k++) {
-                        System.out.print(numbers.get(k).getValue() + "  ");
-                    }
-                    System.out.println();
-                    numbers.get(pivot).setColor(Color.RED);
-
-
-                    pivot_pre.add(pivot - 1);
-                    pivot_next.add(pivot + 1);
-                    index = pivot_pre.size() - 1;
-
-
-                    System.out.println("pivot = " + pivot);
-                    System.out.println("pivot_pre = " + pivot_pre);
-                    System.out.println("pivot_next = " + pivot_next);
-                    System.out.println("index = " + index);
-                    break;
-                case 4:
-                    numbers.get(pivot).setColor(Color.BLACK);
-                    codeList.setSelectedIndex(currentIndex++);
-                    currentIndex = 1;
-                    break;
-                case 5:
-                    codeList.setSelectedIndex(currentIndex++);
+                    codeList.setSelectedIndex(currentIndex);
                     currentIndex = 3;
                     break;
-                case 6:
-
+                case 3:
+                    codeList.setSelectedIndex(currentIndex);
+                    currentIndex = 9;
+                    runtime++;
+                    break;
+                case 4:
+                    if (runtime == 2 || runtime == 4 || runtime == 6 || runtime == 8) {
+                        r--;
+                        codeList.setSelectedIndex(currentIndex--);
+                    } else {
+                        codeList.setSelectedIndex(currentIndex++);
+                    }
+                    break;
+                case 5:
+                    if (runtime == 9) {
+                        codeList.setSelectedIndex(currentIndex);
+                        currentIndex = 7;
+                    }
+                    if (runtime == 3 || runtime == 5 || runtime == 7) {
+                        p++;
+                        codeList.setSelectedIndex(currentIndex);
+                        currentIndex = 3;
+                    } else {
+                        codeList.setSelectedIndex(currentIndex);
+                        currentIndex = 3;
+                        r = 1;
+                    }
+                    break;
+                case 7:
+                    completed = true;
+                    codeList.setSelectedIndex(currentIndex++);
+                    break;
+                case 9:
+                    codeList.setSelectedIndex(currentIndex);
+                    currentIndex = 13;
+                    x = numbers.get(r).getValue();
+                    ;
+                    i = p - 1;
+                    j = p;
+                    break;
+                case 12:
+                    codeList.setSelectedIndex(currentIndex);
+                    if (j <= r - 1) {
+                        currentIndex++;
+                    } else {
+                        currentIndex = 18;
+                    }
+                    break;
+                case 13:
+                    if (numbers.get(j).getValue() <= x) {
+                        codeList.setSelectedIndex(currentIndex);
+                        currentIndex = 15;
+                    } else
+                        codeList.setSelectedIndex(currentIndex--);
+                    j++;
+                    break;
+                case 15:
+                    codeList.setSelectedIndex(currentIndex);
+                    i++;
+                    tmp = numbers.get(i).getValue();
+                    numbers.get(i).setColor(Color.black);
+                    numbers.get(j).setColor(Color.red);
+                    numbers.get(i).setValue(numbers.get(j).getValue());
+                    numbers.get(j).setValue(tmp);
+                    numbers.get(j).setColor(Color.black);
+                    currentIndex = 12;
+                    break;
+                case 18:
+                    codeList.setSelectedIndex(currentIndex++);
+                    tmp = numbers.get(i + 1).getValue();
+                    numbers.get(i + 1).setColor(Color.black);
+                    numbers.get(r).setColor(Color.red);
+                    numbers.get(i + 1).setValue(numbers.get(r).getValue());
+                    numbers.get(r).setValue(tmp);
+                    numbers.get(r).setColor(Color.black);
+                    break;
+                case 19:
+                    codeList.setSelectedIndex(currentIndex);
+                    currentIndex = 4;
                     break;
                 default:
                     break;
@@ -187,27 +192,5 @@ public class QuickSortPanel extends JPanel {
         }
         return list;
     }
-
-    private int partition(List<NumberRectangle> numbers, int p, int r) {
-        int val1, val2;
-        int x = numbers.get(r).getValue();
-        int i = p - 1;
-        for (int j = p; j <= r - 1; j++) {
-            if (numbers.get(j).getValue() <= x) {
-                i++;
-                val1 = numbers.get(i).getValue();
-                val2 = numbers.get(j).getValue();
-                numbers.get(i).setValue(val2);
-                numbers.get(j).setValue(val1);
-            }
-        }
-        val1 = numbers.get(i + 1).getValue();
-        val2 = numbers.get(r).getValue();
-        numbers.get(i + 1).setValue(val2);
-        numbers.get(r).setValue(val1);
-        return i + 1;
-
-    }
-
 
 }

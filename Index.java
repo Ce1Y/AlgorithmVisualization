@@ -4,6 +4,6 @@ public class Index {
 
     public static void main(String[] args) {
         // new MainFrame();
-        new TestFrame();
+        new Frame1();
     }
 }

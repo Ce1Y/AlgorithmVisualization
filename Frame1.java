@@ -113,7 +113,7 @@ public class Frame1 extends JFrame {
                     setVisible(false);
                     break;
                 case "Quick":
-                    new QuickSort();
+                    new QuickSortVisualizationFrame();
                     setVisible(false);
                     break;
                 case "Selection":
