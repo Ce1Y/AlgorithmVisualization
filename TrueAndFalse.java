@@ -36,12 +36,14 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
     private ActionListener ansListener = new AnswerEventListener();
     private ActionListener cmdHandler = new ButtonEventListener();
 
-    private SortInfoReader reader;
+    private SortInfoReader readerQuiz;
+    private SortInfoReader readerAnswer;
+    
     private ArrayList<String> quizAnswer = new ArrayList<String>();
 
     private int[][] visit;
     private int quizNumber;
-    private int score; //into 
+    private int score = 0; //into 
  
     private String answer;
 
@@ -61,7 +63,11 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
         getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
 
         // set textArea
-        quizArea = new JTextArea("src/textSrc/InsertionSort.txt");
+        Random random = new Random();
+        setQuizNumber(random.nextInt(15) + 1);
+        readerQuiz = new SortInfoReader("src/testSrc/TF/" + quizNumber +".txt");
+        readerAnswer = new SortInfoReader("src/answerSrc/TF/" + quizNumber +".txt");
+        quizArea = new JTextArea(readerQuiz.getContent());
         quizArea.setBackground(Color.BLACK);
         quizArea.setForeground(Color.WHITE);
         quizArea.setEditable(false);
@@ -86,14 +92,14 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
         submitButton.addActionListener(cmdHandler);
         submitButton.setVisible(true);
 
-        buttonCorrect = new JButton("O");
+        buttonCorrect = new JButton("T");
         buttonCorrect.setBounds(323, 400, 100, 50);
-        buttonCorrect.setActionCommand("O");
+        buttonCorrect.setActionCommand("T");
         buttonCorrect.addActionListener(ansListener);
 
-        buttonWrong = new JButton("X");
+        buttonWrong = new JButton("F");
         buttonWrong.setBounds(556, 400, 100, 50);
-        buttonWrong.setActionCommand("X");
+        buttonWrong.setActionCommand("F");
         buttonWrong.addActionListener(ansListener);
 
         
@@ -149,13 +155,13 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
             String ans = event.getActionCommand();
             
 
-            if (ans == "O") {
-                answer = "O";
-                textChoice.setText("You choose correct!");
+            if (ans == "T") {
+                answer = "T";
+                textChoice.setText("You choose True!");
                 System.out.println(textChoice.getText());
-            } else if (ans == "X") {
-                answer = "X";
-                textChoice.setText("You choose wrong!");
+            } else if (ans == "F") {
+                answer = "F";
+                textChoice.setText("You choose False!");
                 System.out.println(textChoice.getText());
             } 
 
@@ -184,14 +190,23 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
                 correctAns.setFont(new Font("Times New Roman",Font.BOLD,15));
                 wrongAns.setFont(new Font("Times New Roman",Font.BOLD,15));
 
-                if(answer == "O")
+                if(answer.equals(readerAnswer.getContent()))
                 {
+                    setScore(getScore() + 20);
                     result = JOptionPane.showOptionDialog(null, correctAns,
                     "Correct",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
                 }
-                else if(answer == "X")
+                else 
                 {
+                    if(score == 0)
+                    {
+                        setScore(0);
+                    }
+                    else
+                    {
+                        setScore(getScore() - 20);
+                    }
                     result = JOptionPane.showOptionDialog(null, wrongAns,
                     "Wrong",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
@@ -202,8 +217,6 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
                     setVisible(false);
                 }
                 else{
-
-                }
                 Random random = new Random();
                 int nextQuizType = random.nextInt(3) + 1;
                 switch(nextQuizType) {
@@ -221,6 +234,8 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
                         break;
                             
                     }
+                }
+                
                 }
             }
 
