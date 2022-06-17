@@ -18,7 +18,7 @@ public class QuickSortVisualizationFrame extends JFrame {
     private JRadioButtonMenuItem speedMI3;
     private JRadioButtonMenuItem speedMI4;
     private JRadioButtonMenuItem speedMI5;
-    public int speedFlag = 1;
+    public int speedFlag = 5;
 
     private JMenuItem frontMI;
     private JMenuItem menuMI;
