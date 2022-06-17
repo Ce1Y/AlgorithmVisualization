@@ -1,0 +1,10 @@
+  
+ 下面給出的四種排序方法中，排序過程中的比較次數與排序方法無關的是。(  )A
+
+      A. Selection Sort    
+      
+      B. Insertion Sort  
+      
+      C. Quick Sort        
+      
+      D. Heap Sort

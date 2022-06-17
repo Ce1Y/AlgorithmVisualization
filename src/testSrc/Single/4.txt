@@ -1,0 +1,10 @@
+
+  若要求儘可能快地對序列進行穩定的排序，則應選何種選項? B
+      
+      A. Quick Sort
+      
+      B. Merge Sort
+      
+      C. Bubble Sort
+
+      D. All of the above.

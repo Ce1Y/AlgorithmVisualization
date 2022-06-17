@@ -1,0 +1,11 @@
+
+  如果只想得到1000個元素組成的序列中第5個最小元素之前的部分排序的序列，
+  用下列何種排序法最快? C
+
+      A. Bubble Sort
+
+      B. Quick Sort
+
+      C. Heap Sort
+
+      D. Selection Sort
