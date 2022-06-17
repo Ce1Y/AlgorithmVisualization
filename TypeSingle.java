@@ -18,7 +18,7 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
 
     private JTextArea quizArea;
 
-    private JTextField message;
+    private JTextField answerMessage;
     
     private JButton menuButton;
     private JButton submitButton;
@@ -30,19 +30,21 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
     private ActionListener ansListener = new AnswerEventListener();
     private ActionListener cmdHandler = new ButtonEventListener();
 
-    private SortInfoReader reader;
+    private SortInfoReader quizReader;
+    private SortInfoReader ansReader;
+    private Random random = new Random();
     private ArrayList<String> quizAnswer = new ArrayList<String>();
 
     private int[][] visit;
     private int quizNumber;
     private int score;
-    private int click = 0;
+    private String quiz;
     private String answer;
+    private String correctAns;
 
-    
-    public TypeSingle() {
+    public TypeSingle(int[][] visit, int quizNumber, int score) {
         // init GUI
-        super("Quiz");
+        super("Quiz" + quizNumber);
         setSize(1000, 600);
         setLayout(null);
 
@@ -55,11 +57,16 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
         getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
 
         // set textArea
-        quizArea = new JTextArea("src/textSrc/InsertionSort.txt");
+        quizArea = new JTextArea();
         quizArea.setBackground(Color.BLACK);
         quizArea.setForeground(Color.WHITE);
         quizArea.setEditable(false);
         quizArea.setBounds(90, 50, 800, 300);
+
+        // set textField
+        answerMessage = new JTextField("123");
+        answerMessage.setBounds(90, 485, 400, 50);
+        answerMessage.setOpaque(false);
 
         // set button
         menuButton = new JButton("Menu");
@@ -71,7 +78,7 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
         submitButton.setBounds(880, 510, 100, 50);
         submitButton.setActionCommand("submit");
         submitButton.addActionListener(cmdHandler);
-        submitButton.setVisible(false);
+        submitButton.setEnabled(false);
 
         buttonA = new JButton("A");
         buttonA.setBounds(90, 400, 100, 50);
@@ -101,21 +108,41 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
         add(buttonB);
         add(buttonC);
         add(buttonD);
+        add(answerMessage);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
 
-
+        setVisit(visit);
+        setQuizNumber(quizNumber);
+        setScore(score);
+        setTest();
     }
     // set question & answer
     public void setTest() {
+        int number;
 
-        // set question
+        while(true) {
+            number = random.nextInt(21) + 1;
+            if (visit[0][number] != 1)
+                break;
+        }
 
+        // read
+        quizReader = new SortInfoReader("src/testSrc/Single/" + number + ".txt");
+        quiz = quizReader.getContent();
         // read answer
-        
+        ansReader = new SortInfoReader("src/answerSrc/Single/" + number + ".txt");
+        correctAns = ansReader.getContent();
+
+        // set textArea
+        quizArea.setText(quiz);
+
+        // add visited
+        visit[0][number] = 1;
+
     }
 
     private void setVisit(int[][] newVisit) {
@@ -142,25 +169,23 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
 
         @Override
         public void actionPerformed(ActionEvent event) {
-            String ans = event.getActionCommand();
-            click = click + 1;
+            String option = event.getActionCommand();
+            submitButton.setEnabled(true);
 
-            if (ans == "A") {
+            if (option == "A") {
                 answer = "A";
-            } else if (ans == "B") {
+                //TODO show option message
+            } else if (option == "B") {
                 answer = "B";
-            } else if (ans == "C") {
+                //TODO
+            } else if (option == "C") {
                 answer = "C";
-            } else if (ans == "D") {
+                //TODO
+            } else if (option == "D") {
                 answer = "D";
+                //TODO
             }
 
-            if (click % 2 == 1) {
-                submitButton.setVisible(true);
-            } else {
-                submitButton.setVisible(false);
-                ans = "";
-            }
         }
     }
 
@@ -171,36 +196,64 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
             String cmd = e.getActionCommand();
 
             if (cmd == "menu") {
-                int result = JOptionPane.showConfirmDialog(null,"You want to back to Menu?", "Warning",
+                JLabel x = new JLabel("You want to back to Menu?");
+                x.setFont(new Font("Times New Roman", Font.BOLD, 12));
+                int result = JOptionPane.showConfirmDialog(null, x, "Warning",
                 JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, new ImageIcon("src/imageSrc/Thinking4.png"));
                 
-                if (result == JOptionPane.YES_OPTION) {     // yes
+                if (result == JOptionPane.YES_OPTION) {     // yes button
                     new Frame1();
                     setVisible(false);
                 } 
             } else if (cmd == "submit") {
-                if (answer != "123") {      // wrong 
+                int TorF;
+                String[] options = {"return", "next"};
+                System.out.println(answer);
 
-                } else {                    // correct
-                    
+                if (answer.equals(correctAns) == false) {        // wrong 
+                    JLabel y = new JLabel("oh-oooh, the answer is " + correctAns);
+                    y.setFont(new Font("Times New Roman", Font.BOLD, 12));
+
+                    TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
+                } else {                                // correct
+                    JLabel y = new JLabel("Correct! Keep going!");
+                    y.setFont(new Font("Times New Roman", Font.BOLD, 12));
+
+                    TorF = JOptionPane.showOptionDialog(null, y, "Correct!", 
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Right.png"), options, options[0]);
                 }
 
-                Random random = new Random();
-                    int nextQuizType = random.nextInt(3) + 1;
-                    switch(nextQuizType) {
-                        case 1:             // single
-                            
-                            setVisible(false);
-                            break;
-                        case 2:             // yes/no
-                            // TODO
-                            setVisible(false);
-                            break;  
-                        case 3:             // insert
-                            // TODO
-                            setVisible(false);
-                            break;
-                    }
+                if (TorF == 0) {
+                    new Frame1();
+                    setVisible(false);
+                    return;
+                }
+
+                if (quizNumber == 5) {
+                    JOptionPane.showMessageDialog(null, 
+                        "Congratulation!!! You get " + score + " points in this test, well done!!!");
+                    new Frame1();
+                    setVisible(false);
+                    return;
+                }
+
+                int nextQuizType = random.nextInt(3) + 1;
+                System.out.println(nextQuizType);
+                switch(nextQuizType) {
+                    case 1:             // single
+                        new TypeSingle(visit, quizNumber, score);
+                        setVisible(false);
+                        break;
+                    case 2:             // yes/no
+                        // TODO
+                        setVisible(false);
+                        break;  
+                    case 3:             // insert
+                        // TODO
+                        setVisible(false);
+                        break;
+                }
             }
 
         }
