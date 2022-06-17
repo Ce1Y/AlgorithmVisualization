@@ -17,6 +17,8 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
     private JPanel backgroundPanel;
 
     private JTextArea quizArea;
+
+    private JTextField message;
     
     private JButton menuButton;
     private JButton submitButton;
@@ -24,8 +26,6 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
     private JButton buttonB;
     private JButton buttonC;
     private JButton buttonD;
-
-    private ButtonGroup answerGroup;
 
     private ActionListener ansListener = new AnswerEventListener();
     private ActionListener cmdHandler = new ButtonEventListener();
@@ -92,13 +92,6 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
         buttonD.setBounds(790, 400, 100, 50);
         buttonD.setActionCommand("D");
         buttonD.addActionListener(ansListener);
-
-        // set buttonGroup
-        answerGroup = new ButtonGroup();
-        answerGroup.add(buttonA);
-        answerGroup.add(buttonB);
-        answerGroup.add(buttonC);
-        answerGroup.add(buttonD);
         
         // add new elements to frame
         add(quizArea);
@@ -189,7 +182,10 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
                 if (answer != "123") {      // wrong 
 
                 } else {                    // correct
-                    Random random = new Random();
+                    
+                }
+
+                Random random = new Random();
                     int nextQuizType = random.nextInt(3) + 1;
                     switch(nextQuizType) {
                         case 1:             // single
@@ -205,7 +201,6 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
                             setVisible(false);
                             break;
                     }
-                }
             }
 
         }
