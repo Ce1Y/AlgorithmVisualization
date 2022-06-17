@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -66,117 +65,6 @@ public class TestFrame extends JFrame{
         int index = 0;
         int[] visit = new int[20];
         
-        // readfile()
-        // readAnswer()   
-        
-        // read quiz 
-        while(index < 10) {
-            // choose a quiz from 1 ~ arrayList.size()
-            quizType = random.nextInt(3) + 1;
-            switch(quizType) {
-                case 1:
-                    while(true) {
-                        quizNumber = random.nextInt(typeA) + 1;
-                        if (visit[quizNumber] != 1) {   // haven't been visited yet
-                            multipleChoiceFrame();
-                            visit[quizNumber] = 1;
-                            break;
-                        }
-                    }
-                    break;
-                case 2:
-                    while(true) {
-                        quizNumber = random.nextInt(typeA) + 1;
-                        if (visit[quizNumber] != 1) {   // haven't been visited yet
-                            yesNoFrame();
-                            visit[quizNumber] = 1;
-                            break;
-                        }
-                    }
-                    break;
-                case 3:
-                    while(true) {
-                        quizNumber = random.nextInt(typeA) + 1;
-                        if (visit[quizNumber] != 1) {   // haven't been visited yet
-                            insertFrame();
-                            visit[quizNumber] = 1;
-                            break;
-                        }
-                    }
-                    break;
-            }
-            index++;
-        }
-    }
-
-    public void multipleChoiceFrame() {
-        
-        boolean accomplished = false;
-
-        // set textArea
-        quizArea = new JTextArea("src/textSrc/InsertionSort.txt");
-        quizArea.setEditable(false);
-        quizArea.setBounds(90, 50, 800, 300);
-
-        // set button
-        returnButton = new JButton("Menu");
-        returnButton.setBounds(780, 510, 100, 50);
-        returnButton.addActionListener(listener);
-
-        submitButton = new JButton("submit");
-        submitButton.setBounds(880, 510, 100, 50);
-        submitButton.addActionListener(listener);
-
-        buttonA = new JButton("A");
-        buttonA.setBounds(90, 400, 100, 50);
-        buttonA.addActionListener(listener);
-
-        buttonB = new JButton("B");
-        buttonB.setBounds(323, 400, 100, 50);
-        buttonB.addActionListener(listener);
-        
-        buttonC = new JButton("C");
-        buttonC.setBounds(556, 400, 100, 50);
-        buttonC.addActionListener(listener);
-        
-        buttonD = new JButton("D");
-        buttonD.setBounds(790, 400, 100, 50);
-        buttonD.addActionListener(listener);
-
-        // set buttonGroup
-        answerGroup = new ButtonGroup();
-        answerGroup.add(buttonA);
-        answerGroup.add(buttonB);
-        answerGroup.add(buttonC);
-        answerGroup.add(buttonD);
-        
-        // add new elements to frame
-        add(quizArea);
-        add(returnButton);
-        add(submitButton);
-        add(buttonA);
-        add(buttonB);
-        add(buttonC);
-        add(buttonD);
-
-        while(accomplished) {
-            if () {
-                accomplished = true;
-            } else {
-
-            }
-        }
-        
-    }
-
-    // Yes/No
-    public void yesNoFrame() {
-
-    }
-
-    // Insert
-    public void insertFrame() {
-
     }
 
     private class ButtonEventListener implements ActionListener {
