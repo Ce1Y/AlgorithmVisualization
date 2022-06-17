@@ -103,7 +103,7 @@ public class QuickSortPanel extends JPanel {
                 case 3:
                     codeList.setSelectedIndex(currentIndex);
                     currentIndex = 9;
-                    if (p == r - 1) {
+                    if (p == r - 1 || (p == r - 2 && p == 0)) {
                         if (runtime != 0) {
                             runtime--;
                             ch = 1;
@@ -200,9 +200,11 @@ public class QuickSortPanel extends JPanel {
 
         // generate 10 random numbers
         Random random = new Random();
+
         for (int i = 1; i <= 10; i++) {
             list.add(new NumberRectangle(i, 1, random.nextInt(15) + 1, Color.white));
         }
+
         return list;
     }
 
