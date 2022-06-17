@@ -13,8 +13,8 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
     private ImageIcon backgroundImg;
 
     private JLabel backgroundLabel;
-    private JLabel correctAns = new JLabel("You are nice");
-    private JLabel wrongAns = new JLabel("You are bad");
+    private JLabel correctAns = new JLabel("Correct! Keep going!");
+    private JLabel wrongAns = new JLabel("The answer is another");
     
 
     private JPanel backgroundPanel;
@@ -38,19 +38,20 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
 
     private SortInfoReader readerQuiz;
     private SortInfoReader readerAnswer;
+    private Random random = new Random();
     
     private ArrayList<String> quizAnswer = new ArrayList<String>();
 
     private int[][] visit;
     private int quizNumber;
-    private int score = 0; //into 
+    private int score; //into 
  
     private String answer;
 
     
-    public TrueAndFalse() {
+    public TrueAndFalse(int[][] visit, int quizNumber, int score) {
         // init GUI
-        super("Quiz");
+        super("Quiz" + quizNumber);
         setSize(1000, 600);
         setLayout(null);
 
@@ -63,11 +64,7 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
         getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
 
         // set textArea
-        Random random = new Random();
-        setQuizNumber(random.nextInt(15) + 1);
-        readerQuiz = new SortInfoReader("src/testSrc/TF/" + quizNumber +".txt");
-        readerAnswer = new SortInfoReader("src/answerSrc/TF/" + quizNumber +".txt");
-        quizArea = new JTextArea(readerQuiz.getContent());
+        quizArea = new JTextArea();
         quizArea.setBackground(Color.BLACK);
         quizArea.setForeground(Color.WHITE);
         quizArea.setEditable(false);
@@ -116,15 +113,35 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
-
+        
+        setVisit(visit);
+        setQuizNumber(quizNumber);
+        setScore(score);
+        setTest();
 
     }
     // set question & answer
     public void setTest() {
 
-        // set question
+        int number;
 
+        while(true) {
+            number = random.nextInt(15) + 1;
+            if (visit[1][number] != 1)
+                break;
+        }
+
+        // read
+        readerQuiz = new SortInfoReader("src/testSrc/TF/" + number +".txt");
+        
         // read answer
+        readerAnswer = new SortInfoReader("src/answerSrc/TF/" + number +".txt");
+
+        // set textArea
+        quizArea.setText(readerQuiz.getContent());
+
+        // add visited
+        visit[1][number] = 1;
         
     }
 
@@ -190,14 +207,14 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
                 correctAns.setFont(new Font("Times New Roman",Font.BOLD,15));
                 wrongAns.setFont(new Font("Times New Roman",Font.BOLD,15));
 
-                if(answer.equals(readerAnswer.getContent()))
+                if(answer.equals(readerAnswer.getContent())) //correct
                 {
                     setScore(getScore() + 20);
                     result = JOptionPane.showOptionDialog(null, correctAns,
-                    "Correct",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+                    "Correct!",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Right.png"), options, options[0]);
                 }
-                else 
+                else  //wrong 
                 {
                     if(score == 0)
                     {
@@ -208,24 +225,31 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
                         setScore(getScore() - 20);
                     }
                     result = JOptionPane.showOptionDialog(null, wrongAns,
-                    "Wrong",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+                    "You're wrong, dude...",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
                 }
                 if(result == 0)
                 {
                     new Frame1();
                     setVisible(false);
+                    return;
                 }
-                else{
-                Random random = new Random();
-                int nextQuizType = random.nextInt(3) + 1;
+                if (quizNumber == 5) {
+                    JOptionPane.showMessageDialog(null, 
+                        "Congratulation!!! You get " + score + " points in this test, well done!!!");
+                    new Frame1();
+                    setVisible(false);
+                    return;
+                }
+                int nextQuizType = random.nextInt(2) + 1;
+                //nextQuizType = 2;
                 switch(nextQuizType) {
                     case 1:             // single
-                            
+                        new TypeSingle(visit, ++quizNumber, score);   
                         setVisible(false);
                         break;
                     case 2:             // yes/no
-                            // TODO
+                        new TrueAndFalse(visit, ++quizNumber, score);    // TODO
                         setVisible(false);
                         break;  
                     case 3:             // insert
@@ -241,4 +265,4 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
 
         }
     
-}
+

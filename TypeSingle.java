@@ -211,12 +211,21 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
                 System.out.println(answer);
 
                 if (answer.equals(correctAns) == false) {        // wrong 
+                    if(score == 0)
+                    {
+                        setScore(0);
+                    }
+                    else
+                    {
+                        setScore(getScore() - 20);
+                    }                      
                     JLabel y = new JLabel("oh-oooh, the answer is " + correctAns);
                     y.setFont(new Font("Times New Roman", Font.BOLD, 12));
 
                     TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
-                } else {                                // correct
+                } else {
+                    setScore(getScore() + 20); // correct
                     JLabel y = new JLabel("Correct! Keep going!");
                     y.setFont(new Font("Times New Roman", Font.BOLD, 12));
 
@@ -238,15 +247,16 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
                     return;
                 }
 
-                int nextQuizType = random.nextInt(3) + 1;
+                int nextQuizType = random.nextInt(2) + 1;
+                //nextQuizType = 1;
                 System.out.println(nextQuizType);
                 switch(nextQuizType) {
                     case 1:             // single
-                        new TypeSingle(visit, quizNumber, score);
+                        new TypeSingle(visit, ++quizNumber, score);
                         setVisible(false);
                         break;
                     case 2:             // yes/no
-                        // TODO
+                        new TrueAndFalse(visit, ++quizNumber, score);
                         setVisible(false);
                         break;  
                     case 3:             // insert

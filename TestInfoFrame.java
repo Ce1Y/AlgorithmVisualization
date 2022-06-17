@@ -82,15 +82,15 @@ public class TestInfoFrame extends JFrame{
                 JOptionPane.showMessageDialog(null, info, "Announcement!", JOptionPane.DEFAULT_OPTION);
             } else if (e.getSource() == startButton) {      // start testing
                 Random random = new Random();
-                int start = random.nextInt(3) + 1;
-                start = 1;                                  // start
+                int start = random.nextInt(2) + 1;
+                //start = 2;                                  // start
                 switch(start) {
                     case 1:             // single
                         TypeSingle typeSingle = new TypeSingle(visit, 1, 0);
                         setVisible(false);
                         break;
                     case 2:             // yes/no
-                        TrueAndFalse trueAndFalse = new TrueAndFalse();
+                        TrueAndFalse trueAndFalse = new TrueAndFalse(visit,1,0);
                         setVisible(false);
                         break;  
                     case 3:             // insert
