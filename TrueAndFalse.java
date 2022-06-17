@@ -228,6 +228,7 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
                     "You're wrong, dude...",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
                 }
+                System.out.println("score = " + score);
                 if(result == 0)
                 {
                     new Frame1();

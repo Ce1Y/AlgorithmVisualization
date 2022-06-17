@@ -232,7 +232,7 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
                     TorF = JOptionPane.showOptionDialog(null, y, "Correct!", 
                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Right.png"), options, options[0]);
                 }
-
+                System.out.println("score = " + score);
                 if (TorF == 0) {
                     new Frame1();
                     setVisible(false);
