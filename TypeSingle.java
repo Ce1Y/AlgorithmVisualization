@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.*;
-
-import src.classSrc.Frame1;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,7 +33,7 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
     private SortInfoReader reader;
     private ArrayList<String> quizAnswer = new ArrayList<String>();
 
-    private int[] visit;
+    private int[][] visit;
     private int quizNumber;
     private int score;
     private int click = 0;
@@ -74,7 +71,7 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
         submitButton.setBounds(880, 510, 100, 50);
         submitButton.setActionCommand("submit");
         submitButton.addActionListener(cmdHandler);
-        // submitButton.setVisible(false);
+        submitButton.setVisible(false);
 
         buttonA = new JButton("A");
         buttonA.setBounds(90, 400, 100, 50);
@@ -116,6 +113,8 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
+
+
     }
     // set question & answer
     public void setTest() {
@@ -126,7 +125,7 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
         
     }
 
-    private void setVisit(int[] newVisit) {
+    private void setVisit(int[][] newVisit) {
         visit = newVisit;
     }
 
@@ -163,12 +162,12 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
                 answer = "D";
             }
 
-            // if (click % 2 == 1) {
-            //     submitButton.setVisible(true);
-            // } else {
-            //     submitButton.setVisible(false);
-            //     ans = "";
-            // }
+            if (click % 2 == 1) {
+                submitButton.setVisible(true);
+            } else {
+                submitButton.setVisible(false);
+                ans = "";
+            }
         }
     }
 
@@ -187,14 +186,14 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
                     setVisible(false);
                 } 
             } else if (cmd == "submit") {
-                if (answer != "123") {         // wrong 
+                if (answer != "123") {      // wrong 
 
                 } else {                    // correct
                     Random random = new Random();
                     int nextQuizType = random.nextInt(3) + 1;
                     switch(nextQuizType) {
                         case 1:             // single
-                            // TODO
+                            
                             setVisible(false);
                             break;
                         case 2:             // yes/no

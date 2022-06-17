@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,15 +53,15 @@ public class TestInfoFrame extends JFrame{
         ActionListener listener = new ButtonEventListener();
 
         // set button
-        infoButton = new JButton();
+        infoButton = new JButton("INFO:");
         infoButton.setBounds(190, 50, 600, 300);
         infoButton.addActionListener(listener);
 
-        startButton = new JButton();
+        startButton = new JButton("START");
         startButton.setBounds(337, 400, 300, 125);
         startButton.addActionListener(listener);
 
-        menuButton = new JButton();
+        menuButton = new JButton("MENU");
         menuButton.setBounds(901, 0, 85, 50);
         menuButton.addActionListener(listener);
 
@@ -81,7 +80,24 @@ public class TestInfoFrame extends JFrame{
             if (e.getSource() == infoButton) {              // info
                 JOptionPane.showMessageDialog(null, info, "Announcement!", JOptionPane.DEFAULT_OPTION);
             } else if (e.getSource() == startButton) {      // start testing
-                TestFrame testFrame = new TestFrame();
+                Random random = new Random();
+                int start = random.nextInt(3) + 1;
+                start = 1;                                  // start
+                System.out.println(start);
+                switch(start) {
+                    case 1:             // single
+                        TypeSingle typeSingle = new TypeSingle();
+                        setVisible(false);
+                        break;
+                    case 2:             // yes/no
+                        // TODO
+                        setVisible(false);
+                        break;  
+                    case 3:             // insert
+                        // TODO
+                        setVisible(false);
+                        break;
+                }
                 setVisible(false);
             } else {                                        // back to menu
                 Frame1 frame1 = new Frame1();
