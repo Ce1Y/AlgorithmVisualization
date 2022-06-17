@@ -86,6 +86,7 @@ public class QuickSortPanel extends JPanel {
     int ch = 0;
     int[] a = new int[11];
     int[] b = new int[11];
+    int[] c = new int[11];
     private List<Integer> pivot_pre = new ArrayList<Integer>();
     private List<Integer> pivot_next = new ArrayList<Integer>();
 
@@ -101,15 +102,11 @@ public class QuickSortPanel extends JPanel {
                     currentIndex = 3;
                     break;
                 case 3:
+                    System.out.println(p + " " + q + " " + r);
                     codeList.setSelectedIndex(currentIndex);
                     currentIndex = 9;
-                    if (p == r - 1 || (p == r - 2 && p == 0)) {
-                        if (runtime != 0) {
-                            runtime--;
-                            ch = 1;
-                            currentIndex = 9;
-                        } else
-                            currentIndex = 7;
+                    if (p == r - 1 && runtime == 0) {
+                        ch = 1;
                     }
                     break;
                 case 4:
@@ -170,11 +167,8 @@ public class QuickSortPanel extends JPanel {
                     if (q - 1 > p && q + 1 < r) {
                         a[runtime] = p;
                         b[runtime] = r;
+                        c[runtime] = q;
                         runtime++;
-                    }
-                    if (ch == 1) {
-                        p = a[runtime];
-                        r = b[runtime];
                     }
                     break;
                 case 19:
@@ -183,10 +177,15 @@ public class QuickSortPanel extends JPanel {
                         currentIndex = 4;
                     else
                         currentIndex = 5;
-                    if (ch == 1) {
+                    if (q == p + 1 && q == r - 1) {
+                        runtime--;
+                        p = a[runtime];
+                        r = b[runtime];
+                        q = c[runtime];
                         currentIndex = 5;
-                        ch = 0;
                     }
+                    if (ch == 1)
+                        currentIndex = 7;
                     break;
                 default:
                     break;
@@ -200,11 +199,21 @@ public class QuickSortPanel extends JPanel {
 
         // generate 10 random numbers
         Random random = new Random();
-
-        for (int i = 1; i <= 10; i++) {
-            list.add(new NumberRectangle(i, 1, random.nextInt(15) + 1, Color.white));
-        }
-
+        /*
+         * for (int i = 1; i <= 10; i++) {
+         * list.add(new NumberRectangle(i, 1, random.nextInt(15) + 1, Color.white));
+         * }
+         */
+        list.add(new NumberRectangle(1, 1, 2, Color.white));
+        list.add(new NumberRectangle(2, 1, 7, Color.white));
+        list.add(new NumberRectangle(3, 1, 12, Color.white));
+        list.add(new NumberRectangle(4, 1, 2, Color.white));
+        list.add(new NumberRectangle(5, 1, 5, Color.white));
+        list.add(new NumberRectangle(6, 1, 11, Color.white));
+        list.add(new NumberRectangle(7, 1, 10, Color.white));
+        list.add(new NumberRectangle(8, 1, 2, Color.white));
+        list.add(new NumberRectangle(9, 1, 2, Color.white));
+        list.add(new NumberRectangle(10, 1, 1, Color.white));
         return list;
     }
 
