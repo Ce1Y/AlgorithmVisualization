@@ -28,6 +28,15 @@ public class SortInfoReader {
         return new String(filecontent);
     }
 
+    public static String readChineseString(File file) {
+        FileInputStream fis = new FileInputStream(file);
+        InputStreamReader reader = new InputStreamReader(fis, "UTF-8");
+        BufferedReader br = new BufferedReader(reader);
+        String chineseContent;
+        chineseContent = br.toString();
+        return chineseContent;
+    }
+
     public String getContent() {
         return content;
     }
