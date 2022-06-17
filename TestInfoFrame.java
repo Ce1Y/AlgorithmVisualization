@@ -82,7 +82,7 @@ public class TestInfoFrame extends JFrame{
             } else if (e.getSource() == startButton) {      // start testing
                 Random random = new Random();
                 int start = random.nextInt(3) + 1;
-                start = 1;                                  // start
+                start = 2;                                  // start
                 System.out.println(start);
                 switch(start) {
                     case 1:             // single
@@ -90,7 +90,7 @@ public class TestInfoFrame extends JFrame{
                         setVisible(false);
                         break;
                     case 2:             // yes/no
-                        // TODO
+                        TrueAndFalse trueAndFalse = new TrueAndFalse();
                         setVisible(false);
                         break;  
                     case 3:             // insert
