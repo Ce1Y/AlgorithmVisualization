@@ -1,7 +1,6 @@
 package src.classSrc;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,13 +21,12 @@ public class MainFrame extends JFrame {
     private JPanel backgroundPanel;
     private JPanel titlePanel;
     private JPanel engTitlePanel;
-    private JPanel optionPanel;
 
     public MainFrame() {
         // GUI init
         setTitle("ALGORITHM VISUALIZATION");
         setSize(1000, 600);
-        setLayout(new GridLayout(3, 1));
+        setLayout(null);
 
         // set background
         backgroundImage = new ImageIcon("src/imageSrc/Background.png");
@@ -44,6 +42,7 @@ public class MainFrame extends JFrame {
         titlePanel = new JPanel();
         titlePanel.setOpaque(false);
         titlePanel.add(titleLabel);
+        titlePanel.setBounds(100, 30, 800, 200);
         add(titlePanel);
 
         // English title image
@@ -52,6 +51,7 @@ public class MainFrame extends JFrame {
         engTitlePanel = new JPanel();
         engTitlePanel.setOpaque(false);
         engTitlePanel.add(engTitleLabel);
+        engTitlePanel.setBounds(300, 160, 400, 100);
         add(engTitlePanel);
 
         // sort and graph button
@@ -59,13 +59,12 @@ public class MainFrame extends JFrame {
         graphImage = new ImageIcon("src/imageSrc/Graph.png");
 
         buttonSort = new JButton(sortImage);
+        buttonSort.setBounds(95, 350, 400, 100);
         buttonGraph = new JButton(graphImage);
+        buttonGraph.setBounds(505, 350, 400, 100);
 
-        optionPanel = new JPanel();
-        optionPanel.setOpaque(false);
-        optionPanel.add(buttonSort);
-        optionPanel.add(buttonGraph);
-        add(optionPanel);
+        add(buttonSort);
+        add(buttonGraph);
 
         // sortButton listener
         ButtonHandler handler = new ButtonHandler();
@@ -83,11 +82,12 @@ public class MainFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent evt) {
             if (evt.getSource() == buttonSort) {
-                Frame1 frame1 = new Frame1();
+                new Frame1();
                 setVisible(false);
 
             } else if (evt.getSource() == buttonGraph) {
-                JOptionPane.showMessageDialog(MainFrame.this, "SORRY, IT'S NOT ROLL OUT YET");
+                new BSTVisualization();
+                setVisible(false);
             }
         }
     }
