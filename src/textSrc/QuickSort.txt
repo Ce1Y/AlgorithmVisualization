@@ -1,0 +1,8 @@
+
+ 1.  public void QuickSort(int A[],int p,int r) {
+ 2.     if (p < r) {
+ 3.           q = partition(A,p,r);
+ 4.           QuickSort(A,p,q-1);
+ 5.           QuickSort(A,q+1,r);
+ 6.       }
+ 7. }

@@ -1,6 +1,6 @@
 
   下列內部排序演算法中：
-  穩定(Stable)的排序演算法是? B
+  穩定(Stable)的排序演算法是? B 6
       
       A. Quick Sort   
  

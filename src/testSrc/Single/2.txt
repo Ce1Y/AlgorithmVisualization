@@ -1,5 +1,5 @@
 
-  下列四種排序法中，何種排序法是不穩定(Unstable)排序法? D
+  下列四種排序法中，何種排序法是不穩定(Unstable)排序法? D 2
 
       A. Insertion Sort
       

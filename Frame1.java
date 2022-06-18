@@ -33,6 +33,10 @@ public class Frame1 extends JFrame {
         super("Frame 1");
         setSize(1000, 600);
         setLayout(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setVisible(true);
 
         // set background
         backgroundImg = new ImageIcon("src/imageSrc/Background.png");

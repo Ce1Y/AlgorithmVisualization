@@ -22,7 +22,8 @@ public class TestInfoFrame extends JFrame{
     
     private SortInfoReader reader;
     private ArrayList<String> quizAnswer = new ArrayList<String>();
-    
+    private int[][] visit = new int[3][30];
+
     private String info = 
             "Here's the rules:" + "\n" +
             "1. There are 10 question in this section" + "\n" +
@@ -81,16 +82,15 @@ public class TestInfoFrame extends JFrame{
                 JOptionPane.showMessageDialog(null, info, "Announcement!", JOptionPane.DEFAULT_OPTION);
             } else if (e.getSource() == startButton) {      // start testing
                 Random random = new Random();
-                int start = random.nextInt(3) + 1;
-                start = 1;                                  // start
-                System.out.println(start);
+                int start = random.nextInt(2) + 1;
+                //start = 2;                                  // start
                 switch(start) {
                     case 1:             // single
-                        TypeSingle typeSingle = new TypeSingle();
+                        TypeSingle typeSingle = new TypeSingle(visit, 1, 0);
                         setVisible(false);
                         break;
                     case 2:             // yes/no
-                        // TODO
+                        TrueAndFalse trueAndFalse = new TrueAndFalse(visit,1,0);
                         setVisible(false);
                         break;  
                     case 3:             // insert
@@ -100,7 +100,7 @@ public class TestInfoFrame extends JFrame{
                 }
                 setVisible(false);
             } else {                                        // back to menu
-                Frame1 frame1 = new Frame1();
+                new Frame1();
                 setVisible(false);
             }
         }

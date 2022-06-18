@@ -1,6 +1,6 @@
 
   下列內部排序演算法中：
-            不為O(n•logn)的演算法是? B
+            不為O(n•logn)的演算法是? B 8
 
       A. Quick Sort   
      
