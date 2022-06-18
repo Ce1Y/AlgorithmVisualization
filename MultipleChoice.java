@@ -68,6 +68,8 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
         answerMessage = new JTextField();
         answerMessage.setBounds(90, 485, 400, 50);
         answerMessage.setOpaque(false);
+        answerMessage.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        answerMessage.setEditable(false);
 
         // set button
         menuButton = new JButton(new ImageIcon("src/imageSrc/Menu.png"));
