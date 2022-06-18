@@ -110,19 +110,19 @@ public class TestInfoFrame extends JFrame{
                 JOptionPane.showMessageDialog(null, info, "Announcement!", JOptionPane.DEFAULT_OPTION);
             } else if (e.getSource() == startButton) {      // start testing
                 Random random = new Random();
-                int start = random.nextInt(2) + 1;
-                //start = 2;                                  // start
+                int start = random.nextInt(3) + 1;
+                                                  // start
                 switch(start) {
                     case 1:             // single
                         MultipleChoice typeSingle = new MultipleChoice(visit, 1, 0);
                         setVisible(false);
                         break;
                     case 2:             // yes/no
-                        TrueOrFalse trueAndFalse = new TrueOrFalse(visit,1,0);
+                        TrueOrFalse trueOrFalse = new TrueOrFalse(visit,1,0);
                         setVisible(false);
                         break;  
                     case 3:             // insert
-                        // TODO
+                        insertTest insertTest = new insertTest(visit,1,0);
                         setVisible(false);
                         break;
                 }
