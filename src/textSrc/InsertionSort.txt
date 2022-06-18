@@ -1,5 +1,5 @@
 
- 1.  public void insertSort(int array[]) { 幹你娘
+ 1.  public void insertSort(int array[]) { 
  2.      for (int i = 1; i < array.length; i++) {
  3.          int key = array[i];
  4.          int j = i;
