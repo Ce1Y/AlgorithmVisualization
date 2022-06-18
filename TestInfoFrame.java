@@ -1,6 +1,7 @@
 package src.classSrc;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +20,10 @@ public class TestInfoFrame extends JFrame{
     private JButton startButton;
     private JButton menuButton;
     
+    private SortInfoReader reader;
+    private ArrayList<String> quizAnswer = new ArrayList<String>();
+    private int[][] visit = new int[3][30];
+
     private String info = 
             "Here's the rules:" + "\n" +
             "1. There are 10 question in this section" + "\n" +
@@ -26,7 +31,7 @@ public class TestInfoFrame extends JFrame{
             "3. There are 3 type of question in this section: Multiple Choice, Mutiple Choice with multiple answers" + "\n" +
             "   and combination" + "\n" +
             "4. There's no time limit. Focus on your question and try your best!";
-
+            
     public TestInfoFrame() {
         // GUI init
         setTitle("ALGORITHM VISUALIZATION");
@@ -49,15 +54,15 @@ public class TestInfoFrame extends JFrame{
         ActionListener listener = new ButtonEventListener();
 
         // set button
-        infoButton = new JButton();
+        infoButton = new JButton("INFO:");
         infoButton.setBounds(190, 50, 600, 300);
         infoButton.addActionListener(listener);
 
-        startButton = new JButton();
+        startButton = new JButton("START");
         startButton.setBounds(337, 400, 300, 125);
         startButton.addActionListener(listener);
 
-        menuButton = new JButton();
+        menuButton = new JButton("MENU");
         menuButton.setBounds(901, 0, 85, 50);
         menuButton.addActionListener(listener);
 
@@ -72,14 +77,30 @@ public class TestInfoFrame extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
-            if (e.getSource() == infoButton) {
+            
+            if (e.getSource() == infoButton) {              // info
                 JOptionPane.showMessageDialog(null, info, "Announcement!", JOptionPane.DEFAULT_OPTION);
-            } else if (e.getSource() == startButton) {
-
+            } else if (e.getSource() == startButton) {      // start testing
+                Random random = new Random();
+                int start = random.nextInt(3) + 1;
+                start = 1;                                  // start
+                switch(start) {
+                    case 1:             // single
+                        TypeSingle typeSingle = new TypeSingle(visit, 1, 0);
+                        setVisible(false);
+                        break;
+                    case 2:             // yes/no
+                        // TODO
+                        setVisible(false);
+                        break;  
+                    case 3:             // insert
+                        Cloze cloze = new Cloze(visit, 1, 0);
+                        setVisible(false);
+                        break;
+                }
                 setVisible(false);
-            } else {
-                Frame1 frame1 = new Frame1();
+            } else {                                        // back to menu
+                new Frame1();
                 setVisible(false);
             }
         }
