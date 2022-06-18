@@ -90,12 +90,12 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
         submitButton.addActionListener(cmdHandler);
         submitButton.setVisible(true);
 
-        buttonCorrect = new JButton("T");
+        buttonCorrect = new JButton(new ImageIcon("src/imageSrc/True.png"));
         buttonCorrect.setBounds(323, 400, 100, 50);
         buttonCorrect.setActionCommand("T");
         buttonCorrect.addActionListener(ansListener);
 
-        buttonWrong = new JButton("F");
+        buttonWrong = new JButton(new ImageIcon("src/imageSrc/False.png"));
         buttonWrong.setBounds(556, 400, 100, 50);
         buttonWrong.setActionCommand("F");
         buttonWrong.addActionListener(ansListener);
