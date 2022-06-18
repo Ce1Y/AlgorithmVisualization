@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TypeSingle extends JFrame implements TestFrameImplement{
+public class MultipleChoice extends JFrame implements TestFrameImplement{
 
     private ImageIcon backgroundImg;
 
@@ -42,7 +42,7 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
     private String answer;
     private String correctAns;
 
-    public TypeSingle(int[][] visit, int quizNumber, int score) {
+    public MultipleChoice(int[][] visit, int quizNumber, int score) {
         // init GUI
         super("Quiz" + quizNumber);
         setSize(1000, 600);
@@ -65,38 +65,38 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
         quizArea.setBounds(90, 50, 800, 300);
 
         // set textField
-        answerMessage = new JTextField("123");
+        answerMessage = new JTextField();
         answerMessage.setBounds(90, 485, 400, 50);
         answerMessage.setOpaque(false);
 
         // set button
-        menuButton = new JButton("Menu");
+        menuButton = new JButton(new ImageIcon("src/imageSrc/Menu.png"));
         menuButton.setBounds(780, 510, 100, 50);
         menuButton.setActionCommand("menu");
         menuButton.addActionListener(cmdHandler);
 
-        submitButton = new JButton("Submit");
+        submitButton = new JButton(new ImageIcon("src/imageSrc/Submit.png"));
         submitButton.setBounds(880, 510, 100, 50);
         submitButton.setActionCommand("submit");
         submitButton.addActionListener(cmdHandler);
         submitButton.setEnabled(false);
 
-        buttonA = new JButton("A");
+        buttonA = new JButton(new ImageIcon("src/imageSrc/A.png"));
         buttonA.setBounds(90, 400, 100, 50);
         buttonA.setActionCommand("A");
         buttonA.addActionListener(ansListener);
 
-        buttonB = new JButton("B");
+        buttonB = new JButton(new ImageIcon("src/imageSrc/B.png"));
         buttonB.setBounds(323, 400, 100, 50);
         buttonB.setActionCommand("B");
         buttonB.addActionListener(ansListener);
         
-        buttonC = new JButton("C");
+        buttonC = new JButton(new ImageIcon("src/imageSrc/C.png"));
         buttonC.setBounds(556, 400, 100, 50);
         buttonC.setActionCommand("C");
         buttonC.addActionListener(ansListener);
         
-        buttonD = new JButton("D");
+        buttonD = new JButton(new ImageIcon("src/imageSrc/D.png"));
         buttonD.setBounds(790, 400, 100, 50);
         buttonD.setActionCommand("D");
         buttonD.addActionListener(ansListener);
@@ -130,7 +130,7 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
             if (visit[0][number] != 1)
                 break;
         }
-
+        number = 12;
         // read
         quizReader = new SortInfoReader("src/testSrc/Single/" + number + ".txt", "UTF-8");
         quiz = quizReader.getContent();
@@ -176,18 +176,19 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
 
             if (option == "A") {
                 answer = "A";
-                //TODO show option message
             } else if (option == "B") {
                 answer = "B";
-                //TODO
             } else if (option == "C") {
                 answer = "C";
-                //TODO
             } else if (option == "D") {
                 answer = "D";
-                //TODO
             }
 
+            JLabel label = new JLabel();
+            label.setIcon(new ImageIcon("src/imageSrc/Option" + answer + ".png"));
+            label.setLocation(90, 485);
+            add(label);
+            
         }
     }
 
@@ -246,7 +247,7 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
                 System.out.println(nextQuizType);
                 switch(nextQuizType) {
                     case 1:             // single
-                        new TypeSingle(visit, ++quizNumber, score);
+                        new MultipleChoice(visit, ++quizNumber, score);
                         setVisible(false);
                         break;
                     case 2:             // yes/no

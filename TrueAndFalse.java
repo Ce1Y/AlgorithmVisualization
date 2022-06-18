@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
 
+import src.classSrc.MultipleChoice;
+
 import java.awt.*; 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -78,12 +80,12 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
         textChoice.setBounds(350, 510, 300, 150);
         textChoice.setOpaque(false);
         // set button
-        menuButton = new JButton("Menu");
+        menuButton = new JButton(new ImageIcon("src/imageSrc/Menu.png"));
         menuButton.setBounds(780, 510, 100, 50);
         menuButton.setActionCommand("menu");
         menuButton.addActionListener(cmdHandler);
 
-        submitButton = new JButton("Submit");
+        submitButton = new JButton(new ImageIcon("src/imageSrc/Submit.png"));
         submitButton.setBounds(880, 510, 100, 50);
         submitButton.setActionCommand("submit");
         submitButton.setEnabled(false);
@@ -239,7 +241,7 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
                 //nextQuizType = 2;
                 switch(nextQuizType) {
                     case 1:             // single
-                        new TypeSingle(visit, ++quizNumber, score);   
+                        new MultipleChoice(visit, ++quizNumber, score);   
                         setVisible(false);
                         break;
                     case 2:             // yes/no

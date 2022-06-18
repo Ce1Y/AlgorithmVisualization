@@ -76,10 +76,10 @@ public class Menu extends JFrame {
         testButton.setFont(new Font("Helvetica", Font.PLAIN, 24));
         testButton.addActionListener(handler);
 
-        // set first Page Button
-        firstPageButton = new JButton("<--Pre");
-        firstPageButton.setBounds(900, 0, 100, 50);
-        firstPageButton.setFont(new Font("Helvetica", Font.PLAIN, 24));
+        // set menu Button
+        firstPageButton = new JButton(new ImageIcon("src/imageSrc/Menu.png"));
+        firstPageButton.setBounds(885, 1, 100, 50);
+        firstPageButton.setFocusPainted(false);
         firstPageButton.addActionListener(handler);
 
         // set comboBox

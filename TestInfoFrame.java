@@ -54,16 +54,24 @@ public class TestInfoFrame extends JFrame{
         ActionListener listener = new ButtonEventListener();
 
         // set button
-        infoButton = new JButton("INFO:");
+        infoButton = new JButton(new ImageIcon("src/imageSrc/Precautions.png"));
         infoButton.setBounds(190, 50, 600, 300);
+        infoButton.setOpaque(false);
+        infoButton.setContentAreaFilled(false);
+        // infoButton.setBorderPainted(false);
         infoButton.addActionListener(listener);
 
-        startButton = new JButton("START");
+        startButton = new JButton(new ImageIcon("src/imageSrc/Start.png"));
         startButton.setBounds(337, 400, 300, 125);
+        startButton.setBackground(Color.WHITE);
         startButton.addActionListener(listener);
 
-        menuButton = new JButton("MENU");
-        menuButton.setBounds(901, 0, 85, 50);
+        menuButton = new JButton(new ImageIcon("src/imageSrc/Menu.png"));
+        menuButton.setBounds(885, 1, 100, 50);
+        menuButton.setOpaque(false);
+        menuButton.setContentAreaFilled(false);
+        menuButton.setFocusPainted(false);
+        menuButton.setBorderPainted(false);
         menuButton.addActionListener(listener);
 
         // add new elements to frame
@@ -86,7 +94,7 @@ public class TestInfoFrame extends JFrame{
                 //start = 2;                                  // start
                 switch(start) {
                     case 1:             // single
-                        TypeSingle typeSingle = new TypeSingle(visit, 1, 0);
+                        MultipleChoice typeSingle = new MultipleChoice(visit, 1, 0);
                         setVisible(false);
                         break;
                     case 2:             // yes/no
