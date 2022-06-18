@@ -18,7 +18,7 @@ public class QuickSortVisualizationFrame extends JFrame {
     private JRadioButtonMenuItem speedMI3;
     private JRadioButtonMenuItem speedMI4;
     private JRadioButtonMenuItem speedMI5;
-    public int speedFlag = 1;
+    public int speedFlag = 5;
 
     private JMenuItem frontMI;
     private JMenuItem menuMI;
@@ -192,7 +192,7 @@ public class QuickSortVisualizationFrame extends JFrame {
             } else if (speed == speedMI5) {
                 speedFlag = 5;
             }
-            animatePanel.timer.setDelay(1000 - 200 * (speedFlag - 1));
+            animatePanel.timer.setDelay(815 - 200 * (speedFlag - 1));
         }
     }
 }

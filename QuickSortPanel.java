@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import javax.lang.model.util.ElementScanner14;
 import javax.swing.*;
 
 public class QuickSortPanel extends JPanel {
@@ -16,7 +18,7 @@ public class QuickSortPanel extends JPanel {
 
     private final String str;
     private final String[] code;
-    private final JList codeList;
+    private final JList<String> codeList;
 
     private JScrollPane codeScrollPane;
     int fontSize = 15;
@@ -37,7 +39,7 @@ public class QuickSortPanel extends JPanel {
         SortInfoReader reader = new SortInfoReader("src/textSrc/QuickSort.txt");
         str = reader.getContent();
         code = str.split("\n");
-        codeList = new JList(code);
+        codeList = new JList<String>(code);
 
         // set code text area
         codeList.setFont(new Font("Consolas", Font.PLAIN, fontSize));
@@ -75,101 +77,123 @@ public class QuickSortPanel extends JPanel {
     int currentIndex = 1;
     int p = 0;
     int r = 9;
-    int index;
+    int x;
+    int i;
     int tmp;
-    int index_new;
-    int flag = 0;
-    int check = 0;
-
-    int pivot;
-
+    int runtime = 0;
+    int j;
+    int q;
+    int ch = 0;
+    int ch2 = 0;
+    int ch3 = 0;
+    int[] a = new int[11];
+    int[] b = new int[11];
+    int[] c = new int[11];
     private List<Integer> pivot_pre = new ArrayList<Integer>();
     private List<Integer> pivot_next = new ArrayList<Integer>();
-
 
     private class TimerAction implements ActionListener, Serializable {
         public void actionPerformed(ActionEvent event) {
             if (completed) {
                 return;
             }
-            if (check == 0) {
-                pivot_pre.add(8);
-                pivot_next.add(10);
-                check = 1;
-            }
 
             switch (currentIndex) {
                 case 1:
-                    codeList.setSelectedIndex(currentIndex++);
-                    if (flag == 0)
-                        numbers.get(r).setColor(Color.RED);
-                    else {
-                        if (pivot == 0) {
-
-                        } else {
-                            numbers.get(pivot - 1).setColor(Color.RED);
-                        }
-
-                    }
-
-                    break;
-                case 2:
-                    codeList.setSelectedIndex(currentIndex++);
-                    if (flag == 0)
-                        numbers.get(r).setColor(Color.WHITE);
-                    else {
-                        if (pivot == 0) {
-
-                        } else {
-                            numbers.get(pivot - 1).setColor(Color.WHITE);
-                        }
-                    }
-
-                    if (flag == 0) {
-                        flag = 1;
-                        pivot = partition(numbers, p, r);
-                    } else {
-                        if (pivot == 0 ) {
-                            while (pivot_next.get(tmp) >= pivot_pre.get(tmp - 1))
-                                tmp--;
-                            pivot = partition(numbers, pivot_next.get(tmp), pivot_pre.get(tmp - 1));
-                        } else {
-                            pivot = partition(numbers, p, pivot - 1);
-                        }
-                    }
-
-                    break;
-                case 3:
-                    codeList.setSelectedIndex(currentIndex++);
-                    for (int k = 0; k < numbers.size(); k++) {
-                        System.out.print(numbers.get(k).getValue() + "  ");
-                    }
-                    System.out.println();
-                    numbers.get(pivot).setColor(Color.RED);
-
-
-                    pivot_pre.add(pivot - 1);
-                    pivot_next.add(pivot + 1);
-                    index = pivot_pre.size() - 1;
-
-
-                    System.out.println("pivot = " + pivot);
-                    System.out.println("pivot_pre = " + pivot_pre);
-                    System.out.println("pivot_next = " + pivot_next);
-                    System.out.println("index = " + index);
-                    break;
-                case 4:
-                    numbers.get(pivot).setColor(Color.BLACK);
-                    codeList.setSelectedIndex(currentIndex++);
-                    currentIndex = 1;
-                    break;
-                case 5:
-                    codeList.setSelectedIndex(currentIndex++);
+                    codeList.setSelectedIndex(currentIndex);
                     currentIndex = 3;
                     break;
-                case 6:
-
+                case 3:
+                    codeList.setSelectedIndex(currentIndex);
+                    currentIndex = 9;
                     break;
+                case 4:
+                    codeList.setSelectedIndex(currentIndex--);
+                    if ((p == r - 1 || p == r)) {
+                        if (runtime != 0) {
+                            runtime--;
+                            q = c[runtime];
+                            p = a[runtime];
+                        }
+                    }
+                    r = q - 1;
+                    break;
+                case 5:
+                    codeList.setSelectedIndex(currentIndex);
+                    if ((p == r - 1 || p == r || (q == p + 1 && q == r - 1))) {
+                        if (runtime != 0) {
+                            runtime--;
+                            q = c[runtime];
+                            r = b[runtime];
+                        }
+                    }
+                    p = q + 1;
+                    currentIndex = 3;
+                    break;
+                case 7:
+                    completed = true;
+                    codeList.setSelectedIndex(currentIndex++);
+                    break;
+                case 9:
+                    codeList.setSelectedIndex(currentIndex);
+                    currentIndex = 13;
+                    x = numbers.get(r).getValue();
+                    i = p - 1;
+                    j = p;
+                    break;
+                case 12:
+                    codeList.setSelectedIndex(currentIndex);
+                    if (j <= r - 1) {
+                        currentIndex++;
+                    } else {
+                        currentIndex = 18;
+                    }
+                    break;
+                case 13:
+                    if (numbers.get(j).getValue() <= x) {
+                        codeList.setSelectedIndex(currentIndex);
+                        currentIndex = 15;
+                    } else {
+                        codeList.setSelectedIndex(currentIndex--);
+                        j++;
+                    }
+                    break;
+                case 15:
+                    codeList.setSelectedIndex(currentIndex);
+                    i++;
+                    tmp = numbers.get(i).getValue();
+                    numbers.get(i).setColor(Color.black);
+                    numbers.get(i).setValue(numbers.get(j).getValue());
+                    numbers.get(j).setValue(tmp);
+                    currentIndex = 12;
+                    j++;
+                    break;
+                case 18:
+                    codeList.setSelectedIndex(currentIndex++);
+                    tmp = numbers.get(i + 1).getValue();
+                    numbers.get(i + 1).setColor(Color.red);
+                    numbers.get(i + 1).setValue(numbers.get(r).getValue());
+                    numbers.get(r).setValue(tmp);
+                    i++;
+                    q = i;
+                    if (q - 1 > p && q + 1 < r) {
+                        a[runtime] = p;
+                        b[runtime] = r;
+                        c[runtime] = q;
+                        runtime++;
+                    }
+                    break;
+                case 19:
+                    // System.out.println(p + " " + q + " " + r);
+                    codeList.setSelectedIndex(currentIndex);
+                    if (q - 1 > p)
+                        currentIndex = 4;
+                    else
+                        currentIndex = 5;
+                    if (((p == r - 1) || (q == p + 1 && q == r - 1)) && runtime == 0)
+                        currentIndex = 7;
+                    break;
+
                 default:
                     break;
             }
@@ -182,32 +206,15 @@ public class QuickSortPanel extends JPanel {
 
         // generate 10 random numbers
         Random random = new Random();
+
         for (int i = 1; i <= 10; i++) {
-            list.add(new NumberRectangle(i, 1, random.nextInt(15) + 1, Color.white));
+            x = random.nextInt(15) + 1;
+            list.add(new NumberRectangle(i, 1, x, Color.white));
+            // System.out.print(x + ",");
         }
+        // System.out.println();
+
         return list;
     }
-
-    private int partition(List<NumberRectangle> numbers, int p, int r) {
-        int val1, val2;
-        int x = numbers.get(r).getValue();
-        int i = p - 1;
-        for (int j = p; j <= r - 1; j++) {
-            if (numbers.get(j).getValue() <= x) {
-                i++;
-                val1 = numbers.get(i).getValue();
-                val2 = numbers.get(j).getValue();
-                numbers.get(i).setValue(val2);
-                numbers.get(j).setValue(val1);
-            }
-        }
-        val1 = numbers.get(i + 1).getValue();
-        val2 = numbers.get(r).getValue();
-        numbers.get(i + 1).setValue(val2);
-        numbers.get(r).setValue(val1);
-        return i + 1;
-
-    }
-
 
 }
