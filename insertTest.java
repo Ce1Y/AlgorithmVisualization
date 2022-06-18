@@ -78,7 +78,9 @@ public class insertTest extends JFrame implements TestFrameImplement{
 
         textField1 = new JTextField();
         textField1.setBounds(90,375,750,50);
+        textField1.setFont(new Font("Serif", Font.PLAIN, 20));
         textField1.setVisible(true);
+        
    
 
         // add new elements to frame
@@ -128,6 +130,7 @@ public class insertTest extends JFrame implements TestFrameImplement{
         if(code.length > 1){
             textField2 = new JTextField();
             textField2.setBounds(90,425,750,50);
+            textField2.setFont(new Font("Serif", Font.PLAIN, 20));
             textField2.setVisible(true);
             add(textField2);
 
