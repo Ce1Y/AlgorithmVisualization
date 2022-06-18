@@ -25,6 +25,7 @@ public class insertTest extends JFrame implements TestFrameImplement {
 
     private JTextField textField1;
     private JTextField textField2;
+    private JTextField textField3;
 
     private SortInfoReader quizReader;
     private SortInfoReader ansReader;
@@ -78,9 +79,9 @@ public class insertTest extends JFrame implements TestFrameImplement {
         submitButton.setVisible(true);
 
         textField1 = new JTextField();
-        textField1.setBounds(90, 375, 750, 50);
-        textField1.setFont(new Font("Serif", Font.PLAIN, 20));
+        textField1.setBounds(90,375,750,50);
         textField1.setVisible(true);
+        textField1.setFont(new Font("Serif", Font.PLAIN, 18));
 
         // add new elements to frame
         add(quizArea);
@@ -104,13 +105,15 @@ public class insertTest extends JFrame implements TestFrameImplement {
     // set question & answer
     public void setTest() {
         int number;
-
-        while (true) {
+       
+         
+        while(true) {
             number = random.nextInt(14) + 1;
             if (visit[2][number] != 1)
                 break;
         }
-        // number = 1;
+        
+        
 
         // read
         quizReader = new SortInfoReader("src/testSrc/Insert/" + number + ".txt", "UTF-8");
@@ -123,9 +126,9 @@ public class insertTest extends JFrame implements TestFrameImplement {
 
         if (code.length > 1) {
             textField2 = new JTextField();
-            textField2.setBounds(90, 425, 750, 50);
-            textField2.setFont(new Font("Serif", Font.PLAIN, 20));
+            textField2.setBounds(90,425,750,50);
             textField2.setVisible(true);
+            textField2.setFont(new Font("Serif", Font.PLAIN, 18));
             add(textField2);
 
             System.out.println(code[0]);
@@ -189,8 +192,9 @@ public class insertTest extends JFrame implements TestFrameImplement {
                 }
             } else if (cmd == "submit") {
                 int TorF;
-
-                String ans = textField1.getText();
+                
+                String ans = textField1.getText(); 
+               
 
                 String[] options = { "return", "next" };
 
@@ -198,17 +202,16 @@ public class insertTest extends JFrame implements TestFrameImplement {
                     String ans2 = textField2.getText();
                     System.out.println(ans);
                     System.out.println(ans2);
-
-                    if (ans.equalsIgnoreCase(code[1]) == true && ans2.equalsIgnoreCase(code[0]) == true) { // ans 顛倒
+                      
+                    if (ans.equalsIgnoreCase(code[1]) == true && ans2.equalsIgnoreCase(code[0]) == true ) {    // ans 顛倒
                         setScore(getScore() + 20);
                         JLabel y = new JLabel("Correct! Keep going!");
                         y.setFont(new Font("Times New Roman", Font.BOLD, 12));
 
-                        TorF = JOptionPane.showOptionDialog(null, y, "Correct!",
-                                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                                new ImageIcon("src/imageSrc/Right.png"), options, options[0]);
-
-                    } else if (ans.equalsIgnoreCase(code[0]) == false && ans2.equalsIgnoreCase(code[1]) == false) { // wrong
+                        TorF = JOptionPane.showOptionDialog(null, y, "Correct!", 
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Right.png"), options, options[0]);
+                    
+                    }else if (ans.equalsIgnoreCase(code[0]) == false && ans2.equalsIgnoreCase(code[1]) == false ) {        // wrong 
                         JLabel y = new JLabel("oh-oooh, the answer is " + code[0] + " and " + code[1]);
                         y.setFont(new Font("Times New Roman", Font.BOLD, 12));
 
@@ -232,18 +235,16 @@ public class insertTest extends JFrame implements TestFrameImplement {
                         JLabel y = new JLabel("oh-oooh, the answer1 is " + code[0] + " but your answer1 is " + ans);
                         y.setFont(new Font("Times New Roman", Font.BOLD, 12));
 
-                        TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...",
-                                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                                new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
-
-                    } else { // correct
+                        TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
+                        
+                    }else {                                                                                // correct
                         setScore(getScore() + 20);
                         JLabel y = new JLabel("Correct! Keep going!");
                         y.setFont(new Font("Times New Roman", Font.BOLD, 12));
 
-                        TorF = JOptionPane.showOptionDialog(null, y, "Correct!",
-                                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                                new ImageIcon("src/imageSrc/Right.png"), options, options[0]);
+                        TorF = JOptionPane.showOptionDialog(null, y, "Correct!", 
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Right.png"), options, options[0]);
                     }
 
                 } else { // 1 ans
@@ -282,6 +283,7 @@ public class insertTest extends JFrame implements TestFrameImplement {
                     return;
                 }
 
+                //int nextQuizType = random.nextInt(3) + 1;
                 int nextQuizType = random.nextInt(3) + 1;
                 System.out.println(nextQuizType);
                 switch (nextQuizType) {
@@ -299,7 +301,6 @@ public class insertTest extends JFrame implements TestFrameImplement {
                         break;
                 }
             }
-
         }
     }
 }
