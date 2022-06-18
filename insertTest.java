@@ -31,7 +31,6 @@ public class insertTest extends JFrame implements TestFrameImplement {
     private SortInfoReader ansReader;
     private Random random = new Random();
 
-    private ActionListener ansListener = new AnswerEventListener();
     private ActionListener cmdHandler = new ButtonEventListener();
 
     private ArrayList<String> quizAnswer = new ArrayList<String>();
@@ -113,8 +112,6 @@ public class insertTest extends JFrame implements TestFrameImplement {
                 break;
         }
         
-        
-
         // read
         quizReader = new SortInfoReader("src/testSrc/Insert/" + number + ".txt", "UTF-8");
         quiz = quizReader.getContent();
@@ -165,13 +162,7 @@ public class insertTest extends JFrame implements TestFrameImplement {
         return score;
     }
 
-    private class AnswerEventListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent event) {
-
-        }
-    }
+ 
 
     private class ButtonEventListener implements ActionListener {
 
