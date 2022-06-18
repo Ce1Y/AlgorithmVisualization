@@ -8,6 +8,7 @@ public class QuickSortVisualizationFrame extends JFrame {
     private JMenuBar menuBar;
 
     private JMenu setMenu;
+    private JMenu sortMenu;
     private JMenu speedMenu;
     private JMenu exitMenu;
 
@@ -23,6 +24,12 @@ public class QuickSortVisualizationFrame extends JFrame {
     private JMenuItem frontMI;
     private JMenuItem menuMI;
     private JMenuItem closeMI;
+
+    private JMenuItem insertionMI;
+    private JMenuItem mergeMI;
+    private JMenuItem bubbleMI;
+    private JMenuItem quickMI;
+    private JMenuItem selectionMI;
 
     private ImageIcon backgroundImage;
     private ImageIcon titleImage;
@@ -73,7 +80,9 @@ public class QuickSortVisualizationFrame extends JFrame {
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         setMenu = new JMenu("Set");
+        sortMenu = new JMenu("Sort");
         menuBar.add(setMenu);
+        menuBar.add(sortMenu);
 
         // set Button in menuBar
         startImage = new ImageIcon("src/imageSrc/Start.png");
@@ -127,6 +136,19 @@ public class QuickSortVisualizationFrame extends JFrame {
         exitMenu.add(menuMI);
         exitMenu.add(closeMI);
 
+        // add MenuItem into sortMenu
+        insertionMI = new JMenuItem("Insertion");
+        mergeMI = new JMenuItem("Merge");
+        bubbleMI = new JMenuItem("Bubble");
+        quickMI = new JMenuItem("Quick");
+        selectionMI = new JMenuItem("Selection");
+
+        sortMenu.add(insertionMI);
+        sortMenu.add(mergeMI);
+        sortMenu.add(bubbleMI);
+        sortMenu.add(quickMI);
+        sortMenu.add(selectionMI);
+
         // Run Code Action listener
         startButton.addActionListener(new RunCodeAction());
         pauseButton.addActionListener(new RunCodeAction());
@@ -144,6 +166,13 @@ public class QuickSortVisualizationFrame extends JFrame {
         menuMI.addActionListener(new ExitAction());
         closeMI.addActionListener(new ExitAction());
 
+        // Sort Action listener
+        insertionMI.addActionListener(new RunCodeAction());
+        mergeMI.addActionListener(new RunCodeAction());
+        bubbleMI.addActionListener(new RunCodeAction());
+        quickMI.addActionListener(new RunCodeAction());
+        selectionMI.addActionListener(new RunCodeAction());
+
         // add InsertSort Panel into this frame
         animatePanel = new QuickSortPanel();
         getContentPane().add(animatePanel);
@@ -158,6 +187,21 @@ public class QuickSortVisualizationFrame extends JFrame {
                 animatePanel.timer.stop();
             } else if (option == restartButton) {
                 new QuickSortVisualizationFrame();
+                setVisible(false);
+            } else if (option == insertionMI) {
+                new InsertSortVisualizationFrame();
+                setVisible(false);
+            } else if (option == mergeMI) {
+                new MergeSortVisualizationFrame();
+                setVisible(false);
+            } else if (option == bubbleMI) {
+                new BubbleSortVisualizationFrame();
+                setVisible(false);
+            } else if (option == quickMI) {
+                new QuickSortVisualizationFrame();
+                setVisible(false);
+            } else if (option == selectionMI) {
+                new SelectionSortVisualizationFrame();
                 setVisible(false);
             }
         }
