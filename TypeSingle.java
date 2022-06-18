@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.*; 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -216,14 +216,15 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
 
                     TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
-                } else {                                // correct
+                } else {
+                    setScore(getScore() + 20); // correct
                     JLabel y = new JLabel("Correct! Keep going!");
                     y.setFont(new Font("Times New Roman", Font.BOLD, 12));
 
                     TorF = JOptionPane.showOptionDialog(null, y, "Correct!", 
                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Right.png"), options, options[0]);
                 }
-
+                System.out.println("score = " + score);
                 if (TorF == 0) {
                     new Frame1();
                     setVisible(false);
@@ -238,15 +239,16 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
                     return;
                 }
 
-                int nextQuizType = random.nextInt(3) + 1;
+                int nextQuizType = random.nextInt(2) + 1;
+                //nextQuizType = 1;
                 System.out.println(nextQuizType);
                 switch(nextQuizType) {
                     case 1:             // single
-                        new TypeSingle(visit, quizNumber, score);
+                        new TypeSingle(visit, ++quizNumber, score);
                         setVisible(false);
                         break;
                     case 2:             // yes/no
-                        // TODO
+                        new TrueAndFalse(visit, ++quizNumber, score);
                         setVisible(false);
                         break;  
                     case 3:             // insert
