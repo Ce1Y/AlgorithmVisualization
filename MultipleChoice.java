@@ -133,7 +133,7 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
             if (visit[0][number] != 1)
                 break;
         }
-        number = 12;
+        
         // read
         quizReader = new SortInfoReader("src/testSrc/Single/" + number + ".txt", "UTF-8");
         quiz = quizReader.getContent();
