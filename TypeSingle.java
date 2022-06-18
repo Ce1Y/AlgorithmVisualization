@@ -131,10 +131,10 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
         }
 
         // read
-        quizReader = new SortInfoReader("src/testSrc/Single/" + number + ".txt");
+        quizReader = new SortInfoReader("src/testSrc/Single/" + number + ".txt", "UTF-8");
         quiz = quizReader.getContent();
         // read answer
-        ansReader = new SortInfoReader("src/answerSrc/Single/" + number + ".txt");
+        ansReader = new SortInfoReader("src/answerSrc/Single/" + number + ".txt", "UTF-8");
         correctAns = ansReader.getContent();
 
         // set textArea

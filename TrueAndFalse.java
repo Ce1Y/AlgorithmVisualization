@@ -132,10 +132,10 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
         }
 
         // read
-        readerQuiz = new SortInfoReader("src/testSrc/TF/" + number +".txt");
+        readerQuiz = new SortInfoReader("src/testSrc/TF/" + number +".txt", "UTF-8");
         
         // read answer
-        readerAnswer = new SortInfoReader("src/answerSrc/TF/" + number +".txt");
+        readerAnswer = new SortInfoReader("src/answerSrc/TF/" + number +".txt", "UTF-8");
 
         // set textArea
         quizArea.setText(readerQuiz.getContent());
