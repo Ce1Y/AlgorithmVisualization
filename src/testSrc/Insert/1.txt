@@ -1,0 +1,2 @@
+  分別採用HeapSort，QuickSort，BubbleSort和MergeSort，假如一開始就排序好，則最省時間的是(1)_____，最費時間的是(2)_____。
+  (請填入***Sort)
