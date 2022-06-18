@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.MouseInputAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Component.*;
 
 public class TestInfoFrame extends JFrame{
     
@@ -79,6 +82,23 @@ public class TestInfoFrame extends JFrame{
         add(startButton);
         add(menuButton);
 
+        MyListener myListener = new MyListener();
+        // addMouseListener(myListener);           // press、release、click、enter、exit
+        infoButton.addMouseMotionListener(myListener);     // move、drag
+        addMouseMotionListener(myListener);
+    }   
+
+    private class MyListener extends MouseInputAdapter {
+        public void mouseMoved(MouseEvent e) {
+            System.out.println(e.getX());
+            System.out.println(e.getY());
+            if (e.getSource() == infoButton) {
+                infoButton.setIcon(new ImageIcon("src/imageSrc/background2.png"));
+            } else {
+                infoButton.setIcon(new ImageIcon("src/imageSrc/Precautions.png"));
+            }
+
+        }
     }
 
     private class ButtonEventListener implements ActionListener {
