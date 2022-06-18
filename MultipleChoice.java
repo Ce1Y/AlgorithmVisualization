@@ -13,6 +13,7 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
     private ImageIcon backgroundImg;
 
     private JLabel backgroundLabel;
+    private JLabel answerLabel;
     
     private JPanel backgroundPanel;
 
@@ -56,6 +57,13 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
         backgroundPanel.setOpaque(false);
         getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
 
+        // set answer image
+        JTextField textField = new JTextField();
+        textField.setOpaque( false );
+        answerLabel = new JLabel();
+        answerLabel.setBounds(90, 485, 400, 50);
+        answerLabel.add( textField );
+
         // set textArea
         quizArea = new JTextArea();
         quizArea.setFont(new Font("", Font.BOLD, 14));
@@ -63,13 +71,6 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
         quizArea.setForeground(Color.WHITE);
         quizArea.setEditable(false);
         quizArea.setBounds(90, 50, 800, 300);
-
-        // set textField
-        answerMessage = new JTextField();
-        answerMessage.setBounds(90, 485, 400, 50);
-        answerMessage.setOpaque(false);
-        answerMessage.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-        answerMessage.setEditable(false);
 
         // set button
         menuButton = new JButton(new ImageIcon("src/imageSrc/Menu.png"));
@@ -111,7 +112,7 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
         add(buttonB);
         add(buttonC);
         add(buttonD);
-        add(answerMessage);
+        add(answerLabel);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -186,11 +187,7 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
                 answer = "D";
             }
 
-            JLabel label = new JLabel();
-            label.setIcon(new ImageIcon("src/imageSrc/Option" + answer + ".png"));
-            label.setLocation(90, 485);
-            add(label);
-            
+            answerLabel.setIcon(new ImageIcon("src/imageSrc/Option" + answer + ".png"));
         }
     }
 
@@ -253,7 +250,7 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
                         setVisible(false);
                         break;
                     case 2:             // yes/no
-                        new TrueAndFalse(visit, ++quizNumber, score);
+                        new TrueOrFalse(visit, ++quizNumber, score);
                         setVisible(false);
                         break;  
                     case 3:             // insert
