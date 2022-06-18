@@ -20,26 +20,31 @@ public class Cloze extends JFrame implements TestFrameImplement{
     
     private JButton menuButton;
     private JButton submitButton;
-    private JButton buttonA;
-    private JButton buttonB;
-    private JButton buttonC;
-    private JButton buttonD;
-    private JTextField textField;
+
+    private  String[] code;
+
+    private JTextField textField1;
+    private JTextField textField2;
+    private JTextField textField3;
+
+    private SortInfoReader quizReader;
+    private SortInfoReader ansReader;
+    private Random random = new Random();
 
 
-    private ButtonGroup answerGroup;
 
     private ActionListener ansListener = new AnswerEventListener();
     private ActionListener cmdHandler = new ButtonEventListener();
 
-    private SortInfoReader reader;
     private ArrayList<String> quizAnswer = new ArrayList<String>();
 
     private int[][] visit;
     private int quizNumber;
     private int score;
     private String quiz;
-    private String ans;
+    private String ans2;
+
+
     private String correctAns;
 
     
@@ -48,7 +53,7 @@ public class Cloze extends JFrame implements TestFrameImplement{
         // init GUI
         super("Quiz" + quizNumber);
         
-        
+       
         
         setSize(1000, 600);
         setLayout(null);
@@ -83,18 +88,30 @@ public class Cloze extends JFrame implements TestFrameImplement{
 
 
         
-        textField = new JTextField();
-        textField.setBounds(90,400,750,50);
-        submitButton.setActionCommand("submit");
-        submitButton.addActionListener(cmdHandler);
-        textField.setVisible(true);
+        textField1 = new JTextField();
+        textField1.setBounds(90,400,750,50);
+        textField1.setVisible(true);
+
+
+    
+
+        /* 
+        textField2 = new JTextField();
+        textField2.setBounds(90,400,750,50);
+        textField2.setVisible(true);
+
+        textField3 = new JTextField();
+        textField3.setBounds(90,400,750,50);
+        textField3.setVisible(true);
+        */
 
         // add new elements to frame
         add(quizArea);
         add(menuButton);
         add(submitButton);
-        add(textField);
-        
+        add(textField1);
+        add(textField2);
+        add(textField3);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -112,23 +129,35 @@ public class Cloze extends JFrame implements TestFrameImplement{
         int number;
 
         while(true) {
-            number = random.nextInt(21) + 1;
-            if (visit[0][number] != 1)
+            number = random.nextInt(14) + 1;
+            if (visit[2][number] != 1)
                 break;
         }
 
         // read
-        quizReader = new SortInfoReader();
+        quizReader = new SortInfoReader("src/testSrc/Insert" + number + ".txt");
         quiz = quizReader.getContent();
         // read answer
-        ansReader = new SortInfoReader();
+        ansReader = new SortInfoReader("src/answerSrc/Insert" + number + ".txt");
         correctAns = ansReader.getContent();
+
+
+        code = correctAns.split("\n");
+        
+        if(code.length > 1){
+            textField2 = new JTextField();
+            textField2.setBounds(90,600,750,50);
+            textField2.setVisible(true);
+            ans2 = textField1.getText(); 
+
+        }
+        
 
         // set textArea
         quizArea.setText(quiz);
 
         // add visited
-        visit[0][number] = 1;
+        visit[2][number] = 1;
 
     }
 
@@ -154,15 +183,14 @@ public class Cloze extends JFrame implements TestFrameImplement{
 
 
 
-    /// ans Action 
-
-
     private class AnswerEventListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent event) {
+            //String option = event.getActionCommand();
             submitButton.setEnabled(true);
-            
+
+    
 
         }
     }
@@ -188,24 +216,61 @@ public class Cloze extends JFrame implements TestFrameImplement{
 
             } else if (cmd == "submit") {
                 int TorF;
-                String ans = textField.getText(); 
+                
+                String ans = textField1.getText(); 
                 String[] options = {"return", "next"};
+                
                 System.out.println(ans);
+                System.out.println(ans2);
 
-                if (ans.equals(correctAns) == false) {        // wrong 
-                    JLabel y = new JLabel("oh-oooh, the answer is " + correctAns);
-                    y.setFont(new Font("Times New Roman", Font.BOLD, 12));
 
-                    TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
+
+                if(code.length == 2){   //2 ans
+                    if (ans.equals(code[0]) == false && ans2.equals(code[1]) == false) {        // wrong 
+                        JLabel y = new JLabel("oh-oooh, the answer is " + correctAns);
+                        y.setFont(new Font("Times New Roman", Font.BOLD, 12));
+
+                        TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
+                    
+                    }else if(ans.equals(code[0]) == true && ans2.equals(code[1]) == false){     //ans2 wrong
+                        JLabel y = new JLabel("oh-oooh, the answer is " + correctAns + " but your answer2 is " + ans2);
+                        y.setFont(new Font("Times New Roman", Font.BOLD, 12));
+
+                        TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
-                } else {                                // correct
+                    
+                    }else if(ans.equals(code[0]) == false && ans2.equals(code[1]) == true){     //ans1 wrong
+                        JLabel y = new JLabel("oh-oooh, the answer is " + correctAns + " but your answer1 is " + ans);
+                        y.setFont(new Font("Times New Roman", Font.BOLD, 12));
+
+                        TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("rc/imageSrc/Wrong.png"), options, options[0]);
+                    
+                    }else {                                                                                // correct
                     JLabel y = new JLabel("Correct! Keep going!");
                     y.setFont(new Font("Times New Roman", Font.BOLD, 12));
 
                     TorF = JOptionPane.showOptionDialog(null, y, "Correct!", 
                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Right.png"), options, options[0]);
-                }
+                    }
 
+                }else {        //1 ans
+                    if (ans.equals(code[0]) == false) {        // wrong 
+                        JLabel y = new JLabel("oh-oooh, the answer is " + correctAns);
+                        y.setFont(new Font("Times New Roman", Font.BOLD, 12));
+    
+                        TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
+                    } else {                                // correct
+                        JLabel y = new JLabel("Correct! Keep going!");
+                        y.setFont(new Font("Times New Roman", Font.BOLD, 12));
+    
+                        TorF = JOptionPane.showOptionDialog(null, y, "Correct!", 
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Right.png"), options, options[0]);
+                    }
+
+                }
                 if (TorF == 0) {
                     new Frame1();
                     setVisible(false);
@@ -220,7 +285,8 @@ public class Cloze extends JFrame implements TestFrameImplement{
                     return;
                 }
 
-                int nextQuizType = random.nextInt(3) + 1;
+                //int nextQuizType = random.nextInt(3) + 1;
+                int nextQuizType = 3;
                 System.out.println(nextQuizType);
                 switch(nextQuizType) {
                     case 1:             // single
