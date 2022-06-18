@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.MouseInputAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Component.*;
 
 public class TestInfoFrame extends JFrame{
     
@@ -58,7 +61,7 @@ public class TestInfoFrame extends JFrame{
         infoButton.setBounds(190, 50, 600, 300);
         infoButton.setOpaque(false);
         infoButton.setContentAreaFilled(false);
-        // infoButton.setBorderPainted(false);
+        infoButton.setBorderPainted(false);
         infoButton.addActionListener(listener);
 
         startButton = new JButton(new ImageIcon("src/imageSrc/Start.png"));
@@ -79,6 +82,23 @@ public class TestInfoFrame extends JFrame{
         add(startButton);
         add(menuButton);
 
+        MyListener myListener = new MyListener();
+        // addMouseListener(myListener);           // press、release、click、enter、exit
+        infoButton.addMouseMotionListener(myListener);     // move、drag
+        addMouseMotionListener(myListener);
+    }   
+
+    private class MyListener extends MouseInputAdapter {
+        public void mouseMoved(MouseEvent e) {
+            System.out.println(e.getX());
+            System.out.println(e.getY());
+            if (e.getSource() == infoButton) {
+                infoButton.setIcon(new ImageIcon("src/imageSrc/Precautions.png"));
+            } else {
+                infoButton.setIcon(new ImageIcon("src/imageSrc/Precautions_3.png"));
+            }
+            repaint();
+        }
     }
 
     private class ButtonEventListener implements ActionListener {
@@ -98,7 +118,7 @@ public class TestInfoFrame extends JFrame{
                         setVisible(false);
                         break;
                     case 2:             // yes/no
-                        TrueAndFalse trueAndFalse = new TrueAndFalse(visit,1,0);
+                        TrueOrFalse trueAndFalse = new TrueOrFalse(visit,1,0);
                         setVisible(false);
                         break;  
                     case 3:             // insert

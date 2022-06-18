@@ -3,26 +3,22 @@ package src.classSrc;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
-
-import src.classSrc.MultipleChoice;
-
 import java.awt.*; 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TrueAndFalse extends JFrame implements TestFrameImplement{
+public class TrueOrFalse extends JFrame implements TestFrameImplement{
 
     private ImageIcon backgroundImg;
 
     private JLabel backgroundLabel;
     private JLabel correctAns = new JLabel("Correct! Keep going!");
     private JLabel wrongAns = new JLabel("The answer is another");
-    
+    private JLabel answerLabel;
 
     private JPanel backgroundPanel;
 
     private JTextArea quizArea;
-    private JTextArea textChoice;
 
     private boolean IsCorrectButtonClicked;
     private boolean IsWrongButtonClicked;
@@ -51,7 +47,7 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
     private String answer;
 
     
-    public TrueAndFalse(int[][] visit, int quizNumber, int score) {
+    public TrueOrFalse(int[][] visit, int quizNumber, int score) {
         // init GUI
         super("Quiz" + quizNumber);
         setSize(1000, 600);
@@ -72,13 +68,14 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
         quizArea.setForeground(Color.WHITE);
         quizArea.setEditable(false);
         quizArea.setBounds(90, 50, 800, 300);
-        // set textChoice
-        textChoice = new JTextArea();
-        //textChoice.setBackground(Color.BLACK);
-        //textChoice.setForeground(Color.WHITE);
-        textChoice.setEditable(false);
-        textChoice.setBounds(350, 510, 300, 150);
-        textChoice.setOpaque(false);
+
+        // set answer image
+        JTextField textField = new JTextField();
+        textField.setOpaque( false );
+        answerLabel = new JLabel();
+        answerLabel.setBounds(90, 485, 400, 50);
+        answerLabel.add( textField );
+
         // set button
         menuButton = new JButton(new ImageIcon("src/imageSrc/Menu.png"));
         menuButton.setBounds(780, 510, 100, 50);
@@ -109,7 +106,7 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
         add(submitButton);
         add(buttonCorrect);
         add(buttonWrong);
-        add(textChoice);
+        add(answerLabel);
         
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -174,16 +171,13 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
         public void actionPerformed(ActionEvent event) {
             String ans = event.getActionCommand();
             
-
             if (ans == "T") {
                 answer = "T";
-                textChoice.setText("You choose True!");
-                System.out.println(textChoice.getText());
             } else if (ans == "F") {
                 answer = "F";
-                textChoice.setText("You choose False!");
-                System.out.println(textChoice.getText());
             } 
+
+            answerLabel.setIcon(new ImageIcon("src/imageSrc/Option" + answer + ".png"));
 
             submitButton.setEnabled(true);
         }
@@ -245,7 +239,7 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
                         setVisible(false);
                         break;
                     case 2:             // yes/no
-                        new TrueAndFalse(visit, ++quizNumber, score);    // TODO
+                        new TrueOrFalse(visit, ++quizNumber, score);    // TODO
                         setVisible(false);
                         break;  
                     case 3:             // insert
