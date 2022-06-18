@@ -103,6 +103,7 @@ public class insertTest extends JFrame implements TestFrameImplement{
 
     }
     // set question & answer
+    
     public void setTest() {
         int number;
        
@@ -183,117 +184,102 @@ public class insertTest extends JFrame implements TestFrameImplement{
         public void actionPerformed(ActionEvent e) {
             String cmd = e.getActionCommand();
             
-            if (cmd == "menu") {
-                JLabel x = new JLabel("You want to back to Menu?");
-                x.setFont(new Font("Times New Roman", Font.BOLD, 12));
-                int result = JOptionPane.showConfirmDialog(null, x, "Warning",
-                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, new ImageIcon("src/imageSrc/Thinking4.png"));
-                
-                if (result == JOptionPane.YES_OPTION) {     // yes button
-                    new Menu();
-                    setVisible(false);
-                } 
-            } else if (cmd == "submit") {
-                int TorF;
-                
-                String ans = textField1.getText(); 
-                
-                String[] options = {"return", "next"};
-                
-                
-                
-
-
-                
-                if(code.length == 2){   //2 ans
-                    String ans2 = textField2.getText();
-                    System.out.println(ans);
-                    System.out.println(ans2);
-
-                    if (ans.equalsIgnoreCase(code[0]) == false && ans2.equalsIgnoreCase(code[1]) == false) {        // wrong 
-                        JLabel y = new JLabel("oh-oooh, the answer is " + code[0] + " and " + code[1]);
-                        y.setFont(new Font("Times New Roman", Font.BOLD, 12));
-
-                        TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
-                            JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
-                    
-                    }else if(ans.equalsIgnoreCase(code[0]) == true && ans2.equalsIgnoreCase(code[1]) == false){     //ans2 wrong
-                        setScore(getScore() + 10);
-                        JLabel y = new JLabel("oh-oooh, the answer2 is " + code[1] + " but your answer2 is " + ans2);
-                        y.setFont(new Font("Times New Roman", Font.BOLD, 12));
-
-                        TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
-                        JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
-                    
-                    }else if(ans.equalsIgnoreCase(code[0]) == false && ans2.equalsIgnoreCase(code[1]) == true){     //ans1 wrong
-                        setScore(getScore() + 10);
-                        JLabel y = new JLabel("oh-oooh, the answer1 is " + code[0]  + " but your answer1 is " + ans);
-                        y.setFont(new Font("Times New Roman", Font.BOLD, 12));
-
-                        TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
-                        JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
-                    
-                    }else {                                                                                // correct
+            if(code.length == 2){   //2 ans
+                String ans2 = textField2.getText();
+                System.out.println(ans);
+                System.out.println(ans2);
+                  
+                if (ans.equalsIgnoreCase(code[1]) == true && ans2.equalsIgnoreCase(code[0]) == true ) {    // ans 顛倒
                     setScore(getScore() + 20);
                     JLabel y = new JLabel("Correct! Keep going!");
                     y.setFont(new Font("Times New Roman", Font.BOLD, 12));
 
                     TorF = JOptionPane.showOptionDialog(null, y, "Correct!", 
                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Right.png"), options, options[0]);
-                    }
-
-                }else {        //1 ans
-                    if (ans.equalsIgnoreCase(code[0]) == false) {        // wrong 
-                        JLabel y = new JLabel("oh-oooh, the answer is " + correctAns);
-                        y.setFont(new Font("Times New Roman", Font.BOLD, 12));
-    
-                        TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
-                            JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
-                    } else {                                // correct
-                        setScore(getScore() + 20);
-                        JLabel y = new JLabel("Correct! Keep going!");
-                        y.setFont(new Font("Times New Roman", Font.BOLD, 12));
-    
-                        TorF = JOptionPane.showOptionDialog(null, y, "Correct!", 
-                            JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Right.png"), options, options[0]);
-                    }
-
-                }
-
-                System.out.println("score = " + score);
-
-                if (TorF == 0) {
-                    new Menu();
-                    setVisible(false);
-                    return;
-                }
                 
-                if (quizNumber == 5) {
-                    JOptionPane.showMessageDialog(null, 
-                        "Congratulation!!! You get " + score + " points in this test, well done!!!");
-                    new Menu();
-                    setVisible(false);
-                    return;
+                }else if (ans.equalsIgnoreCase(code[0]) == false && ans2.equalsIgnoreCase(code[1]) == false ) {        // wrong 
+                    JLabel y = new JLabel("oh-oooh, the answer is " + code[0] + " and " + code[1]);
+                    y.setFont(new Font("Times New Roman", Font.BOLD, 12));
+
+                    TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
+                
+                }else if(ans.equalsIgnoreCase(code[0]) == true && ans2.equalsIgnoreCase(code[1]) == false){     //ans2 wrong
+                    setScore(getScore() + 10);
+                    JLabel y = new JLabel("oh-oooh, the answer2 is " + code[1] + " but your answer2 is " + ans2);
+                    y.setFont(new Font("Times New Roman", Font.BOLD, 12));
+
+                    TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
+                
+                }else if(ans.equalsIgnoreCase(code[0]) == false && ans2.equalsIgnoreCase(code[1]) == true){     //ans1 wrong
+                    setScore(getScore() + 10);
+                    JLabel y = new JLabel("oh-oooh, the answer1 is " + code[0]  + " but your answer1 is " + ans);
+                    y.setFont(new Font("Times New Roman", Font.BOLD, 12));
+
+                    TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
+                    
+                }else {                                                                                // correct
+                    setScore(getScore() + 20);
+                    JLabel y = new JLabel("Correct! Keep going!");
+                    y.setFont(new Font("Times New Roman", Font.BOLD, 12));
+
+                    TorF = JOptionPane.showOptionDialog(null, y, "Correct!", 
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Right.png"), options, options[0]);
                 }
 
-                int nextQuizType = random.nextInt(3) + 1;
-                System.out.println(nextQuizType);
-                switch(nextQuizType) {
-                    case 1:             // single
-                        new MultipleChoice(visit, ++quizNumber, score);
-                        setVisible(false);
-                        break;
-                    case 2:             // yes/no
-                        new TrueOrFalse(visit, ++quizNumber, score);
-                        setVisible(false);
-                        break;  
-                    case 3:             // insert
-                        new insertTest(visit, ++quizNumber, score);
-                        setVisible(false);
-                        break;
+            }else {        //1 ans
+                if (ans.equalsIgnoreCase(code[0]) == false) {        // wrong 
+                    JLabel y = new JLabel("oh-oooh, the answer is " + correctAns);
+                    y.setFont(new Font("Times New Roman", Font.BOLD, 12));
+
+                    TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
+                } else {                                // correct
+                    setScore(getScore() + 20);
+                    JLabel y = new JLabel("Correct! Keep going!");
+                    y.setFont(new Font("Times New Roman", Font.BOLD, 12));
+
+                    TorF = JOptionPane.showOptionDialog(null, y, "Correct!", 
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Right.png"), options, options[0]);
                 }
+
+            }
+
+            System.out.println("score = " + score);
+
+            if (TorF == 0) {
+                new Menu();
+                setVisible(false);
+                return;
             }
             
+            if (quizNumber == 5) {
+                JOptionPane.showMessageDialog(null, 
+                    "Congratulation!!! You get " + score + " points in this test, well done!!!");
+                new Menu();
+                setVisible(false);
+                return;
+            }
+
+            int nextQuizType = random.nextInt(3) + 1;
+            System.out.println(nextQuizType);
+            switch(nextQuizType) {
+                case 1:             // single
+                    new MultipleChoice(visit, ++quizNumber, score);
+                    setVisible(false);
+                    break;
+                case 2:             // yes/no
+                    new TrueOrFalse(visit, ++quizNumber, score);
+                    setVisible(false);
+                    break;  
+                case 3:             // insert
+                    new insertTest(visit, ++quizNumber, score);
+                    setVisible(false);
+                    break;
+            }
         }
+            
     }
 }
