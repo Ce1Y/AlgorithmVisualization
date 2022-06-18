@@ -191,7 +191,7 @@ public class TrueOrFalse extends JFrame implements TestFrameImplement{
 
             if (cmd == "menu") {
                 int result = JOptionPane.showConfirmDialog(null,"You want to back to Menu?", "Warning",
-                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, new ImageIcon("src/imageSrc/Thinking4.png"));
+                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, new ImageIcon("src/imageSrc/Thinking.png"));
                 
                 if (result == JOptionPane.YES_OPTION) {     // yes
                     new Menu();
