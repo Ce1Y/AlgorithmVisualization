@@ -65,6 +65,7 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
 
         // set textArea
         quizArea = new JTextArea();
+        quizArea.setFont(new Font("", Font.BOLD, 14));
         quizArea.setBackground(Color.BLACK);
         quizArea.setForeground(Color.WHITE);
         quizArea.setEditable(false);
