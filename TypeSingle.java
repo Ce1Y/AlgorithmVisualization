@@ -211,14 +211,6 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
                 System.out.println(answer);
 
                 if (answer.equals(correctAns) == false) {        // wrong 
-                    if(score == 0)
-                    {
-                        setScore(0);
-                    }
-                    else
-                    {
-                        setScore(getScore() - 20);
-                    }                      
                     JLabel y = new JLabel("oh-oooh, the answer is " + correctAns);
                     y.setFont(new Font("Times New Roman", Font.BOLD, 12));
 

@@ -216,14 +216,6 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
                 }
                 else  //wrong 
                 {
-                    if(score == 0)
-                    {
-                        setScore(0);
-                    }
-                    else
-                    {
-                        setScore(getScore() - 20);
-                    }
                     result = JOptionPane.showOptionDialog(null, wrongAns,
                     "You're wrong, dude...",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
