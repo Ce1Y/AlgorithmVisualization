@@ -2,8 +2,8 @@ package src.classSrc;
 
 import java.util.ArrayList;
 import java.util.Random;
-
 import javax.swing.*;
+
 import java.awt.*; 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -198,7 +198,7 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
                 JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, new ImageIcon("src/imageSrc/Thinking4.png"));
                 
                 if (result == JOptionPane.YES_OPTION) {     // yes
-                    new Frame1();
+                    new Menu();
                     setVisible(false);
                 } 
             } else if (cmd == "submit") {
@@ -224,14 +224,14 @@ public class TrueAndFalse extends JFrame implements TestFrameImplement{
                 System.out.println("score = " + score);
                 if(result == 0)
                 {
-                    new Frame1();
+                    new Menu();
                     setVisible(false);
                     return;
                 }
                 if (quizNumber == 5) {
                     JOptionPane.showMessageDialog(null, 
                         "Congratulation!!! You get " + score + " points in this test, well done!!!");
-                    new Frame1();
+                    new Menu();
                     setVisible(false);
                     return;
                 }

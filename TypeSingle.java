@@ -204,7 +204,7 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
                 JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, new ImageIcon("src/imageSrc/Thinking4.png"));
                 
                 if (result == JOptionPane.YES_OPTION) {     // yes button
-                    new Frame1();
+                    new Menu();
                     setVisible(false);
                 } 
             } else if (cmd == "submit") {
@@ -228,7 +228,7 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
                 }
                 System.out.println("score = " + score);
                 if (TorF == 0) {
-                    new Frame1();
+                    new Menu();
                     setVisible(false);
                     return;
                 }
@@ -236,7 +236,7 @@ public class TypeSingle extends JFrame implements TestFrameImplement{
                 if (quizNumber == 5) {
                     JOptionPane.showMessageDialog(null, 
                         "Congratulation!!! You get " + score + " points in this test, well done!!!");
-                    new Frame1();
+                    new Menu();
                     setVisible(false);
                     return;
                 }

@@ -82,7 +82,7 @@ public class MainFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent evt) {
             if (evt.getSource() == buttonSort) {
-                new Frame1();
+                new Menu();
                 setVisible(false);
 
             } else if (evt.getSource() == buttonGraph) {

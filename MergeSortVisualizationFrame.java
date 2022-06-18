@@ -170,7 +170,7 @@ public class MergeSortVisualizationFrame extends JFrame {
                 new MainFrame();
                 setVisible(false);
             } else if (option == menuMI) {
-                new Frame1();
+                new Menu();
                 setVisible(false);
             } else if (option == closeMI) {
                 System.exit(0);

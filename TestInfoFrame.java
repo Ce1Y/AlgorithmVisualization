@@ -100,7 +100,7 @@ public class TestInfoFrame extends JFrame{
                 }
                 setVisible(false);
             } else {                                        // back to menu
-                new Frame1();
+                new Menu();
                 setVisible(false);
             }
         }
