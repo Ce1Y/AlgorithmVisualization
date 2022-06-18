@@ -3,9 +3,6 @@ package src.classSrc;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
-
-import src.classSrc.MultipleChoice;
-
 import java.awt.*; 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
