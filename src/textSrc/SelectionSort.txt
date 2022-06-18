@@ -1,4 +1,4 @@
-//   Red is target, blue is chosen and black is finished.
+
  1.  public void selectionSort(int array[]) {
  2.      for (int i = 1; i < array.length; i++) {   // start loop
  3.          int minIndex = i;
