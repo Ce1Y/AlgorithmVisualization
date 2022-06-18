@@ -118,7 +118,7 @@ public class TestInfoFrame extends JFrame{
                         setVisible(false);
                         break;
                     case 2:             // yes/no
-                        TrueAndFalse trueAndFalse = new TrueAndFalse(visit,1,0);
+                        TrueOrFalse trueAndFalse = new TrueOrFalse(visit,1,0);
                         setVisible(false);
                         break;  
                     case 3:             // insert
