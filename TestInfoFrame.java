@@ -26,8 +26,8 @@ public class TestInfoFrame extends JFrame{
 
     private String info = 
             "Here's the rules:" + "\n" +
-            "1. There are 10 question in this section" + "\n" +
-            "2. Each question has 10 points" + "\n" +
+            "1. There are 5 question in this section" + "\n" +
+            "2. Each question has 20 points" + "\n" +
             "3. There are 3 type of question in this section: Multiple Choice, Mutiple Choice with multiple answers" + "\n" +
             "   and combination" + "\n" +
             "4. There's no time limit. Focus on your question and try your best!";
