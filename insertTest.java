@@ -25,7 +25,6 @@ public class insertTest extends JFrame implements TestFrameImplement{
 
     private JTextField textField1;
     private JTextField textField2;
-    private JTextField textField3;
 
     private SortInfoReader quizReader;
     private SortInfoReader ansReader;
@@ -40,14 +39,13 @@ public class insertTest extends JFrame implements TestFrameImplement{
     private int quizNumber;
     private int score;
     private String quiz;
-    private String ans2;
 
     private String correctAns;
 
-    public insertTest() {
+    public insertTest(int[][] visit, int quizNumber, int score) {
 
         // init GUI
-        super("Quiz");
+        super("Quiz"+ quizNumber);
         setSize(1000, 600);
         setLayout(null);
 
@@ -79,47 +77,40 @@ public class insertTest extends JFrame implements TestFrameImplement{
         submitButton.setVisible(true);
 
         textField1 = new JTextField();
-        textField1.setBounds(90,400,750,50);
+        textField1.setBounds(90,375,750,50);
         textField1.setVisible(true);
-        /* 
-        textField2 = new JTextField();
-        textField2.setBounds(90,400,750,50);
-        textField2.setVisible(true);
-
-        textField3 = new JTextField();
-        textField3.setBounds(90,400,750,50);
-        textField3.setVisible(true);
-        */
+   
 
         // add new elements to frame
         add(quizArea);
         add(menuButton);
         add(submitButton);
         add(textField1);
-        // add(textField2);
-        // add(textField3);
+      
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
 
-        // setVisit(visit);
-        // setQuizNumber(quizNumber);
-        // setScore(score);
+        setVisit(visit);
+        
+        setQuizNumber(quizNumber);
+        setScore(score);
         setTest();
 
     }
     // set question & answer
     public void setTest() {
         int number;
+       
 
-        // while(true) {
-        //     number = random.nextInt(14) + 1;
-        //     if (visit[2][number] != 1)
-        //         break;
-        // }
-        number = 1;
+        while(true) {
+            number = random.nextInt(14) + 1;
+            if (visit[2][number] != 1)
+                break;
+        }
+        //number = 1;
 
         // read 
         quizReader = new SortInfoReader("src/testSrc/Insert/" + number + ".txt", "UTF-8");
@@ -128,21 +119,29 @@ public class insertTest extends JFrame implements TestFrameImplement{
         ansReader = new SortInfoReader("src/answerSrc/Insert/" + number + ".txt", "UTF-8");
         correctAns = ansReader.getContent();
 
-        code = correctAns.split("\n");
+        code = correctAns.split(" ");
+        
+
+ 
+
         
         if(code.length > 1){
             textField2 = new JTextField();
-            textField2.setBounds(90,0,750,50);
+            textField2.setBounds(90,425,750,50);
             textField2.setVisible(true);
-            ans2 = textField1.getText(); 
             add(textField2);
+
+            System.out.println(code[0]);
+            System.out.println(code[1]);
+        }else{
+            System.out.println(code[0]);
         }
-        
+
         // set textArea
         quizArea.setText(quiz);
 
         // add visited
-        // visit[2][number] = 1;
+         visit[2][number] = 1;
 
     }
 
@@ -195,34 +194,44 @@ public class insertTest extends JFrame implements TestFrameImplement{
                 int TorF;
                 
                 String ans = textField1.getText(); 
+                
                 String[] options = {"return", "next"};
                 
-                System.out.println(ans);
-                // System.out.println(ans2);
+                
+                
 
+
+                
                 if(code.length == 2){   //2 ans
-                    if (ans.equals(code[0]) == false && ans2.equals(code[1]) == false) {        // wrong 
-                        JLabel y = new JLabel("oh-oooh, the answer is " + correctAns);
+                    String ans2 = textField2.getText();
+                    System.out.println(ans);
+                    System.out.println(ans2);
+
+                    if (ans.equalsIgnoreCase(code[0]) == false && ans2.equalsIgnoreCase(code[1]) == false) {        // wrong 
+                        JLabel y = new JLabel("oh-oooh, the answer is " + code[0] + " and " + code[1]);
                         y.setFont(new Font("Times New Roman", Font.BOLD, 12));
 
                         TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
                             JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
                     
-                    }else if(ans.equals(code[0]) == true && ans2.equals(code[1]) == false){     //ans2 wrong
-                        JLabel y = new JLabel("oh-oooh, the answer is " + correctAns + " but your answer2 is " + ans2);
+                    }else if(ans.equalsIgnoreCase(code[0]) == true && ans2.equalsIgnoreCase(code[1]) == false){     //ans2 wrong
+                        setScore(getScore() + 10);
+                        JLabel y = new JLabel("oh-oooh, the answer2 is " + code[1] + " but your answer2 is " + ans2);
                         y.setFont(new Font("Times New Roman", Font.BOLD, 12));
 
                         TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
                     
-                    }else if(ans.equals(code[0]) == false && ans2.equals(code[1]) == true){     //ans1 wrong
-                        JLabel y = new JLabel("oh-oooh, the answer is " + correctAns + " but your answer1 is " + ans);
+                    }else if(ans.equalsIgnoreCase(code[0]) == false && ans2.equalsIgnoreCase(code[1]) == true){     //ans1 wrong
+                        setScore(getScore() + 10);
+                        JLabel y = new JLabel("oh-oooh, the answer1 is " + code[0]  + " but your answer1 is " + ans);
                         y.setFont(new Font("Times New Roman", Font.BOLD, 12));
 
                         TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
-                        JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("rc/imageSrc/Wrong.png"), options, options[0]);
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
                     
                     }else {                                                                                // correct
+                    setScore(getScore() + 20);
                     JLabel y = new JLabel("Correct! Keep going!");
                     y.setFont(new Font("Times New Roman", Font.BOLD, 12));
 
@@ -231,13 +240,14 @@ public class insertTest extends JFrame implements TestFrameImplement{
                     }
 
                 }else {        //1 ans
-                    if (ans.equals(code[0]) == false) {        // wrong 
+                    if (ans.equalsIgnoreCase(code[0]) == false) {        // wrong 
                         JLabel y = new JLabel("oh-oooh, the answer is " + correctAns);
                         y.setFont(new Font("Times New Roman", Font.BOLD, 12));
     
                         TorF = JOptionPane.showOptionDialog(null, y, "You're wrong, dude...", 
                             JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imageSrc/Wrong.png"), options, options[0]);
                     } else {                                // correct
+                        setScore(getScore() + 20);
                         JLabel y = new JLabel("Correct! Keep going!");
                         y.setFont(new Font("Times New Roman", Font.BOLD, 12));
     
@@ -246,12 +256,15 @@ public class insertTest extends JFrame implements TestFrameImplement{
                     }
 
                 }
+
+                System.out.println("score = " + score);
+
                 if (TorF == 0) {
                     new Menu();
                     setVisible(false);
                     return;
                 }
-
+                
                 if (quizNumber == 5) {
                     JOptionPane.showMessageDialog(null, 
                         "Congratulation!!! You get " + score + " points in this test, well done!!!");
@@ -260,19 +273,19 @@ public class insertTest extends JFrame implements TestFrameImplement{
                     return;
                 }
 
-                //int nextQuizType = random.nextInt(3) + 1;
-                int nextQuizType = 3;
+                int nextQuizType = random.nextInt(3) + 1;
                 System.out.println(nextQuizType);
                 switch(nextQuizType) {
                     case 1:             // single
-                        // TODO
+                        new MultipleChoice(visit, ++quizNumber, score);
+                        setVisible(false);
                         break;
                     case 2:             // yes/no
-                        // TODO
+                        new TrueOrFalse(visit, ++quizNumber, score);
                         setVisible(false);
                         break;  
                     case 3:             // insert
-                        new insertTest();
+                        new insertTest(visit, ++quizNumber, score);
                         setVisible(false);
                         break;
                 }

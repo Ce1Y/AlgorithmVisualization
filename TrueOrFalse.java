@@ -231,7 +231,7 @@ public class TrueOrFalse extends JFrame implements TestFrameImplement{
                     setVisible(false);
                     return;
                 }
-                int nextQuizType = random.nextInt(2) + 1;
+                int nextQuizType = random.nextInt(3) + 1;
                 //nextQuizType = 2;
                 switch(nextQuizType) {
                     case 1:             // single
@@ -243,7 +243,7 @@ public class TrueOrFalse extends JFrame implements TestFrameImplement{
                         setVisible(false);
                         break;  
                     case 3:             // insert
-                            // TODO
+                        new insertTest(visit, ++quizNumber, score); 
                         setVisible(false);
                         break;
                             
