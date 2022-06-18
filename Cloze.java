@@ -48,7 +48,7 @@ public class Cloze extends JFrame implements TestFrameImplement{
         // init GUI
         super("Quiz" + quizNumber);
         
-       
+        
         
         setSize(1000, 600);
         setLayout(null);
