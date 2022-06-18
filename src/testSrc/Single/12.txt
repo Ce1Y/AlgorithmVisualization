@@ -10,11 +10,6 @@
   則採用的排序是? A
 
   A. Selection Sort
-
   B. Bubble Sort
-
   C. Quick Sort
-
   D. Insertion sort
-
-  
