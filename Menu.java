@@ -3,12 +3,11 @@ package src.classSrc;
 import java.util.ArrayList;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Frame1 extends JFrame {
+public class Menu extends JFrame {
 
     private ImageIcon backgroundImg;
 
@@ -21,16 +20,17 @@ public class Frame1 extends JFrame {
 
     private JButton learnButton;
     private JButton testButton;
+    private JButton firstPageButton;
 
     private final JComboBox<String> sortSelectComboBox;
 
     String[] option = { "SORT", "Insertion", "Merge", "Bubble", "Quick", "Selection" };
     ArrayList<String> imgSrc = new ArrayList<>();
 
-    public Frame1() {
+    public Menu() {
 
         // GUI init
-        super("Frame 1");
+        super("Menu");
         setSize(1000, 600);
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,8 +76,15 @@ public class Frame1 extends JFrame {
         testButton.setFont(new Font("Helvetica", Font.PLAIN, 24));
         testButton.addActionListener(handler);
 
+        // set menu Button
+        firstPageButton = new JButton(new ImageIcon("src/imageSrc/Menu.png"));
+        firstPageButton.setBounds(885, 1, 100, 50);
+        firstPageButton.setFocusPainted(false);
+        firstPageButton.addActionListener(handler);
+
         // set comboBox
         sortSelectComboBox = new JComboBox<>(option);
+        sortSelectComboBox.setFont(new Font("Times New Roman", Font.BOLD, 12));
         sortSelectComboBox.setBounds(400, 40, 200, 50);
         sortSelectComboBox.setRenderer(new DefaultListCellRenderer() {
             {
@@ -89,6 +96,7 @@ public class Frame1 extends JFrame {
         add(sortSelectComboBox);
         add(learnButton);
         add(testButton);
+        add(firstPageButton);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -133,8 +141,13 @@ public class Frame1 extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             // Go to test area
-            TestInfoFrame testInfoFrame = new TestInfoFrame();
-            setVisible(false);
+            if (e.getSource() == testButton) {
+                TestInfoFrame testInfoFrame = new TestInfoFrame();
+                setVisible(false);
+            } else if (e.getSource() == firstPageButton) {
+                new MainFrame();
+                setVisible(false);
+            }
 
         }
 

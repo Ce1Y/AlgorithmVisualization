@@ -3,6 +3,9 @@ package src.classSrc;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.MouseInputAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Component.*;
 
 public class MainFrame extends JFrame {
     private ImageIcon backgroundImage;
@@ -60,14 +63,26 @@ public class MainFrame extends JFrame {
 
         buttonSort = new JButton(sortImage);
         buttonSort.setBounds(95, 350, 400, 100);
+        buttonSort.setOpaque(false);
+        buttonSort.setContentAreaFilled(false);
+        buttonSort.setBorderPainted(true);
+
         buttonGraph = new JButton(graphImage);
         buttonGraph.setBounds(505, 350, 400, 100);
+        buttonGraph.setOpaque(false);
+        buttonGraph.setContentAreaFilled(false);
+        buttonGraph.setBorderPainted(true);
 
         add(buttonSort);
         add(buttonGraph);
 
         // sortButton listener
         ButtonHandler handler = new ButtonHandler();
+        MouseListener listener = new MouseListener();
+
+        buttonSort.addMouseMotionListener(listener); // move、drag
+        buttonGraph.addMouseMotionListener(listener);
+        addMouseMotionListener(listener);
 
         buttonSort.addActionListener(handler);
         buttonGraph.addActionListener(handler);
@@ -78,11 +93,28 @@ public class MainFrame extends JFrame {
         setVisible(true);
     }
 
+    private class MouseListener extends MouseInputAdapter {
+        public void mouseMoved(MouseEvent e) {
+            if (e.getSource() == buttonSort) {
+                buttonSort.setIcon(new ImageIcon("src/imageSrc/Sort.png"));
+            } else {
+                buttonSort.setIcon(new ImageIcon("src/imageSrc/uncheckedSort.png"));
+            }
+            if (e.getSource() == buttonGraph) {
+                buttonGraph.setIcon(new ImageIcon("src/imageSrc/Graph.png"));
+            } else {
+                buttonGraph.setIcon(new ImageIcon("src/imageSrc/uncheckedGraph.png"));
+            }
+
+            repaint();
+        }
+    }
+
     private class ButtonHandler implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent evt) {
             if (evt.getSource() == buttonSort) {
-                new Frame1();
+                new Menu();
                 setVisible(false);
 
             } else if (evt.getSource() == buttonGraph) {

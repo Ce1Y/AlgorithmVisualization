@@ -3,7 +3,6 @@ package src.classSrc;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-
 public class BubbleSortVisualizationFrame extends JFrame {
     private JMenuBar menuBar;
 
@@ -170,7 +169,7 @@ public class BubbleSortVisualizationFrame extends JFrame {
                 new MainFrame();
                 setVisible(false);
             } else if (option == menuMI) {
-                new Frame1();
+                new Menu();
                 setVisible(false);
             } else if (option == closeMI) {
                 System.exit(0);
