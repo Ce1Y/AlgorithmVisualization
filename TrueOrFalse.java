@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*; 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.MouseInputAdapter;
+import java.awt.event.MouseEvent;
 
 public class TrueOrFalse extends JFrame implements TestFrameImplement{
 
@@ -77,24 +79,35 @@ public class TrueOrFalse extends JFrame implements TestFrameImplement{
         answerLabel.add( textField );
 
         // set button
-        menuButton = new JButton(new ImageIcon("src/imageSrc/Menu.png"));
+        menuButton = new JButton(new ImageIcon("src/imageSrc/uncheckedMenu.png"));
         menuButton.setBounds(780, 510, 100, 50);
+        menuButton.setOpaque(false);
+        menuButton.setContentAreaFilled(false);
+        menuButton.setBorderPainted(false);
         menuButton.setActionCommand("menu");
         menuButton.addActionListener(cmdHandler);
 
-        submitButton = new JButton(new ImageIcon("src/imageSrc/Submit.png"));
+        submitButton = new JButton(new ImageIcon("src/imageSrc/uncheckedSubmit.png"));
         submitButton.setBounds(880, 510, 100, 50);
+        submitButton.setOpaque(false);
+        submitButton.setContentAreaFilled(false);
+        submitButton.setBorderPainted(false);
         submitButton.setActionCommand("submit");
-        submitButton.setEnabled(false);
         submitButton.addActionListener(cmdHandler);
-        submitButton.setVisible(true);
+        
 
-        buttonCorrect = new JButton(new ImageIcon("src/imageSrc/True.png"));
+        buttonCorrect = new JButton(new ImageIcon("src/imageSrc/uncheckedTrue.png"));
         buttonCorrect.setBounds(323, 400, 100, 50);
+        buttonCorrect.setOpaque(false);
+        buttonCorrect.setContentAreaFilled(false);
+        buttonCorrect.setBorderPainted(false);
         buttonCorrect.setActionCommand("T");
         buttonCorrect.addActionListener(ansListener);
 
-        buttonWrong = new JButton(new ImageIcon("src/imageSrc/False.png"));
+        buttonWrong = new JButton(new ImageIcon("src/imageSrc/uncheckedFalse.png"));
+        buttonWrong.setOpaque(false);
+        buttonWrong.setContentAreaFilled(false);
+        buttonWrong.setBorderPainted(false);
         buttonWrong.setBounds(556, 400, 100, 50);
         buttonWrong.setActionCommand("F");
         buttonWrong.addActionListener(ansListener);
@@ -108,6 +121,12 @@ public class TrueOrFalse extends JFrame implements TestFrameImplement{
         add(buttonWrong);
         add(answerLabel);
         
+        MyListener myListener = new MyListener();
+        // addMouseListener(myListener); // press、release、click、enter、exit
+        buttonCorrect.addMouseMotionListener(myListener); // move、drag
+        buttonWrong.addMouseMotionListener(myListener); // move、drag
+        menuButton.addMouseMotionListener(myListener);
+        submitButton.addMouseMotionListener(myListener);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -182,6 +201,37 @@ public class TrueOrFalse extends JFrame implements TestFrameImplement{
             submitButton.setEnabled(true);
         }
     }
+
+    private class MyListener extends MouseInputAdapter {
+        public void mouseMoved(MouseEvent e) {
+           
+            if (e.getSource() == buttonCorrect) {
+                buttonCorrect.setIcon(new ImageIcon("src/imageSrc/True.png"));
+            } else {
+                buttonCorrect.setIcon(new ImageIcon("src/imageSrc/uncheckedTrue.png"));
+            }
+
+            if (e.getSource() == buttonWrong) {
+                buttonWrong.setIcon(new ImageIcon("src/imageSrc/False.png"));
+            } else {
+                buttonWrong.setIcon(new ImageIcon("src/imageSrc/uncheckedFalse.png"));
+            }
+
+            if (e.getSource() == menuButton) {
+                menuButton.setIcon(new ImageIcon("src/imageSrc/Menu.png"));
+            } else {
+                menuButton.setIcon(new ImageIcon("src/imageSrc/uncheckedMenu.png"));
+            }
+
+            if (e.getSource() == submitButton) {
+                submitButton.setIcon(new ImageIcon("src/imageSrc/Submit.png"));
+            } else {
+                submitButton.setIcon(new ImageIcon("src/imageSrc/uncheckedSubmit.png"));
+            }
+            repaint();
+        }
+    }
+
 
     private class ButtonEventListener implements ActionListener {
 
