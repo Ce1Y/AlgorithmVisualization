@@ -1,6 +1,7 @@
 package src.classSrc;
 
 import javax.swing.*;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.MouseInputAdapter;
@@ -66,12 +67,14 @@ public class MainFrame extends JFrame {
         buttonSort.setOpaque(false);
         buttonSort.setContentAreaFilled(false);
         buttonSort.setBorderPainted(true);
+        buttonSort.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2));
 
         buttonGraph = new JButton(graphImage);
         buttonGraph.setBounds(505, 350, 400, 100);
         buttonGraph.setOpaque(false);
         buttonGraph.setContentAreaFilled(false);
         buttonGraph.setBorderPainted(true);
+        buttonGraph.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2));
 
         add(buttonSort);
         add(buttonGraph);

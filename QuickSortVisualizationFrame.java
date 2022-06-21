@@ -1,5 +1,7 @@
 package src.classSrc;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -58,6 +60,9 @@ public class QuickSortVisualizationFrame extends JFrame {
         setResizable(false);
         setVisible(true);
 
+        // set color
+        Color myPink = new Color(255, 240, 245);
+
         // set background
         backgroundImage = new ImageIcon("src/imageSrc/Background.png");
         backgroundLabel = new JLabel(backgroundImage);
@@ -78,20 +83,41 @@ public class QuickSortVisualizationFrame extends JFrame {
 
         // set function menuBar
         menuBar = new JMenuBar();
+        menuBar.setBackground(myPink);
+        menuBar.setBorderPainted(false);
         setJMenuBar(menuBar);
-        setMenu = new JMenu("Set");
+
+        setMenu = new JMenu("Setting");
+        setMenu.setFont(new Font("Times New Roman", Font.BOLD, 20));
+
         sortMenu = new JMenu("Sort");
+        sortMenu.setFont(new Font("Times New Roman", Font.BOLD, 20));
+
         menuBar.add(setMenu);
         menuBar.add(sortMenu);
 
         // set Button in menuBar
-        startImage = new ImageIcon("src/imageSrc/Start.png");
+        startImage = new ImageIcon("src/imageSrc/algoStart.png");
         pauseImage = new ImageIcon("src/imageSrc/Pause.png");
         restartImage = new ImageIcon("src/imageSrc/Restart.png");
 
         startButton = new JButton(startImage);
+        startButton.setOpaque(false);
+        startButton.setContentAreaFilled(false);
+        startButton.setFocusPainted(false);
+        startButton.setBorderPainted(false);
+        
         pauseButton = new JButton(pauseImage);
+        pauseButton.setOpaque(false);
+        pauseButton.setContentAreaFilled(false);
+        pauseButton.setFocusPainted(false);
+        pauseButton.setBorderPainted(false);
+
         restartButton = new JButton(restartImage);
+        restartButton.setOpaque(false);
+        restartButton.setContentAreaFilled(false);
+        restartButton.setFocusPainted(false);
+        restartButton.setBorderPainted(false);
 
         menuBar.add(startButton);
         menuBar.add(pauseButton);

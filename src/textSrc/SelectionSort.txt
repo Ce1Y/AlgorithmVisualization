@@ -4,7 +4,7 @@
  3.          int minIndex = i;
  4.          for (int j = i + 1; j < array.length; j++)
  5.             if (array[j] < array[minIndex])
- 6.                  minIndex = j;                     // searching for lowest index
+ 6.                 minIndex = j;                   // searching for lowest index
  7.          int minNumber = array[minIndex];
  8.          array[minIndex] = array[i];
  9.          array[i] = minNumber; 

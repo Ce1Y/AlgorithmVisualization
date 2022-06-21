@@ -28,11 +28,11 @@ public class TestInfoFrame extends JFrame {
     private int[][] visit = new int[3][30];
 
     private String info = "Here's the rules:" + "\n" +
-            "1. There are 5 question in this section" + "\n" +
+            "1. There are 5 questions in this section" + "\n" +
             "2. Each question has 20 points" + "\n" +
-            "3. There are 3 type of question in this section: Multiple Choice, Mutiple Choice with multiple answers"
+            "3. There are 3 type of question in this section: Multiple Choice, True Or False"
             + "\n" +
-            "   and combination" + "\n" +
+            "   and Cloze" + "\n" +
             "4. There's no time limit. Focus on your question and try your best!";
 
     public TestInfoFrame() {
@@ -40,10 +40,6 @@ public class TestInfoFrame extends JFrame {
         setTitle("ALGORITHM VISUALIZATION");
         setSize(1000, 600);
         setLayout(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setVisible(true);
 
         // set background
         backgroundImg = new ImageIcon("src/imageSrc/Background.png");
@@ -57,19 +53,21 @@ public class TestInfoFrame extends JFrame {
         ActionListener listener = new ButtonEventListener();
 
         // set button
-        infoButton = new JButton(new ImageIcon("src/imageSrc/Precautions.png"));
-        infoButton.setBounds(190, 50, 600, 300);
+        infoButton = new JButton(new ImageIcon("src/imageSrc/uncheckedPrecautions.png"));
+        infoButton.setBounds(340, 140, 300, 100);
         infoButton.setOpaque(false);
         infoButton.setContentAreaFilled(false);
         infoButton.setBorderPainted(false);
         infoButton.addActionListener(listener);
 
-        startButton = new JButton(new ImageIcon("src/imageSrc/Start.png"));
+        startButton = new JButton(new ImageIcon("src/imageSrc/uncheckedStart.png"));
         startButton.setBounds(337, 400, 300, 125);
-        startButton.setBackground(Color.WHITE);
+        startButton.setOpaque(false);
+        startButton.setContentAreaFilled(false);
+        startButton.setBorderPainted(false);
         startButton.addActionListener(listener);
 
-        menuButton = new JButton(new ImageIcon("src/imageSrc/Menu.png"));
+        menuButton = new JButton(new ImageIcon("src/imageSrc/uncheckedMenu.png"));
         menuButton.setBounds(885, 1, 100, 50);
         menuButton.setOpaque(false);
         menuButton.setContentAreaFilled(false);
@@ -82,21 +80,41 @@ public class TestInfoFrame extends JFrame {
         add(startButton);
         add(menuButton);
 
-        MyListener myListener = new MyListener();
-        // addMouseListener(myListener); // press、release、click、enter、exit
-        infoButton.addMouseMotionListener(myListener); // move、drag
-        addMouseMotionListener(myListener);
+        // set mouse listener
+        ButtonListener buttonListener = new ButtonListener();
+        // addMouseListener(infoButtonListener); // press、release、click、enter、exit
+        infoButton.addMouseMotionListener(buttonListener); // move、drag
+        startButton.addMouseMotionListener(buttonListener);
+        menuButton.addMouseMotionListener(buttonListener);
+        
+        addMouseMotionListener(buttonListener);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setVisible(true);
     }
 
-    private class MyListener extends MouseInputAdapter {
+    private class ButtonListener extends MouseInputAdapter {
         public void mouseMoved(MouseEvent e) {
-            System.out.println(e.getX());
-            System.out.println(e.getY());
             if (e.getSource() == infoButton) {
                 infoButton.setIcon(new ImageIcon("src/imageSrc/Precautions.png"));
             } else {
-                infoButton.setIcon(new ImageIcon("src/imageSrc/Precautions_3.png"));
+                infoButton.setIcon(new ImageIcon("src/imageSrc/uncheckedPrecautions.png"));
             }
+
+            if (e.getSource() == menuButton) {
+                menuButton.setIcon(new ImageIcon("src/imageSrc/Menu.png"));
+            } else {
+                menuButton.setIcon(new ImageIcon("src/imageSrc/uncheckedMenu.png"));
+            }
+
+            if (e.getSource() == startButton) {
+                startButton.setIcon(new ImageIcon("src/imageSrc/Start.png"));
+            } else {
+                startButton.setIcon(new ImageIcon("src/imageSrc/uncheckedStart.png"));
+            }
+
             repaint();
         }
     }
@@ -122,7 +140,7 @@ public class TestInfoFrame extends JFrame {
                         setVisible(false);
                         break;
                     case 3: // insert
-                        insertTest insertTest = new insertTest(visit, 1, 0);
+                        Cloze insertTest = new Cloze(visit, 1, 0);
                         setVisible(false);
                         break;
                 }
