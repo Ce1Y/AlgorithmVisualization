@@ -7,8 +7,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.MouseInputAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Component.*;
 
-public class insertTest extends JFrame implements TestFrameImplement {
+public class Cloze extends JFrame implements TestFrameImplement {
 
     private ImageIcon backgroundImg;
 
@@ -31,6 +34,7 @@ public class insertTest extends JFrame implements TestFrameImplement {
     private SortInfoReader ansReader;
     private Random random = new Random();
 
+    // private ActionListener ansListener = new AnswerEventListener();
     private ActionListener cmdHandler = new ButtonEventListener();
 
     private ArrayList<String> quizAnswer = new ArrayList<String>();
@@ -42,7 +46,7 @@ public class insertTest extends JFrame implements TestFrameImplement {
 
     private String correctAns;
 
-    public insertTest(int[][] visit, int quizNumber, int score) {
+    public Cloze(int[][] visit, int quizNumber, int score) {
 
         // init GUI
         super("Quiz" + quizNumber);
@@ -65,20 +69,37 @@ public class insertTest extends JFrame implements TestFrameImplement {
         quizArea.setBounds(90, 50, 800, 300);
 
         // set button
-        menuButton = new JButton(new ImageIcon("src/imageSrc/Menu.png"));
+        menuButton = new JButton(new ImageIcon("src/imageSrc/uncheckedMenu.png"));
         menuButton.setBounds(780, 510, 100, 50);
         menuButton.setActionCommand("menu");
+        menuButton.setOpaque(false);
+        menuButton.setContentAreaFilled(false);
+        menuButton.setFocusPainted(false);
+        menuButton.setBorderPainted(false);
         menuButton.addActionListener(cmdHandler);
 
-        submitButton = new JButton(new ImageIcon("src/imageSrc/Submit.png"));
+        submitButton = new JButton(new ImageIcon("src/imageSrc/uncheckedSubmit.png"));
         submitButton.setBounds(880, 510, 100, 50);
         submitButton.setActionCommand("submit");
-        submitButton.setEnabled(true);
+        submitButton.setOpaque(false);
+        submitButton.setContentAreaFilled(false);
+        submitButton.setFocusPainted(false);
+        submitButton.setBorderPainted(false);
         submitButton.addActionListener(cmdHandler);
         submitButton.setVisible(true);
+        submitButton.setEnabled(true);
+
+        // set btn listener
+        ButtonListener buttonListener = new ButtonListener();
+        menuButton.addMouseMotionListener(buttonListener);
+        submitButton.addMouseMotionListener(buttonListener);
+
+        addMouseMotionListener(buttonListener);
+
+        // set text field1
 
         textField1 = new JTextField();
-        textField1.setBounds(90,375,750,50);
+        textField1.setBounds(90,375,800,50);
         textField1.setVisible(true);
         textField1.setFont(new Font("Serif", Font.PLAIN, 18));
 
@@ -104,14 +125,13 @@ public class insertTest extends JFrame implements TestFrameImplement {
     // set question & answer
     public void setTest() {
         int number;
-       
-         
+
         while(true) {
             number = random.nextInt(14) + 1;
             if (visit[2][number] != 1)
                 break;
         }
-        
+
         // read
         quizReader = new SortInfoReader("src/testSrc/Insert/" + number + ".txt", "UTF-8");
         quiz = quizReader.getContent();
@@ -123,7 +143,7 @@ public class insertTest extends JFrame implements TestFrameImplement {
 
         if (code.length > 1) {
             textField2 = new JTextField();
-            textField2.setBounds(90,425,750,50);
+            textField2.setBounds(90,425,800,50);
             textField2.setVisible(true);
             textField2.setFont(new Font("Serif", Font.PLAIN, 18));
             add(textField2);
@@ -139,7 +159,6 @@ public class insertTest extends JFrame implements TestFrameImplement {
 
         // add visited
         visit[2][number] = 1;
-
     }
 
     private void setVisit(int[][] newVisit) {
@@ -162,7 +181,21 @@ public class insertTest extends JFrame implements TestFrameImplement {
         return score;
     }
 
- 
+    private class ButtonListener extends MouseInputAdapter {
+        public void mouseMoved(MouseEvent e) {
+            if (e.getSource() == menuButton) {
+                menuButton.setIcon(new ImageIcon("src/imageSrc/Menu.png"));
+            } else {
+                menuButton.setIcon(new ImageIcon("src/imageSrc/uncheckedMenu.png"));
+            }
+
+            if (e.getSource() == submitButton) {
+                submitButton.setIcon(new ImageIcon("src/imageSrc/Submit.png"));
+            } else {
+                submitButton.setIcon(new ImageIcon("src/imageSrc/uncheckedSubmit.png"));
+            }
+        }
+    }
 
     private class ButtonEventListener implements ActionListener {
 
@@ -287,7 +320,7 @@ public class insertTest extends JFrame implements TestFrameImplement {
                         setVisible(false);
                         break;
                     case 3: // insert
-                        new insertTest(visit, ++quizNumber, score);
+                        new Cloze(visit, ++quizNumber, score);
                         setVisible(false);
                         break;
                 }

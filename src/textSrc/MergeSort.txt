@@ -13,11 +13,11 @@
 12.      int tmp[11];
 13.      for(int i=l;i<r;++i) {
 14.          tmp[i] = arr[i];
-15.    int li = l,ri = mid,arri = l;
-16.    while(arri<r){
-17.        if ((li < mid && tmp[li] < tmp[ri]) || ri >= r)
-18.            arr[arri++] = tmp[li++];
-19.        else
-20.            arr[arri++] = tmp[ri++];
-21.    }
-22. }
+15.     int li = l,ri = mid,arri = l;
+16.     while(arri<r){
+17.         if ((li < mid && tmp[li] < tmp[ri]) || ri >= r)
+18.             arr[arri++] = tmp[li++];
+19.         else
+20.             arr[arri++] = tmp[ri++];
+21.     }
+22.  }

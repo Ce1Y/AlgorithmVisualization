@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import javax.swing.event.MouseInputAdapter;
 import java.awt.geom.Rectangle2D;
 import java.util.Stack;
 
@@ -124,6 +126,8 @@ public class BSTVisualization extends JFrame implements KeyListener {
 
     private void initialize() {
 
+        MyListener myListener = new MyListener();
+
         // GUI init
         setSize(1000, 600);
         setTitle("ALGORITHM VISUALIZATION");
@@ -159,7 +163,7 @@ public class BSTVisualization extends JFrame implements KeyListener {
             public void paintComponent(Graphics g) {
                 super.paintComponents(g);
                 g2 = (Graphics2D) g;
-                Rectangle2D.Double area = new Rectangle2D.Double(10, 1, 965, 309);
+                Rectangle2D.Double area = new Rectangle2D.Double(10, 1, 965, 301);
                 g2.setPaint(Color.white);
                 g2.fill(area);
                 g2.setPaint(Color.BLACK);
@@ -193,22 +197,34 @@ public class BSTVisualization extends JFrame implements KeyListener {
         topRightPanel.add(tf);
 
         // Add Button
-        btnAdd = new JButton("Add");
+        btnAdd = new JButton(new ImageIcon("src/imageSrc/uncheckedAdd.png"));
         btnAdd.setFont(new Font("Arial", Font.BOLD, 20));
         // btnAdd.setBounds(size.width - 130, 20, 100, 30);
+        btnAdd.setOpaque(false);
+        btnAdd.setContentAreaFilled(false);
+        btnAdd.setBorderPainted(false);
         btnAdd.addActionListener(new graphAction());
+        btnAdd.addMouseMotionListener(myListener);
         topRightPanel.add(btnAdd);
 
         // Delete Button
-        btnDelete = new JButton("Delete");
+        btnDelete = new JButton(new ImageIcon("src/imageSrc/uncheckedDelete.png"));
         btnDelete.setFont(new Font("Arial", Font.BOLD, 20));
         // btnDelete.setBounds(size.width - 130, 60, 100, 30);
+        btnDelete.setOpaque(false);
+        btnDelete.setContentAreaFilled(false);
+        btnDelete.setBorderPainted(false);
         btnDelete.addActionListener(new graphAction());
+        btnDelete.addMouseMotionListener(myListener);
         topRightPanel.add(btnDelete);
 
-        menuButton = new JButton("Menu");
+        menuButton = new JButton(new ImageIcon("src/imageSrc/uncheckedGraphFront.png"));
         menuButton.setFont(new Font("Arial", Font.BOLD, 20));
+        menuButton.setOpaque(false);
+        menuButton.setContentAreaFilled(false);
+        menuButton.setBorderPainted(false);
         menuButton.addActionListener(new rtnAction());
+        menuButton.addMouseMotionListener(myListener);
         topRightPanel.add(menuButton);
 
         // Inorder label
@@ -254,6 +270,7 @@ public class BSTVisualization extends JFrame implements KeyListener {
         add(topPanel, BorderLayout.NORTH);
         add(treePanel, BorderLayout.CENTER);
         add(infoPanel, BorderLayout.SOUTH);
+        topRightPanel.addMouseMotionListener(myListener);
 
     }
 
@@ -265,6 +282,28 @@ public class BSTVisualization extends JFrame implements KeyListener {
                 new MainFrame();
                 setVisible(false);
             }
+        }
+    }
+
+    private class MyListener extends MouseInputAdapter {
+        public void mouseMoved(MouseEvent e) {
+           
+            if (e.getSource() == btnAdd) {
+                btnAdd.setIcon(new ImageIcon("src/imageSrc/Add.png"));
+            } else {
+                btnAdd.setIcon(new ImageIcon("src/imageSrc/uncheckedAdd.png"));
+            }
+            if (e.getSource() == btnDelete) {
+                btnDelete.setIcon(new ImageIcon("src/imageSrc/Delete.png"));
+            } else {
+                btnDelete.setIcon(new ImageIcon("src/imageSrc/uncheckedDelete.png"));
+            }
+            if (e.getSource() == menuButton) {
+                menuButton.setIcon(new ImageIcon("src/imageSrc/GraphFront.png"));
+            } else {
+                menuButton.setIcon(new ImageIcon("src/imageSrc/uncheckedGraphFront.png"));
+            }
+            
         }
     }
 

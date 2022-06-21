@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*; 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.MouseInputAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Component.*;
 
 public class MultipleChoice extends JFrame implements TestFrameImplement{
 
@@ -73,36 +76,74 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
         quizArea.setBounds(90, 50, 800, 300);
 
         // set button
-        menuButton = new JButton(new ImageIcon("src/imageSrc/Menu.png"));
+        menuButton = new JButton(new ImageIcon("src/imageSrc/uncheckedMenu.png"));
         menuButton.setBounds(780, 510, 100, 50);
         menuButton.setActionCommand("menu");
+        menuButton.setOpaque(false);
+        menuButton.setContentAreaFilled(false);
+        menuButton.setFocusPainted(false);
+        menuButton.setBorderPainted(false);
         menuButton.addActionListener(cmdHandler);
 
-        submitButton = new JButton(new ImageIcon("src/imageSrc/Submit.png"));
+        submitButton = new JButton(new ImageIcon("src/imageSrc/uncheckedSubmit.png"));
         submitButton.setBounds(880, 510, 100, 50);
         submitButton.setActionCommand("submit");
+        submitButton.setOpaque(false);
+        submitButton.setContentAreaFilled(false);
+        submitButton.setFocusPainted(false);
+        submitButton.setBorderPainted(false);
         submitButton.addActionListener(cmdHandler);
         submitButton.setEnabled(false);
 
-        buttonA = new JButton(new ImageIcon("src/imageSrc/A.png"));
+        buttonA = new JButton(new ImageIcon("src/imageSrc/uncheckedA.png"));
         buttonA.setBounds(90, 400, 100, 50);
         buttonA.setActionCommand("A");
+        buttonA.setOpaque(false);
+        buttonA.setContentAreaFilled(false);
+        buttonA.setFocusPainted(false);
+        buttonA.setBorderPainted(false);
         buttonA.addActionListener(ansListener);
 
         buttonB = new JButton(new ImageIcon("src/imageSrc/B.png"));
         buttonB.setBounds(323, 400, 100, 50);
         buttonB.setActionCommand("B");
+        buttonB.setOpaque(false);
+        buttonB.setContentAreaFilled(false);
+        buttonB.setFocusPainted(false);
+        buttonB.setBorderPainted(false);
         buttonB.addActionListener(ansListener);
         
         buttonC = new JButton(new ImageIcon("src/imageSrc/C.png"));
         buttonC.setBounds(556, 400, 100, 50);
         buttonC.setActionCommand("C");
+        buttonC.setOpaque(false);
+        buttonC.setContentAreaFilled(false);
+        buttonC.setFocusPainted(false);
+        buttonC.setBorderPainted(false);
         buttonC.addActionListener(ansListener);
         
         buttonD = new JButton(new ImageIcon("src/imageSrc/D.png"));
         buttonD.setBounds(790, 400, 100, 50);
         buttonD.setActionCommand("D");
+        buttonD.setOpaque(false);
+        buttonD.setContentAreaFilled(false);
+        buttonD.setFocusPainted(false);
+        buttonD.setBorderPainted(false);
         buttonD.addActionListener(ansListener);
+
+        // set mouse listener
+        ButtonListener buttonListener = new ButtonListener();
+        menuButton.addMouseMotionListener(buttonListener);
+        submitButton.addMouseMotionListener(buttonListener);
+
+        OptionListener optionListener = new OptionListener();
+        buttonA.addMouseMotionListener(optionListener);
+        buttonB.addMouseMotionListener(optionListener);
+        buttonC.addMouseMotionListener(optionListener);
+        buttonD.addMouseMotionListener(optionListener);
+        
+        addMouseMotionListener(buttonListener);
+        addMouseMotionListener(optionListener);
         
         // add new elements to frame
         add(quizArea);
@@ -168,6 +209,47 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
 
     public int getScore() {
         return score;
+    }
+
+    private class ButtonListener extends MouseInputAdapter {
+        public void mouseMoved(MouseEvent e) {
+            if (e.getSource() == menuButton) {
+                menuButton.setIcon(new ImageIcon("src/imageSrc/Menu.png"));
+            } else {
+                menuButton.setIcon(new ImageIcon("src/imageSrc/uncheckedMenu.png"));
+            }
+
+            if (e.getSource() == submitButton) {
+                submitButton.setIcon(new ImageIcon("src/imageSrc/Submit.png"));
+            } else {
+                submitButton.setIcon(new ImageIcon("src/imageSrc/uncheckedSubmit.png"));
+            }
+        }
+    }
+
+    private class OptionListener extends MouseInputAdapter {
+        public void mouseMoved(MouseEvent e) {
+            if (e.getSource() == buttonA) {
+                buttonA.setIcon(new ImageIcon("src/imageSrc/A.png"));
+            } else {
+                buttonA.setIcon(new ImageIcon("src/imageSrc/uncheckedA.png"));
+            }
+            if (e.getSource() == buttonB) {
+                buttonB.setIcon(new ImageIcon("src/imageSrc/B.png"));
+            } else {
+                buttonB.setIcon(new ImageIcon("src/imageSrc/uncheckedB.png"));
+            }
+            if (e.getSource() == buttonC) {
+                buttonC.setIcon(new ImageIcon("src/imageSrc/C.png"));
+            } else {
+                buttonC.setIcon(new ImageIcon("src/imageSrc/uncheckedC.png"));
+            }
+            if (e.getSource() == buttonD) {
+                buttonD.setIcon(new ImageIcon("src/imageSrc/D.png"));
+            } else {
+                buttonD.setIcon(new ImageIcon("src/imageSrc/uncheckedD.png"));
+            }
+        }
     }
 
     private class AnswerEventListener implements ActionListener {
@@ -254,7 +336,7 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
                         setVisible(false);
                         break;  
                     case 3:             // insert
-                        new insertTest(visit, ++quizNumber, score); 
+                        new Cloze(visit, ++quizNumber, score); 
                         setVisible(false);
                         break;
                 }
