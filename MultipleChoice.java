@@ -201,7 +201,7 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
                 JLabel x = new JLabel("You want to back to Menu?");
                 x.setFont(new Font("Times New Roman", Font.BOLD, 12));
                 int result = JOptionPane.showConfirmDialog(null, x, "Warning",
-                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, new ImageIcon("src/imageSrc/Thinking4.png"));
+                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, new ImageIcon("src/imageSrc/Thinking.png"));
                 
                 if (result == JOptionPane.YES_OPTION) {     // yes button
                     new Menu();
