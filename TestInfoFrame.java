@@ -40,10 +40,6 @@ public class TestInfoFrame extends JFrame {
         setTitle("ALGORITHM VISUALIZATION");
         setSize(1000, 600);
         setLayout(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setVisible(true);
 
         // set background
         backgroundImg = new ImageIcon("src/imageSrc/Background.png");
@@ -57,21 +53,21 @@ public class TestInfoFrame extends JFrame {
         ActionListener listener = new ButtonEventListener();
 
         // set button
-        infoButton = new JButton(new ImageIcon("src/imageSrc/Precautions.png"));
+        infoButton = new JButton(new ImageIcon("src/imageSrc/uncheckedPrecautions.png"));
         infoButton.setBounds(340, 140, 300, 100);
         infoButton.setOpaque(false);
         infoButton.setContentAreaFilled(false);
         infoButton.setBorderPainted(false);
         infoButton.addActionListener(listener);
 
-        startButton = new JButton(new ImageIcon("src/imageSrc/Start.png"));
+        startButton = new JButton(new ImageIcon("src/imageSrc/uncheckedStart.png"));
         startButton.setBounds(337, 400, 300, 125);
         startButton.setOpaque(false);
         startButton.setContentAreaFilled(false);
         startButton.setBorderPainted(false);
         startButton.addActionListener(listener);
 
-        menuButton = new JButton(new ImageIcon("src/imageSrc/Menu.png"));
+        menuButton = new JButton(new ImageIcon("src/imageSrc/uncheckedMenu.png"));
         menuButton.setBounds(885, 1, 100, 50);
         menuButton.setOpaque(false);
         menuButton.setContentAreaFilled(false);
@@ -84,27 +80,39 @@ public class TestInfoFrame extends JFrame {
         add(startButton);
         add(menuButton);
 
-        // set btn listener
+        // set mouse listener
         InfoButtonListener infoButtonListener = new InfoButtonListener();
         // addMouseListener(infoButtonListener); // press、release、click、enter、exit
         infoButton.addMouseMotionListener(infoButtonListener); // move、drag
 
         StartButtonListener startButtonListener = new StartButtonListener();
         startButton.addMouseMotionListener(startButtonListener);
+
+        menuButton.addMouseMotionListener(infoButtonListener);
         
         addMouseMotionListener(infoButtonListener);
         addMouseMotionListener(startButtonListener);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setVisible(true);
     }
 
     private class InfoButtonListener extends MouseInputAdapter {
         public void mouseMoved(MouseEvent e) {
-            System.out.println(e.getX());
-            System.out.println(e.getY());
             if (e.getSource() == infoButton) {
                 infoButton.setIcon(new ImageIcon("src/imageSrc/Precautions.png"));
             } else {
                 infoButton.setIcon(new ImageIcon("src/imageSrc/uncheckedPrecautions.png"));
             }
+
+            if (e.getSource() == menuButton) {
+                menuButton.setIcon(new ImageIcon("src/imageSrc/Menu.png"));
+            } else {
+                menuButton.setIcon(new ImageIcon("src/imageSrc/uncheckedMenu.png"));
+            }
+
             repaint();
         }
     }
