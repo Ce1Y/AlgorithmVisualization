@@ -254,7 +254,7 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
                         setVisible(false);
                         break;  
                     case 3:             // insert
-                        new insertTest(visit, ++quizNumber, score); 
+                        new Cloze(visit, ++quizNumber, score); 
                         setVisible(false);
                         break;
                 }

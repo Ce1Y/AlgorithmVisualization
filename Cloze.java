@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class insertTest extends JFrame implements TestFrameImplement {
+public class Cloze extends JFrame implements TestFrameImplement {
 
     private ImageIcon backgroundImg;
 
@@ -43,7 +43,7 @@ public class insertTest extends JFrame implements TestFrameImplement {
 
     private String correctAns;
 
-    public insertTest(int[][] visit, int quizNumber, int score) {
+    public Cloze(int[][] visit, int quizNumber, int score) {
 
         // init GUI
         super("Quiz" + quizNumber);
@@ -79,7 +79,7 @@ public class insertTest extends JFrame implements TestFrameImplement {
         submitButton.setVisible(true);
 
         textField1 = new JTextField();
-        textField1.setBounds(90,375,750,50);
+        textField1.setBounds(90,375,800,50);
         textField1.setVisible(true);
         textField1.setFont(new Font("Serif", Font.PLAIN, 18));
 
@@ -105,8 +105,7 @@ public class insertTest extends JFrame implements TestFrameImplement {
     // set question & answer
     public void setTest() {
         int number;
-       
-         
+
         while(true) {
             number = random.nextInt(14) + 1;
             if (visit[2][number] != 1)
@@ -126,7 +125,7 @@ public class insertTest extends JFrame implements TestFrameImplement {
 
         if (code.length > 1) {
             textField2 = new JTextField();
-            textField2.setBounds(90,425,750,50);
+            textField2.setBounds(90,425,800,50);
             textField2.setVisible(true);
             textField2.setFont(new Font("Serif", Font.PLAIN, 18));
             add(textField2);
@@ -296,7 +295,7 @@ public class insertTest extends JFrame implements TestFrameImplement {
                         setVisible(false);
                         break;
                     case 3: // insert
-                        new insertTest(visit, ++quizNumber, score);
+                        new Cloze(visit, ++quizNumber, score);
                         setVisible(false);
                         break;
                 }
