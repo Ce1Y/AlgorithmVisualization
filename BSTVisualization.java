@@ -218,7 +218,7 @@ public class BSTVisualization extends JFrame implements KeyListener {
         btnDelete.addMouseMotionListener(myListener);
         topRightPanel.add(btnDelete);
 
-        menuButton = new JButton(new ImageIcon("src/imageSrc/uncheckedFront.png"));
+        menuButton = new JButton(new ImageIcon("src/imageSrc/uncheckedGraphFront.png"));
         menuButton.setFont(new Font("Arial", Font.BOLD, 20));
         menuButton.setOpaque(false);
         menuButton.setContentAreaFilled(false);
@@ -299,9 +299,9 @@ public class BSTVisualization extends JFrame implements KeyListener {
                 btnDelete.setIcon(new ImageIcon("src/imageSrc/uncheckedDelete.png"));
             }
             if (e.getSource() == menuButton) {
-                menuButton.setIcon(new ImageIcon("src/imageSrc/Front.png"));
+                menuButton.setIcon(new ImageIcon("src/imageSrc/GraphFront.png"));
             } else {
-                menuButton.setIcon(new ImageIcon("src/imageSrc/uncheckedFront.png"));
+                menuButton.setIcon(new ImageIcon("src/imageSrc/uncheckedGraphFront.png"));
             }
             
         }
