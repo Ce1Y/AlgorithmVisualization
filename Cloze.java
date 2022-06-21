@@ -94,6 +94,10 @@ public class Cloze extends JFrame implements TestFrameImplement {
         menuButton.addMouseMotionListener(buttonListener);
         submitButton.addMouseMotionListener(buttonListener);
 
+        addMouseMotionListener(buttonListener);
+
+        // set text field1
+
         textField1 = new JTextField();
         textField1.setBounds(90,375,800,50);
         textField1.setVisible(true);

@@ -81,17 +81,13 @@ public class TestInfoFrame extends JFrame {
         add(menuButton);
 
         // set mouse listener
-        InfoButtonListener infoButtonListener = new InfoButtonListener();
+        ButtonListener buttonListener = new ButtonListener();
         // addMouseListener(infoButtonListener); // press、release、click、enter、exit
-        infoButton.addMouseMotionListener(infoButtonListener); // move、drag
-
-        StartButtonListener startButtonListener = new StartButtonListener();
-        startButton.addMouseMotionListener(startButtonListener);
-
-        menuButton.addMouseMotionListener(infoButtonListener);
+        infoButton.addMouseMotionListener(buttonListener); // move、drag
+        startButton.addMouseMotionListener(buttonListener);
+        menuButton.addMouseMotionListener(buttonListener);
         
-        addMouseMotionListener(infoButtonListener);
-        addMouseMotionListener(startButtonListener);
+        addMouseMotionListener(buttonListener);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -99,7 +95,7 @@ public class TestInfoFrame extends JFrame {
         setVisible(true);
     }
 
-    private class InfoButtonListener extends MouseInputAdapter {
+    private class ButtonListener extends MouseInputAdapter {
         public void mouseMoved(MouseEvent e) {
             if (e.getSource() == infoButton) {
                 infoButton.setIcon(new ImageIcon("src/imageSrc/Precautions.png"));
@@ -113,17 +109,13 @@ public class TestInfoFrame extends JFrame {
                 menuButton.setIcon(new ImageIcon("src/imageSrc/uncheckedMenu.png"));
             }
 
-            repaint();
-        }
-    }
-
-    private class StartButtonListener extends MouseInputAdapter {
-        public void mouseMoved(MouseEvent e) {
             if (e.getSource() == startButton) {
                 startButton.setIcon(new ImageIcon("src/imageSrc/Start.png"));
             } else {
                 startButton.setIcon(new ImageIcon("src/imageSrc/uncheckedStart.png"));
             }
+
+            repaint();
         }
     }
 

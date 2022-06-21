@@ -143,7 +143,6 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
         buttonD.addMouseMotionListener(optionListener);
         
         addMouseMotionListener(buttonListener);
-        addMouseMotionListener(buttonListener);
         addMouseMotionListener(optionListener);
         
         // add new elements to frame

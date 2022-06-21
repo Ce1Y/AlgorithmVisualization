@@ -2,10 +2,14 @@ package src.classSrc;
 
 import java.util.ArrayList;
 
+import java.awt.Color;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.MouseInputAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Component.*;
 
 public class Menu extends JFrame {
 
@@ -19,7 +23,7 @@ public class Menu extends JFrame {
     
     private JButton learnButton;
     private JButton testButton;
-    private JButton firstPageButton;
+    private JButton frontButton;
 
     private final JComboBox<String> sortSelectComboBox;
 
@@ -48,29 +52,53 @@ public class Menu extends JFrame {
         // set listener
         ActionListener handler = new TestEventListener();
         ActionListener listener = new SortEventListener();
-        // set button panel
-       
+
+        // set color
+        Color myRed = new Color(255, 163, 163);
+        Color myBlue = new Color(102, 178, 255);
+        Color myGreen = new Color(153, 255, 153);
+        Color myPink = new Color(255, 240, 245);
+
         // set learn button
-        learnButton = new JButton("Learn");
-        learnButton.setBounds(210, 100, 440, 100);
-        //learnButton.setForeground(Color.white);
-        //learnButton.setBackground(Color.red);
+        learnButton = new JButton(new ImageIcon("src/imageSrc/uncheckedLearn.png"));
+        learnButton.setBounds(210, 100, 434, 100);
         learnButton.setFont(new Font("Helvetica", Font.PLAIN, 24));
+        learnButton.setOpaque(false);
+        learnButton.setContentAreaFilled(false);
+        learnButton.setFocusPainted(false);
+        learnButton.setBorder(BorderFactory.createLineBorder(myRed, 2));
+        // learnButton.setBorderPainted(false);
         learnButton.addActionListener(listener);
 
         // set test button
-        testButton = new JButton("Test");
+        testButton = new JButton(new ImageIcon("src/imageSrc/uncheckedTest.png"));
         testButton.setBounds(210,225, 550,100);
-        //testButton.setForeground(Color.white);
-        //testButton.setBackground(Color.green);
         testButton.setFont(new Font("Helvetica", Font.PLAIN, 24));
+        testButton.setOpaque(false);
+        testButton.setContentAreaFilled(false);
+        testButton.setFocusPainted(false);
+        testButton.setBorder(BorderFactory.createLineBorder(myBlue, 2));
+        // testButton.setBorderPainted(false);
         testButton.addActionListener(handler);
 
         // set Menu Button
-        firstPageButton = new JButton("Menu");
-        firstPageButton.setBounds(210, 350 , 550, 100);
-        firstPageButton.setFont(new Font("Helvetica", Font.PLAIN, 24));
-        firstPageButton.addActionListener(handler);
+        frontButton = new JButton(new ImageIcon("src/imageSrc/uncheckedFront.png"));
+        frontButton.setBounds(210, 350 , 550, 100);
+        frontButton.setFont(new Font("Helvetica", Font.PLAIN, 24));
+        frontButton.setOpaque(false);
+        frontButton.setContentAreaFilled(false);
+        frontButton.setFocusPainted(false);
+        frontButton.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2));
+        // frontButton.setBorderPainted(false);
+        frontButton.addActionListener(handler);
+
+        // set btn listener
+        ButtonListener buttonListener = new ButtonListener();
+        learnButton.addMouseMotionListener(buttonListener); // move、drag
+        testButton.addMouseMotionListener(buttonListener);
+        frontButton.addMouseMotionListener(buttonListener);
+        
+        addMouseMotionListener(buttonListener);
 
         // set comboBox
         sortSelectComboBox = new JComboBox<>(option);
@@ -81,18 +109,37 @@ public class Menu extends JFrame {
                 setHorizontalAlignment(DefaultListCellRenderer.CENTER);
             }
         });
-      
 
         // add new elements to frame
         add(sortSelectComboBox);
         add(learnButton);
         add(testButton);
-        add(firstPageButton);
+        add(frontButton);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
+    }
+
+    private class ButtonListener extends MouseInputAdapter {
+        public void mouseMoved(MouseEvent e) {
+            if (e.getSource() == learnButton) {
+                learnButton.setIcon(new ImageIcon("src/imageSrc/Learn.png"));
+            } else {
+                learnButton.setIcon(new ImageIcon("src/imageSrc/uncheckedLearn.png"));
+            }
+            if (e.getSource() == testButton) {
+                testButton.setIcon(new ImageIcon("src/imageSrc/Test.png"));
+            } else {
+                testButton.setIcon(new ImageIcon("src/imageSrc/uncheckedTest.png"));
+            }
+            if (e.getSource() == frontButton) {
+                frontButton.setIcon(new ImageIcon("src/imageSrc/Front.png"));
+            } else {
+                frontButton.setIcon(new ImageIcon("src/imageSrc/uncheckedFront.png"));
+            }
+        }
     }
     
     private class SortEventListener implements ActionListener {
@@ -135,7 +182,7 @@ public class Menu extends JFrame {
             if (e.getSource() == testButton) {
                 TestInfoFrame testInfoFrame = new TestInfoFrame();
                 setVisible(false);
-            } else if (e.getSource() == firstPageButton) {
+            } else if (e.getSource() == frontButton) {
                 new MainFrame();
                 setVisible(false);
             } 

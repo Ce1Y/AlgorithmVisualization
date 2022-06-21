@@ -83,6 +83,7 @@ public class TrueOrFalse extends JFrame implements TestFrameImplement{
         menuButton.setBounds(780, 510, 100, 50);
         menuButton.setOpaque(false);
         menuButton.setContentAreaFilled(false);
+        menuButton.setFocusPainted(false);
         menuButton.setBorderPainted(false);
         menuButton.setActionCommand("menu");
         menuButton.addActionListener(cmdHandler);
@@ -128,6 +129,8 @@ public class TrueOrFalse extends JFrame implements TestFrameImplement{
         buttonWrong.addMouseMotionListener(myListener); // move、drag
         menuButton.addMouseMotionListener(myListener);
         submitButton.addMouseMotionListener(myListener);
+
+        addMouseMotionListener(myListener);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -206,7 +209,7 @@ public class TrueOrFalse extends JFrame implements TestFrameImplement{
 
     private class MyListener extends MouseInputAdapter {
         public void mouseMoved(MouseEvent e) {
-           
+        
             if (e.getSource() == buttonCorrect) {
                 buttonCorrect.setIcon(new ImageIcon("src/imageSrc/True.png"));
             } else {
@@ -230,7 +233,7 @@ public class TrueOrFalse extends JFrame implements TestFrameImplement{
             } else {
                 submitButton.setIcon(new ImageIcon("src/imageSrc/uncheckedSubmit.png"));
             }
-            repaint();
+            // repaint();
         }
     }
 
