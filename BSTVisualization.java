@@ -163,7 +163,7 @@ public class BSTVisualization extends JFrame implements KeyListener {
             public void paintComponent(Graphics g) {
                 super.paintComponents(g);
                 g2 = (Graphics2D) g;
-                Rectangle2D.Double area = new Rectangle2D.Double(10, 1, 965, 309);
+                Rectangle2D.Double area = new Rectangle2D.Double(10, 1, 965, 301);
                 g2.setPaint(Color.white);
                 g2.fill(area);
                 g2.setPaint(Color.BLACK);
@@ -270,7 +270,7 @@ public class BSTVisualization extends JFrame implements KeyListener {
         add(topPanel, BorderLayout.NORTH);
         add(treePanel, BorderLayout.CENTER);
         add(infoPanel, BorderLayout.SOUTH);
-        addMouseMotionListener(myListener);
+        topRightPanel.addMouseMotionListener(myListener);
 
     }
 
@@ -303,7 +303,7 @@ public class BSTVisualization extends JFrame implements KeyListener {
             } else {
                 menuButton.setIcon(new ImageIcon("src/imageSrc/uncheckedFront.png"));
             }
-            repaint();
+            
         }
     }
 
