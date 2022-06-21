@@ -97,7 +97,7 @@ public class QuickSortVisualizationFrame extends JFrame {
         menuBar.add(sortMenu);
 
         // set Button in menuBar
-        startImage = new ImageIcon("src/imageSrc/Start.png");
+        startImage = new ImageIcon("src/imageSrc/algoStart.png");
         pauseImage = new ImageIcon("src/imageSrc/Pause.png");
         restartImage = new ImageIcon("src/imageSrc/Restart.png");
 

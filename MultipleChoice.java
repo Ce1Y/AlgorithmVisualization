@@ -132,11 +132,9 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
         buttonD.addActionListener(ansListener);
 
         // set mouse listener
-        MenuButtonListener menuButtonListener = new MenuButtonListener();
-        menuButton.addMouseMotionListener(menuButtonListener);
-
-        SubmitButtonListener submitButtonListener = new SubmitButtonListener();
-        submitButton.addMouseMotionListener(submitButtonListener);
+        ButtonListener buttonListener = new ButtonListener();
+        menuButton.addMouseMotionListener(buttonListener);
+        submitButton.addMouseMotionListener(buttonListener);
 
         OptionListener optionListener = new OptionListener();
         buttonA.addMouseMotionListener(optionListener);
@@ -144,8 +142,8 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
         buttonC.addMouseMotionListener(optionListener);
         buttonD.addMouseMotionListener(optionListener);
         
-        addMouseMotionListener(menuButtonListener);
-        addMouseMotionListener(submitButtonListener);
+        addMouseMotionListener(buttonListener);
+        addMouseMotionListener(buttonListener);
         addMouseMotionListener(optionListener);
         
         // add new elements to frame
@@ -214,18 +212,14 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
         return score;
     }
 
-    private class MenuButtonListener extends MouseInputAdapter {
+    private class ButtonListener extends MouseInputAdapter {
         public void mouseMoved(MouseEvent e) {
             if (e.getSource() == menuButton) {
                 menuButton.setIcon(new ImageIcon("src/imageSrc/Menu.png"));
             } else {
                 menuButton.setIcon(new ImageIcon("src/imageSrc/uncheckedMenu.png"));
             }
-        }
-    }
 
-    private class SubmitButtonListener extends MouseInputAdapter {
-        public void mouseMoved(MouseEvent e) {
             if (e.getSource() == submitButton) {
                 submitButton.setIcon(new ImageIcon("src/imageSrc/Submit.png"));
             } else {
@@ -240,6 +234,21 @@ public class MultipleChoice extends JFrame implements TestFrameImplement{
                 buttonA.setIcon(new ImageIcon("src/imageSrc/A.png"));
             } else {
                 buttonA.setIcon(new ImageIcon("src/imageSrc/uncheckedA.png"));
+            }
+            if (e.getSource() == buttonB) {
+                buttonB.setIcon(new ImageIcon("src/imageSrc/B.png"));
+            } else {
+                buttonB.setIcon(new ImageIcon("src/imageSrc/uncheckedB.png"));
+            }
+            if (e.getSource() == buttonC) {
+                buttonC.setIcon(new ImageIcon("src/imageSrc/C.png"));
+            } else {
+                buttonC.setIcon(new ImageIcon("src/imageSrc/uncheckedC.png"));
+            }
+            if (e.getSource() == buttonD) {
+                buttonD.setIcon(new ImageIcon("src/imageSrc/D.png"));
+            } else {
+                buttonD.setIcon(new ImageIcon("src/imageSrc/uncheckedD.png"));
             }
         }
     }

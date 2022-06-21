@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.MouseInputAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Component.*;
 
 public class Cloze extends JFrame implements TestFrameImplement {
 
@@ -31,7 +34,7 @@ public class Cloze extends JFrame implements TestFrameImplement {
     private SortInfoReader ansReader;
     private Random random = new Random();
 
-    private ActionListener ansListener = new AnswerEventListener();
+    // private ActionListener ansListener = new AnswerEventListener();
     private ActionListener cmdHandler = new ButtonEventListener();
 
     private ArrayList<String> quizAnswer = new ArrayList<String>();
@@ -66,17 +69,30 @@ public class Cloze extends JFrame implements TestFrameImplement {
         quizArea.setBounds(90, 50, 800, 300);
 
         // set button
-        menuButton = new JButton(new ImageIcon("src/imageSrc/Menu.png"));
+        menuButton = new JButton(new ImageIcon("src/imageSrc/uncheckedMenu.png"));
         menuButton.setBounds(780, 510, 100, 50);
         menuButton.setActionCommand("menu");
+        menuButton.setOpaque(false);
+        menuButton.setContentAreaFilled(false);
+        menuButton.setFocusPainted(false);
+        menuButton.setBorderPainted(false);
         menuButton.addActionListener(cmdHandler);
 
-        submitButton = new JButton(new ImageIcon("src/imageSrc/Submit.png"));
+        submitButton = new JButton(new ImageIcon("src/imageSrc/uncheckedSubmit.png"));
         submitButton.setBounds(880, 510, 100, 50);
         submitButton.setActionCommand("submit");
-        submitButton.setEnabled(true);
+        submitButton.setOpaque(false);
+        submitButton.setContentAreaFilled(false);
+        submitButton.setFocusPainted(false);
+        submitButton.setBorderPainted(false);
         submitButton.addActionListener(cmdHandler);
         submitButton.setVisible(true);
+        submitButton.setEnabled(true);
+
+        // set btn listener
+        ButtonListener buttonListener = new ButtonListener();
+        menuButton.addMouseMotionListener(buttonListener);
+        submitButton.addMouseMotionListener(buttonListener);
 
         textField1 = new JTextField();
         textField1.setBounds(90,375,800,50);
@@ -111,8 +127,6 @@ public class Cloze extends JFrame implements TestFrameImplement {
             if (visit[2][number] != 1)
                 break;
         }
-        
-        
 
         // read
         quizReader = new SortInfoReader("src/testSrc/Insert/" + number + ".txt", "UTF-8");
@@ -141,7 +155,6 @@ public class Cloze extends JFrame implements TestFrameImplement {
 
         // add visited
         visit[2][number] = 1;
-
     }
 
     private void setVisit(int[][] newVisit) {
@@ -164,11 +177,19 @@ public class Cloze extends JFrame implements TestFrameImplement {
         return score;
     }
 
-    private class AnswerEventListener implements ActionListener {
+    private class ButtonListener extends MouseInputAdapter {
+        public void mouseMoved(MouseEvent e) {
+            if (e.getSource() == menuButton) {
+                menuButton.setIcon(new ImageIcon("src/imageSrc/Menu.png"));
+            } else {
+                menuButton.setIcon(new ImageIcon("src/imageSrc/uncheckedMenu.png"));
+            }
 
-        @Override
-        public void actionPerformed(ActionEvent event) {
-
+            if (e.getSource() == submitButton) {
+                submitButton.setIcon(new ImageIcon("src/imageSrc/Submit.png"));
+            } else {
+                submitButton.setIcon(new ImageIcon("src/imageSrc/uncheckedSubmit.png"));
+            }
         }
     }
 
