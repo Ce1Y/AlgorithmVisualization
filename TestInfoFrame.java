@@ -11,8 +11,8 @@ import javax.swing.event.MouseInputAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Component.*;
 
-public class TestInfoFrame extends JFrame{
-    
+public class TestInfoFrame extends JFrame {
+
     private ImageIcon backgroundImg;
 
     private JLabel backgroundLabel;
@@ -22,19 +22,19 @@ public class TestInfoFrame extends JFrame{
     private JButton infoButton;
     private JButton startButton;
     private JButton menuButton;
-    
+
     private SortInfoReader reader;
     private ArrayList<String> quizAnswer = new ArrayList<String>();
     private int[][] visit = new int[3][30];
 
-    private String info = 
-            "Here's the rules:" + "\n" +
+    private String info = "Here's the rules:" + "\n" +
             "1. There are 5 question in this section" + "\n" +
             "2. Each question has 20 points" + "\n" +
-            "3. There are 3 type of question in this section: Multiple Choice, Mutiple Choice with multiple answers" + "\n" +
+            "3. There are 3 type of question in this section: Multiple Choice, Mutiple Choice with multiple answers"
+            + "\n" +
             "   and combination" + "\n" +
             "4. There's no time limit. Focus on your question and try your best!";
-            
+
     public TestInfoFrame() {
         // GUI init
         setTitle("ALGORITHM VISUALIZATION");
@@ -83,10 +83,10 @@ public class TestInfoFrame extends JFrame{
         add(menuButton);
 
         MyListener myListener = new MyListener();
-        // addMouseListener(myListener);           // press、release、click、enter、exit
-        infoButton.addMouseMotionListener(myListener);     // move、drag
+        // addMouseListener(myListener); // press、release、click、enter、exit
+        infoButton.addMouseMotionListener(myListener); // move、drag
         addMouseMotionListener(myListener);
-    }   
+    }
 
     private class MyListener extends MouseInputAdapter {
         public void mouseMoved(MouseEvent e) {
@@ -105,29 +105,29 @@ public class TestInfoFrame extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            
-            if (e.getSource() == infoButton) {              // info
+
+            if (e.getSource() == infoButton) { // info
                 JOptionPane.showMessageDialog(null, info, "Announcement!", JOptionPane.DEFAULT_OPTION);
-            } else if (e.getSource() == startButton) {      // start testing
+            } else if (e.getSource() == startButton) { // start testing
                 Random random = new Random();
-                int start = random.nextInt(2) + 1;
-                //start = 2;                                  // start
-                switch(start) {
-                    case 1:             // single
+                int start = random.nextInt(3) + 1;
+                // start
+                switch (start) {
+                    case 1: // single
                         MultipleChoice typeSingle = new MultipleChoice(visit, 1, 0);
                         setVisible(false);
                         break;
-                    case 2:             // yes/no
-                        TrueOrFalse trueAndFalse = new TrueOrFalse(visit,1,0);
+                    case 2: // yes/no
+                        TrueOrFalse trueOrFalse = new TrueOrFalse(visit, 1, 0);
                         setVisible(false);
-                        break;  
-                    case 3:             // insert
-                        // TODO
+                        break;
+                    case 3: // insert
+                        insertTest insertTest = new insertTest(visit, 1, 0);
                         setVisible(false);
                         break;
                 }
                 setVisible(false);
-            } else {                                        // back to menu
+            } else { // back to menu
                 new Menu();
                 setVisible(false);
             }
