@@ -14,10 +14,9 @@ public class Menu extends JFrame {
     private JLabel backgroundLabel;
 
     private JPanel backgroundPanel;
-    private JPanel sortSelectPanel;
-    private JPanel learnPanel;
-    private JPanel testPanel;
-
+    //private JPanel learnPanel;
+    //private JPanel testPanel;
+    
     private JButton learnButton;
     private JButton testButton;
     private JButton firstPageButton;
@@ -25,7 +24,7 @@ public class Menu extends JFrame {
     private final JComboBox<String> sortSelectComboBox;
 
     String[] option = { "SORT", "Insertion", "Merge", "Bubble", "Quick", "Selection" };
-    ArrayList<String> imgSrc = new ArrayList<>();
+
 
     public Menu() {
 
@@ -47,50 +46,42 @@ public class Menu extends JFrame {
         getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
 
         // set listener
-        ActionListener listener = new SortEventListener();
         ActionListener handler = new TestEventListener();
-
+        ActionListener listener = new SortEventListener();
         // set button panel
-        sortSelectPanel = new JPanel();
-        sortSelectPanel.setBackground(Color.black);
-
-        learnPanel = new JPanel();
-        learnPanel.setBackground(Color.yellow);
-
-        testPanel = new JPanel();
-        testPanel.setBackground(Color.green);
-
+       
         // set learn button
         learnButton = new JButton("Learn");
-        learnButton.setBounds(100, 175, 250, 250);
-        learnButton.setForeground(Color.white);
-        learnButton.setBackground(Color.red);
+        learnButton.setBounds(210, 100, 440, 100);
+        //learnButton.setForeground(Color.white);
+        //learnButton.setBackground(Color.red);
         learnButton.setFont(new Font("Helvetica", Font.PLAIN, 24));
         learnButton.addActionListener(listener);
 
         // set test button
         testButton = new JButton("Test");
-        testButton.setBounds(640, 175, 250, 250);
-        testButton.setForeground(Color.white);
-        testButton.setBackground(Color.green);
+        testButton.setBounds(210,225, 550,100);
+        //testButton.setForeground(Color.white);
+        //testButton.setBackground(Color.green);
         testButton.setFont(new Font("Helvetica", Font.PLAIN, 24));
         testButton.addActionListener(handler);
 
-        // set menu Button
-        firstPageButton = new JButton(new ImageIcon("src/imageSrc/Menu.png"));
-        firstPageButton.setBounds(885, 1, 100, 50);
-        firstPageButton.setFocusPainted(false);
+        // set Menu Button
+        firstPageButton = new JButton("Menu");
+        firstPageButton.setBounds(210, 350 , 550, 100);
+        firstPageButton.setFont(new Font("Helvetica", Font.PLAIN, 24));
         firstPageButton.addActionListener(handler);
 
         // set comboBox
         sortSelectComboBox = new JComboBox<>(option);
         sortSelectComboBox.setFont(new Font("Times New Roman", Font.BOLD, 12));
-        sortSelectComboBox.setBounds(400, 40, 200, 50);
+        sortSelectComboBox.setBounds(660, 100, 100, 20);
         sortSelectComboBox.setRenderer(new DefaultListCellRenderer() {
             {
                 setHorizontalAlignment(DefaultListCellRenderer.CENTER);
             }
         });
+      
 
         // add new elements to frame
         add(sortSelectComboBox);
@@ -103,7 +94,7 @@ public class Menu extends JFrame {
         setResizable(false);
         setVisible(true);
     }
-
+    
     private class SortEventListener implements ActionListener {
 
         @Override
@@ -147,7 +138,7 @@ public class Menu extends JFrame {
             } else if (e.getSource() == firstPageButton) {
                 new MainFrame();
                 setVisible(false);
-            }
+            } 
 
         }
 

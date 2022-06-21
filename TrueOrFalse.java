@@ -94,6 +94,7 @@ public class TrueOrFalse extends JFrame implements TestFrameImplement{
         submitButton.setBorderPainted(false);
         submitButton.setActionCommand("submit");
         submitButton.addActionListener(cmdHandler);
+        submitButton.setEnabled(false);
         
 
         buttonCorrect = new JButton(new ImageIcon("src/imageSrc/uncheckedTrue.png"));
@@ -189,6 +190,7 @@ public class TrueOrFalse extends JFrame implements TestFrameImplement{
         @Override
         public void actionPerformed(ActionEvent event) {
             String ans = event.getActionCommand();
+            submitButton.setEnabled(true);
             
             if (ans == "T") {
                 answer = "T";
