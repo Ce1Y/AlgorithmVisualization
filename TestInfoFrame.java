@@ -28,11 +28,11 @@ public class TestInfoFrame extends JFrame {
     private int[][] visit = new int[3][30];
 
     private String info = "Here's the rules:" + "\n" +
-            "1. There are 5 question in this section" + "\n" +
+            "1. There are 5 questions in this section" + "\n" +
             "2. Each question has 20 points" + "\n" +
-            "3. There are 3 type of question in this section: Multiple Choice, Mutiple Choice with multiple answers"
+            "3. There are 3 type of question in this section: Multiple Choice, True Or False"
             + "\n" +
-            "   and combination" + "\n" +
+            "   and Cloze" + "\n" +
             "4. There's no time limit. Focus on your question and try your best!";
 
     public TestInfoFrame() {

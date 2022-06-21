@@ -33,7 +33,7 @@ public class Menu extends JFrame {
     public Menu() {
 
         // GUI init
-        super("Menu");
+        super("ALGORITHM VISUALIZATION");
         setSize(1000, 600);
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

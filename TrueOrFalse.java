@@ -45,7 +45,7 @@ public class TrueOrFalse extends JFrame implements TestFrameImplement{
     private int[][] visit;
     private int quizNumber;
     private int score; //into 
- 
+
     private String answer;
 
     
